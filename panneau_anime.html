@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panneau Animé Wotatif NGA</title>
+    <style>
+        /* --- CSS: Style ak Animasyon Wotasyon Kontini ak Glisman Tèks --- */
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f4f8;
+            margin: 0;
+            perspective: 1000px; /* Etabli pèspektiv 3D */
+            font-family: 'Arial', sans-serif;
+        }
+
+        .flip-container-text {
+            width: 90%;
+            max-width: 650px;
+            height: 220px; /* Wotè fiks pou kontni an */
+            position: relative;
+        }
+        
+        /* Bouton Fèmen */
+        #close-text-flip {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 1.8em;
+            color: white;
+            cursor: pointer;
+            z-index: 10; 
+            transition: color 0.3s;
+        }
+
+        #close-text-flip:hover {
+            color: #ccc;
+        }
+
+        .flipper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 1s; /* Duree wotasyon 3D an */
+            transform-style: preserve-3d;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+        }
+
+        /* Klas pou deklanche wotasyon an */
+        .flipper.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column; /* Pou jere tèks ak imaj anndan fas la */
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            box-sizing: border-box;
+            color: white;
+            transition: background-color 0.5s ease;
+            overflow: hidden;
+            border: 3px solid white;
+        }
+
+        /* Koulè Inisyal yo */
+        .front {
+            transform: rotateY(0deg);
+            background-color: #007bff;
+        }
+
+        .back {
+            transform: rotateY(180deg);
+            background-color: #28a745;
+        }
+
+        /* Tèks Aktyèl la */
+        .current-text {
+            font-size: 1.4em;
+            line-height: 1.5;
+            margin: 0;
+            position: absolute; 
+            white-space: normal;
+            width: 100%;
+            padding: 0 20px;
+            box-sizing: border-box;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        /* --- Style Animasyon Logo an Pulsion --- */
+        @keyframes pulse-logo {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .logo-pulse {
+            max-width: 80%;
+            height: auto;
+            border-radius: 8px;
+            animation: pulse-logo 1.5s infinite ease-in-out; /* Animasyon Pulsion */
+        }
+        
+        /* --- Animasyon Glisman Tèks (Slide In/Out) --- */
+        @keyframes slideInFromRight {
+            0% { transform: translateX(100%); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+        
+        .face .text-in {
+            animation: slideInFromRight 0.8s forwards;
+        }
+        
+        /* --- Koulè Siplemantè pou Sik la --- */
+        .color-blue { background-color: #007bff; }
+        .color-green { background-color: #28a745; }
+        .color-red { background-color: #dc3545; }
+        .color-purple { background-color: #6f42c1; }
+        .color-orange { background-color: #fd7e14; }
+        
+    </style>
+</head>
+<body>
+
+    <div id="text-flip-container" class="flip-container-text">
+        <span id="close-text-flip" onclick="closeTextFlip()">×</span>
+        <div id="text-flip-card" class="flipper">
+            <div id="text-front" class="face front color-blue">
+                <p class="current-text"></p>
+                <img src="NGA.png" alt="Logo NGA" class="logo-pulse" style="display: none;"> 
+            </div>
+            <div id="text-back" class="face back color-green">
+                <p class="current-text"></p>
+                <img src="NGA.png" alt="Logo NGA" class="logo-pulse" style="display: none;">
+            </div>
+        </div>
+    </div>
+    <script>
+    // --- JavaScript: Lojik Tèks Siklik ak Wotasyon 3D ---
+    
+    // NOUVO SEKANS MESAJ AK AKSYON
+    const MESSAGES = [
+        { type: 'text', content: "Nou se NextGen Academy" },
+        { type: 'logo', content: "Logo NGA" }, // Logo an pulsasyon
+        { type: 'text', content: "Kontakte nou: 3101-3968" },
+        { type: 'text', content: "Fòmasyon an kòmanse le 6 Desanm!" },
+        { type: 'text', content: "Ekri nou sou WhatsApp pou w enskri kounye a!" }
+    ];
+    
+    const COLORS = ['color-blue', 'color-green', 'color-red', 'color-purple', 'color-orange'];
+    
+    let messageIndex = 0; 
+    let colorIndex = 0; 
+    let flipInterval;
+
+    const flipContainer = document.getElementById('text-flip-container');
+    const flipper = document.getElementById('text-flip-card');
+    const frontFace = document.getElementById('text-front');
+    const backFace = document.getElementById('text-back');
+
+    function getNextItem() {
+        const item = MESSAGES[messageIndex];
+        messageIndex = (messageIndex + 1) % MESSAGES.length;
+        return item;
+    }
+
+    function getNextColor() {
+        const colorClass = COLORS[colorIndex];
+        colorIndex = (colorIndex + 1) % COLORS.length;
+        return colorClass;
+    }
+
+    function renderContent(faceElement, item, colorClass) {
+        const textElement = faceElement.querySelector('.current-text');
+        const logoElement = faceElement.querySelector('.logo-pulse');
+        
+        // 1. Chanje koulè background
+        faceElement.classList.remove(...COLORS);
+        faceElement.classList.add(colorClass);
+
+        // 2. Afiche kontni ki koresponn lan
+        if (item.type === 'logo') {
+            textElement.style.display = 'none';
+            logoElement.style.display = 'block';
+        } else {
+            logoElement.style.display = 'none';
+            textElement.style.display = 'block';
+            
+            // Fè tèks la parèt ak animasyon glisman an
+            textElement.textContent = item.content;
+            textElement.classList.add('text-in'); 
+            
+            // Apre animasyon glisman an fini, retire klas animasyon an
+            setTimeout(() => {
+                textElement.classList.remove('text-in');
+            }, 800);
+        }
+    }
+
+    function updatePanel() {
+        const isFlipped = flipper.classList.contains('flipped');
+        
+        // Fas ki pral parèt la
+        const targetFace = isFlipped ? frontFace : backFace;
+
+        const nextItem = getNextItem();
+        const newColor = getNextColor();
+
+        // 1. Prepare kontni sou fas ki pral vini an
+        renderContent(targetFace, nextItem, newColor);
+        
+        // 2. Deklanche wotasyon an
+        flipper.classList.toggle('flipped');
+    }
+
+    function startFlipping() {
+        // 1. Mete premye mesaj la kòrèkteman sou fas devan an (Front Face)
+        const firstItem = getNextItem(); // "Nou se NextGen Academy"
+        const firstColor = getNextColor(); // color-blue
+        
+        renderContent(frontFace, firstItem, firstColor);
+        
+        // 2. Kòmanse sik wotasyon an apre 4 segonn
+        flipInterval = setInterval(updatePanel, 4000); 
+    }
+    
+    function closeTextFlip() {
+        clearInterval(flipInterval); 
+        flipContainer.style.display = 'none'; 
+        document.getElementById('close-text-flip').style.display = 'none';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Kòmanse animasyon an imedyatman
+        startFlipping();
+    });
+</script>
+
+</body>
+</html>

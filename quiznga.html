@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextGen Academy Kèstyonè</title>
+    <style>
+        /* --- CSS pou Style la (San Dégradé) --- */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9; /* Background klè */
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .quiz-container {
+            /* Background plat */
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 650px;
+            border: 1px solid #ddd;
+        }
+
+        h1 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+
+        .question-section {
+            display: none;
+            border: 1px solid #ddd;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            background-color: #fafafa;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .question-section.active {
+            display: block;
+            opacity: 1;
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 1.6em;
+            color: #444;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .options label {
+            display: block;
+            background: #e9ecef;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            border: 1px solid #dee2e6;
+        }
+
+        .options label:hover {
+            background: #dee2e6;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 12px;
+            transform: scale(1.2);
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            margin-top: 25px;
+            box-shadow: 0 4px #1e7e34;
+        }
+
+        button:active {
+            box-shadow: 0 1px #1e7e34;
+            transform: translateY(3px);
+        }
+
+        #mistake-counter {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #dc3545;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        /* --- Style Animasyon Logo an Pulsion --- */
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        #logo-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #logo {
+            max-width: 180px;
+            height: auto;
+            animation: pulse 2s infinite ease-in-out; /* Animasyon Pulsion */
+            border-radius: 10px;
+        }
+
+        /* --- Style Seksyon Eliyibilite --- */
+        #eligibility-section {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            background: #ffc107; /* Background plat Jòn */
+            border-radius: 15px;
+            margin-top: 30px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid #ffa000;
+        }
+
+        #eligibility-section h3 {
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        #eligibility-code {
+            font-size: 1.8em;
+            color: #dc3545;
+            background-color: #fff;
+            padding: 15px 25px;
+            border: 3px dashed #dc3545;
+            display: inline-block;
+            margin: 20px 0;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border-radius: 8px;
+        }
+
+        #countdown {
+            font-size: 1.6em;
+            color: #333;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        #countdown span {
+            color: #007bff;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        /* --- Style Bouton CTA ak Animasyon --- */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .cta-button {
+            /* Background plat Wouj pou CTA */
+            background-color: #dc3545;
+            box-shadow: 0 5px #a00;
+            margin-top: 30px;
+            font-size: 1.4em;
+            padding: 18px 25px;
+            text-decoration: none;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+            font-weight: bold;
+            animation: float 2s ease-in-out infinite; /* Animasyon float */
+        }
+
+        .cta-button:hover {
+            background-color: #c82333;
+            box-shadow: 0 5px #991c26;
+        }
+
+        .cta-button:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px #991c26;
+        }
+
+        #result-section {
+            text-align: center;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 1.3em;
+            background-color: #ffe0e0;
+            border: 1px solid #ffbbbb;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <h1>NGA TEST</h1>
+    <div id="mistake-counter">Erè : 0/2</div>
+
+    <div id="q1" class="question-section active">
+        <h2>Kesyon 1: Ki deviz NextGen Academy? (2 pw)</h2>
+        <div class="options">
+            <label><input type="radio" name="q1" value="A"> A. Yon jenerasyon k'ap bati demen</label>
+            <label><input type="radio" name="q1" value="B"> B. Fiti jenerasyon kap vini an</label>
+            <label><input type="radio" name="q1" value="C"> C. Konesans se pouvwa</label>
+        </div>
+        <button onclick="checkAnswer('q1', 'A')">Kontinye</button>
+    </div>
+
+    <div id="q2" class="question-section">
+        <h2>Kesyon 2: Ki diferan sèvis NGA ofri? (2 pw)</h2>
+        <div class="options">
+            <label><input type="radio" name="q2" value="A"> A. Fòmasyon atistik, sèvis shipping, devlopman antrepriz, fòmasyon an teknoloji, pwojè agrikilti, bibliyotèk anliy</label>
+            <label><input type="radio" name="q2" value="B"> B. Sèvis shipping, devlopman antrepriz, pwojè agrikilti, konsèy sou envestisman</label>
+            <label><input type="radio" name="q2" value="C"> C. Fòmasyon an teknoloji, sèvis shipping, aprann ondi pwa lou, vann zèv atistik</label>
+        </div>
+        <button onclick="checkAnswer('q2', 'A')">Kontinye</button>
+    </div>
+
+    <div id="q3" class="question-section">
+        <h2>Kesyon 3: Ki enstitisyon ki valide sètifika NGA yo ofisyèlman? (2 pw)</h2>
+        <div class="options">
+            <label><input type="radio" name="q3" value="A"> A. Ministè Edikasyon Nasyonal</label>
+            <label><input type="radio" name="q3" value="B"> B. Suisse Haiti Market</label>
+            <label><input type="radio" name="q3" value="C"> C. Chanm Komès Ayisyen</label>
+        </div>
+        <button onclick="checkAnswer('q3', 'B')">Kontinye</button>
+    </div>
+
+    <div id="q4" class="question-section">
+        <h2>Kesyon 4: Ki kote NGA bay kou li yo? (2 pw)</h2>
+        <div class="options">
+            <label><input type="radio" name="q4" value="A"> A. Camp-Perrin ak Les Cayes)</label>
+            <label><input type="radio" name="q4" value="B"> B. Pòtoprens ak Petyonvil</label>
+            <label><input type="radio" name="q4" value="C"> C. Kap Ayisyen ak Jakmèl</label>
+        </div>
+        <button onclick="checkAnswer('q4', 'A')">Kontinye</button>
+    </div>
+
+    <div id="q5" class="question-section">
+        <h2>Kesyon 5: Èske yon timoun 13 an ka aprann Fizik Aplike nan NGA? (2 Pwen)</h2>
+        <div class="options">
+            <label><input type="radio" name="q5" value="A"> A. Wi</label>
+            <label><input type="radio" name="q5" value="B"> B. Non</label>
+        </div>
+        <button onclick="checkAnswer('q5', 'A')">Tèmine tès la</button>
+    </div>
+
+    <div id="reserve-q" class="question-section">
+        <h2>Kesyon rezèv: Ki de poto mitan NGA baze operasyon l yo sou yo?</h2>
+        <div class="options">
+            <label><input type="radio" name="reserve" value="A"> A. Agrikilti ak Shipping</label>
+            <label><input type="radio" name="reserve" value="B"> B. Edikasyon ak Teknoloji</label>
+            <label><input type="radio" name="reserve" value="C"> C. Antrepriz ak Touris</label>
+        </div>
+        <button onclick="checkReserveAnswer('B')">Soumèt Repons Rezèv la</button>
+    </div>
+
+    <div id="result-section" style="display: none;">
+        <h3>Quiz la fini</h3>
+        <p id="final-score"></p>
+        <p id="final-message"></p>
+    </div>
+
+    <div id="eligibility-section">
+        <h3>🎉 Konpliman! Ou eliyib! 🎉</h3>
+        <p>Ou fè nòt rekòmandasyon an: 10/10. Men kòd eliyibilite inik ou a:</p>
+        <div id="eligibility-code"></div>
+        <p>Òf espesyal sa a valab pou sèlman :</p>
+        <div id="countdown"></div>
+        <p>Finalize enskripsyon ou kounye a pou l' aplike sou fòmasy9n w chwazi a :</p>
+        <a href="pèman.html" class="cta-button">ENSKRI KOUNYE A</a>
+        <div id="logo-container">
+            <img id="logo" src="NGA.png" alt="Logo NextGen Academy">
+        </div>
+    </div>
+
+</div>
+
+<audio id="correct-sound" src="correct.mp3" preload="auto"></audio>
+<audio id="wrong-sound" src="wrong.mp3" preload="auto"></audio>
+<audio id="nga-sound" src="nga1.mp3" preload="auto"></audio>
+
+<script>
+    // --- JavaScript pou Lojik la ak localStorage ---
+    
+    // Kle pou localStorage
+    const LS_SCORE_KEY = 'nga_quiz_score';
+    const LS_MISTAKES_KEY = 'nga_quiz_mistakes';
+    const LS_CODE_KEY = 'nga_eligibility_code';
+    const LS_CURRENT_Q_KEY = 'nga_current_q';
+    const LS_GAME_FINISHED = 'nga_game_finished'; // NOUVO KLE POU MAKE SI JWÈT LA FINI
+
+    let currentQuestion = 1;
+    let score = 0;
+    let mistakesMade = 0;
+    const totalQuestions = 5;
+    let isReserveQuestionActive = false;
+
+    // Referans eleman odyo
+    const correctSound = document.getElementById('correct-sound');
+    const wrongSound = document.getElementById('wrong-sound');
+    const ngaSound = document.getElementById('nga-sound');
+
+    // --- Fonksyon localStorage ---
+    function loadState() {
+        // Tcheke si jwèt la deja make kòm fini
+        if (localStorage.getItem(LS_GAME_FINISHED) === 'true') {
+            // Si l fini, nou chaje sèlman nòt final la pou nou ka afiche rezilta a ankò.
+            score = parseInt(localStorage.getItem(LS_SCORE_KEY) || '0', 10);
+            return;
+        }
+
+        score = parseInt(localStorage.getItem(LS_SCORE_KEY) || '0', 10);
+        mistakesMade = parseInt(localStorage.getItem(LS_MISTAKES_KEY) || '0', 10);
+        currentQuestion = parseInt(localStorage.getItem(LS_CURRENT_Q_KEY) || '1', 10);
+        
+        // Mete ajou kontè erè a
+        document.getElementById('mistake-counter').textContent = `Erè : ${mistakesMade}/2`;
+    }
+
+    function saveState() {
+        localStorage.setItem(LS_SCORE_KEY, score);
+        localStorage.setItem(LS_MISTAKES_KEY, mistakesMade);
+        localStorage.setItem(LS_CURRENT_Q_KEY, currentQuestion);
+    }
+
+    function resetActiveGameProgress() {
+        // Efase sèlman kle pwogrè yo, PA kòd eliyibilite a.
+        localStorage.removeItem(LS_SCORE_KEY);
+        localStorage.removeItem(LS_MISTAKES_KEY);
+        localStorage.removeItem(LS_CURRENT_Q_KEY);
+    }
+    
+    // --- Lojik Jwèt ---
+    function playSound(sound) {
+        sound.currentTime = 0;
+        sound.play().catch(e => console.error("Erè nan lekti odyo:", e));
+    }
+
+    function nextQuestion(qNum) {
+        // Kache kesyon aktyèl la (si l egziste)
+        const activeQEl = document.querySelector('.question-section.active');
+        if (activeQEl) {
+             activeQEl.classList.remove('active');
+        }
+
+        currentQuestion = qNum;
+        saveState(); // Sove pwogrè a
+
+        if (currentQuestion <= totalQuestions) {
+            // Afiche nouvo kesyon prensipal la
+            const nextQEl = document.getElementById('q' + currentQuestion);
+            if (nextQEl) {
+                nextQEl.classList.add('active');
+            }
+        } else {
+            // Fen kèstyonè a
+            endQuiz();
+        }
+    }
+
+    function checkAnswer(qId, correctAnswer) {
+        if (isReserveQuestionActive) return;
+
+        const selectedOption = document.querySelector(`input[name=${qId}]:checked`);
+
+        if (!selectedOption) {
+            alert("Tanpri chwazi yon repons.");
+            return;
+        }
+
+        const userAnswer = selectedOption.value;
+
+        if (userAnswer === correctAnswer) {
+            score += 2;
+            playSound(correctSound);
+            saveState();
+            nextQuestion(currentQuestion + 1);
+        } else {
+            mistakesMade++;
+            document.getElementById('mistake-counter').textContent = `Erè : ${mistakesMade}/2`;
+            playSound(wrongSound);
+            saveState();
+
+            if (mistakesMade === 1) {
+                isReserveQuestionActive = true;
+                document.getElementById('q' + currentQuestion).classList.remove('active');
+                document.getElementById('reserve-q').classList.add('active');
+            } else if (mistakesMade === 2) {
+                endQuiz(true);
+            }
+        }
+    }
+
+    function checkReserveAnswer(correctAnswer) {
+        const selectedOption = document.querySelector(`input[name="reserve"]:checked`);
+
+        if (!selectedOption) {
+            alert("Tanpri chwazi yon repons pou kesyon rezèv la.");
+            return;
+        }
+
+        const userAnswer = selectedOption.value;
+        isReserveQuestionActive = false;
+
+        document.getElementById('reserve-q').classList.remove('active');
+
+        if (userAnswer === correctAnswer) {
+            // Repons Kòrèk : Anile erè a
+            mistakesMade = 0;
+            document.getElementById('mistake-counter').textContent = `Erè : ${mistakesMade}/2 (Erè Anile!)`;
+            playSound(correctSound);
+            saveState();
+            nextQuestion(currentQuestion + 1);
+        } else {
+            // Repons Fòt : 2zyèm erè a
+            mistakesMade = 2;
+            document.getElementById('mistake-counter').textContent = `Erè : ${mistakesMade}/2`;
+            playSound(wrongSound);
+            saveState();
+            endQuiz(true);
+        }
+    }
+
+    function endQuiz(isEliminated = false) {
+        // Mark as finished
+        localStorage.setItem(LS_GAME_FINISHED, 'true');
+
+        // Asire tout kesyon yo kache
+        document.querySelectorAll('.question-section').forEach(el => el.classList.remove('active'));
+        
+        const resultSection = document.getElementById('result-section');
+        const finalScoreEl = document.getElementById('final-score');
+        const finalMessageEl = document.getElementById('final-message');
+        document.getElementById('mistake-counter').style.display = 'none';
+
+        if (isEliminated) {
+            resetActiveGameProgress(); // Efase pwogrè ki pa fini an
+            resultSection.style.display = 'block';
+            finalScoreEl.innerHTML = ``;
+            finalMessageEl.innerHTML = '...se te yon plezi';
+        } else {
+            // Fin nòmal (5 kesyon fini)
+            if (score === 10) {
+                // SI Siksè (10/10), nou kite LS_SCORE_KEY pou li ka toujou afiche seksyon eliyibilite a
+                resetActiveGameProgress(); // Efase pwogrè, men kite nòt la ak GAME_FINISHED = true
+                resultSection.style.display = 'none';
+                activateEligibilitySection();
+            } else {
+                resetActiveGameProgress(); // Efase pwogrè ki pa fini an
+                resultSection.style.display = 'block';
+                finalScoreEl.innerHTML = `Nòt final : **${score}/10**`;
+                finalMessageEl.innerHTML = 'Kèstyonè a fini. Mèsi pou patisipasyon w !';
+            }
+        }
+    }
+
+    // --- Lojik Seksyon Eliyibilite ---
+    function generateUniqueCode() {
+        const existingCode = localStorage.getItem(LS_CODE_KEY);
+        if (existingCode) {
+            return existingCode;
+        }
+        
+        const datePart = new Date().getTime().toString(36).toUpperCase().substring(0, 4);
+        const randomPart = Math.random().toString(36).substring(2, 6).toUpperCase();
+        const newCode = `NGA-${datePart}-${randomPart}`;
+        
+        localStorage.setItem(LS_CODE_KEY, newCode);
+        return newCode;
+    }
+
+    function startCountdown() {
+        // ... (Kòd Countdown lan rete menm jan) ...
+        const targetDuration = (3 * 24 * 60 * 60) + (12 * 60 * 60) + 59;
+        let timer = targetDuration;
+
+        const countdownElement = document.getElementById('countdown');
+
+        const interval = setInterval(function () {
+            if (timer < 0) {
+                clearInterval(interval);
+                countdownElement.innerHTML = '<span>ÒF LA EKSPRE</span>';
+                return;
+            }
+
+            const days = Math.floor(timer / (60 * 60 * 24));
+            const hours = Math.floor((timer % (60 * 60 * 24)) / (60 * 60));
+            const minutes = Math.floor((timer % (60 * 60)) / 60);
+            const seconds = Math.floor(timer % 60);
+
+            countdownElement.innerHTML =
+                `<span>${days}</span> jou, <span>${hours}</span> è, <span>${minutes.toString().padStart(2, '0')}</span> minit, <span>${seconds.toString().padStart(2, '0')}</span> segond`;
+
+            timer--;
+        }, 1000);
+    }
+
+    function activateEligibilitySection() {
+        document.getElementById('eligibility-code').textContent = generateUniqueCode();
+        document.getElementById('eligibility-section').style.display = 'block';
+        startCountdown();
+        playSound(ngaSound);
+    }
+
+    // --- Inisyalizasyon ---
+    document.addEventListener('DOMContentLoaded', () => {
+        loadState();
+        
+        const isFinished = localStorage.getItem(LS_GAME_FINISHED) === 'true';
+
+        if (isFinished) {
+            // SI JWÈT LA FINI, AFICHE REZILTA FINAL LA
+            
+            if (score === 10) {
+                // Ka 1: Siksè (10/10)
+                activateEligibilitySection();
+            } else {
+                // Ka 2: Eliminasyon oswa Nòt ki pa pafè
+                endQuiz(score < 10); // endQuiz ap okipe afichaj 'result-section' la ak nòt final la
+            }
+            
+            // Nou dwe kache tout kesyon pandan afichaj rezilta a
+            document.querySelectorAll('.question-section').forEach(el => el.style.display = 'none');
+            
+        } else {
+            // SI JWÈT LA PA FINI, KONTINYE NÒMALMAN
+            
+            // Asire sèlman yon kesyon kòmanse
+            document.querySelectorAll('.question-section').forEach(el => el.classList.remove('active'));
+
+            const startQId = 'q' + currentQuestion;
+            const startQEl = document.getElementById(startQId);
+            
+            if (startQEl) {
+                startQEl.classList.add('active');
+            } else if (mistakesMade === 1) {
+                isReserveQuestionActive = true;
+                document.getElementById('reserve-q').classList.add('active');
+            } else {
+                // Lè currentQuestion > 5 men pa gen GAME_FINISHED (sa pa ta dwe rive)
+                document.getElementById('q1').classList.add('active');
+                currentQuestion = 1;
+                saveState();
+            }
+        }
+    });
+
+</script>

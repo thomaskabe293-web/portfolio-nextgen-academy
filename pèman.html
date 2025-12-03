@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akèy | NextGen Academy</title> <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* =================================================================================== */
+        /* ########################## STYLES POU PAJ PAIEMENT.HTML ########################## */
+        /* Sèlman estil ki gen rapò ak seksyon Tranzaksyon an ak Layout Debaz la */
+        /* =================================================================================== */
+        
+        /* --- Variables de Base (Récupération des couleurs de index.html) --- */
+        :root {
+            /* Mwen sipoze ou genyen yo nan base.css, men mwen mete yo la pou konsistans */
+            --primary-color: #004d99; /* Bleu Marine */
+            --secondary-color: #ff6600; /* Orange */
+            --accent-color: #7b68ee; /* Vyolèt (Kòd sa a te nan CSS ou an, mwen konsève l) */
+            --background-light: #f4f4f9; /* Gris Clair */
+            --background-card: #fff; /* Blanc */
+            --text-dark: #333;
+            --text-light: #fff;
+            /* Mwen ajoute sa yo ki soti nan CSS ou an pou .transaction-section la korèk */
+        }
+        
+        /* Styles jeneral pou paj la (Si yo pa nan base.css) */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            padding-top: 50px; 
+        }
+
+        /* 3.4 Section d'Inscription et Paiement - FOND BLEU MARINE KORÈK */
+        .transaction-section {
+            /* FOND TRANSACTION : BLEU MARINE (var(--primary-color)) */
+            background-color: var(--primary-color); 
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        #transaction-section {
+            scroll-margin-top: 80px; 
+        }
+
+        .transaction-section h2 {
+            color: var(--secondary-color); /* TITRE DE SECTION : ORANGE VIF */
+            margin-bottom: 30px;
+        }
+
+        .form-container {
+            background-color: var(--background-card); /* Blanc */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            margin-left: auto; 
+            margin-right: auto; 
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input,
+        .form-group textarea { 
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            resize: vertical; 
+        }
+
+        .file-upload-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .file-upload-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        /* Nouvo tèks intro anlè bouton peman yo */
+        .paiement-intro-text {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: var(--primary-color); /* TEXTE INTRO : BLEU MARINE */
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed #ccc;
+        }
+
+
+        /* --- BLOC PAIEMENT (MONCASH & NATCASH CÔTE À CÔTE) --- */
+        .paiement-options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; 
+            gap: 15px; 
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .option-item {
+            padding: 15px 5px;
+            border: 1px solid var(--border-color, #ddd);
+            border-radius: 8px;
+            background-color: var(--background-card);
+        }
+
+        .paiement-logo {
+            width: 120px; 
+            height: auto;
+            transition: transform 0.3s;
+            display: block; 
+            margin: 5px auto; 
+        }
+
+        .natcash-btn, .moncash-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            margin: 0;
+            display: block; 
+            width: 100%;
+        }
+
+        .natcash-btn:hover .paiement-logo, 
+        .moncash-btn:hover .paiement-logo {
+            transform: scale(1.05); 
+        }
+
+        .paiement-note {
+            font-size: 0.85em;
+            font-weight: bold;
+            color: var(--secondary-color); /* NOTE PAIEMENT : ORANGE VIF */
+            margin-top: 10px;
+        }
+        /* FIN BLOC PAIEMENT */
+
+        /* Bouton Soumettre */
+        .submit-btn {
+            background-color: var(--accent-color); /* BOUTON SUBMIT : Vyolèt */
+            color: var(--text-light);
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+            width: 100%; 
+            max-width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: #5d48bd; /* Vyolèt yon ti jan pi fonse */
+        }
+
+
+        /* --- Media Queries (Korèksyon Responsive Design) --- */
+        @media (max-width: 650px) {
+            /* Bouton peman yo youn anba lòt sou mobil */
+            .paiement-options-grid {
+                grid-template-columns: 1fr; 
+            }
+        }
+
+        @media (max-width: 600px) {
+            /* Korèksyon jeneral pou mobil */
+            .container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            .form-container {
+                padding: 30px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="container top-info">
+            <span class="contact-item"><i class="fas fa-bullhorn"></i> Fè tranzaksyon ou an sekirite isit la</span>
+        </div>
+    </div>
+
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="logo1.png" alt="Logo NextGen Academy" class="logo-img">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Akèy</a></li>
+                <li><a href="kiyès.html">Kiyès nou ye</a></li>
+                <li><a href="pwogram.html">Pwogram e sèvis</a></li>
+                <li><a href="kontak.html">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="transaction-section" id="transaction-section">
+            <div class="container form-container">
+                <h2>KOTE POU FÈ TRANZAKSYON</h2>
+                
+                <form id="transactionForm" action="https://getform.io/f/akkpolva" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input type="text" id="nom" name="Nom" placeholder="Non" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="siyati" name="Siyati" placeholder="Siyati" required>
+                    </div>
+                    
+                    <div class="file-upload-group">
+                        <label for="transaction_capture">Kaptu dekran tranzaksyon an:</label>
+                        <input type="file" id="transaction_capture" name="Capture_Ecran_Paiement" accept="image/*" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="text" id="montant" name="Montant_Transfere" placeholder="Montan wap transfere a (eg. 500 HTG)" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea id="description" name="Description_Transaction" placeholder="Deskripsyon sou tranzaksyon an" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" id="telephone" name="Telephone_Contact" placeholder="Nimewo telefòn (WhatsApp)" required>
+                    </div>
+
+                    <input type="hidden" name="_gotof" value="/merci.html">
+
+                    <p class="paiement-intro-text">Chwazi mwayen wap fè transfè an:</p>
+                    
+                    <div class="paiement-options-grid">
+                        
+                        <div class="option-item">
+                            <button type="button" class="natcash-btn" onclick="faireDonNatcash()">
+                                <img src="natcash1.png" alt="Bouton Natcash" class="paiement-logo">
+                            </button>
+                        </div>
+
+                        <div class="option-item">
+                            <button type="button" class="moncash-btn" onclick="faireDonMoncash()">
+                                <img src="img0.png" alt="Bouton Moncash" class="paiement-logo">
+                            </button>
+                        </div>
+                        
+                    </div>
+
+                    <button type="submit" class="submit-btn">Soumèt enfòmasyon yo</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container footer-content">
+            <div class="social-links">
+                <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <p>&copy; 2026 NextGen Academy. Tout dwa rezève.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Fonction pour gérer le clic sur le bouton Natcash
+        function faireDonNatcash() {
+            alert("Pou fè tranzaksyon Natcash: 1. Fè transfè a sou +509 3560-8869 / Kes* Ben*.");
+        }
+        
+        // FONKSYON POU MONCASH
+        function faireDonMoncash() {
+            alert("Pou fè tranzaksyon Moncash: 1. Fè transfè a sou +509 3101-3968 / Kes* Ben*.");
+        }
+    </script>
+</body>
+</html>

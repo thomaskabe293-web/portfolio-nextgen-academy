@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Démonstrations Vidéo | NextGen Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #004d99;
+            --secondary-color: #ff6600;
+            --background-light: #f4f4f9;
+            --text-dark: #333;
+            --accent-color: #3498db;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 50px;
+        }
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 15px;
+        }
+        
+        /* Section unique pour toutes les vidéos (pas de division par lieu) */
+        .video-section {
+            background-color: white;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .video-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        .video-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        .video-item video {
+            width: 100%;
+            height: auto;
+            display: block;
+            background-color: #000;
+        }
+        .video-item p {
+            padding: 15px;
+            margin: 0;
+            font-weight: bold;
+            text-align: center;
+            background-color: #f7f9fc;
+            color: var(--text-dark);
+            font-size: 0.95em;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .back-link:hover {
+            color: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <a href="detay-teknoloji.html" class="back-link"><i class="fas fa-arrow-left"></i> Retounen nan Detay Fòmasyon</a>
+
+        <h1><i class="fas fa-video"></i> Demonstrasyon Vidéo NextGen Academy</h1>
+
+        <div class="video-section">
+            <div class="video-grid">
+                
+                <div class="video-item">
+                    <video controls preload="metadata" src="devlopmanweb.mp4" poster="web_poster.jpg"></video>
+                    <p>Pwojè Devlopman Web | **Les Cayes**</p>
+                </div>
+                
+                <div class="video-item">
+                    <video controls preload="metadata" src="devlopmanapk.mp4" poster="apk_poster.jpg"></video>
+                    <p>Démonstration Devlopman APK | **Camp-Perrin**</p>
+                </div>
+                
+                <div class="video-item">
+                    <video controls preload="metadata" src="reparasyonteknik.mp4" poster="reparasyon_poster.jpg"></video>
+                    <p>Démonstration Reparasyon Òdinatè | **Camp-Perrin**</p>
+                </div>
+
+                <div class="video-item">
+                    <video controls preload="metadata" src="installationcam.mp4" poster="cam_poster.jpg"></video>
+                    <p>Enstalasyon Cam Sekirite | **Les Cayes**</p>
+                </div>
+                
+                <div class="video-item">
+                    <video controls preload="metadata" src="elektrisite.mp4" poster="elektrisite_poster.jpg"></video>
+                    <p>Pwojè Elektrisite Domestik | **Camp-Perrin**</p>
+                </div>
+                
+                <div class="video-item">
+                    <video controls preload="metadata" src="marketing.mp4" poster="marketing_poster.jpg"></video>
+                    <p>Kanpay Marketing Digital | **Les Cayes**</p>
+                </div>
+                
+                <div class="video-item">
+                    <video controls preload="metadata" src="grafikdizay.mp4" poster="grafikdizay_poster.jpg"></video>
+                    <p>Pwojè Grafik Dizay & Serigrafi | **Camp-Perrin**</p>
+                </div>
+                
+                <div class="video-item">
+                    <video controls preload="metadata" src="elektwoteknik.mp4" poster="elektwoteknik_poster.jpg"></video>
+                    <p>Pwojè Elektwoteknik (Timoun) | **Les Cayes**</p>
+                </div>
+
+                <div class="video-item">
+                    <video controls preload="metadata" src="fizikaplike.mp4" poster="fizikaplike_poster.jpg"></video>
+                    <p>Eksperyans Fizik (Timoun) | **Camp-Perrin**</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</body>
+</html>

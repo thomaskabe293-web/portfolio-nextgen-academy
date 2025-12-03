@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pwogram e Sèvis | NextGen Academy</title>
+    
+    <link rel="stylesheet" href="base.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* =================================================================================== */
+        /* ######################### STYLES PAGE PWOGRAM E SÈVIS (SPÉCIFIQUE) ############# */
+        /* (pwogram_page.css) */
+        /* =================================================================================== */
+        
+        /* 5.1 Estil Jeneral pou Paj la */
+        .pwogram-intro {
+            padding-top: 50px;
+            padding-bottom: 30px;
+            text-align: center; 
+        }
+        
+        .page-main-title {
+            color: var(--primary-color); 
+        }
+        
+        .intro-description {
+            max-width: 800px;
+            margin: 0 auto 10px auto; 
+            font-size: 1.1em;
+            line-height: 1.7;
+        }
+        
+        /* 5.2 Estrikti Pwogram et Sidebar (Affichage PC: CÔTE À CÔTE) */
+        .program-structure {
+            display: flex; 
+            gap: 30px; 
+            padding-bottom: 80px;
+            align-items: flex-start; 
+        }
+        
+        .program-sidebar {
+            flex-basis: 300px;
+            max-width: 300px;
+            background-color: var(--primary-color);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            height: fit-content;
+            position: sticky;
+            top: 100px; 
+        }
+        
+        /* --- Styles de l'Accordéon --- */
+        .program-sidebar .accordion-header {
+            cursor: pointer; 
+            display: flex; 
+            justify-content: space-between;
+            align-items: center;
+            animation: blink 3s infinite alternate; 
+            text-transform: uppercase; 
+            color: var(--secondary-color); 
+            font-size: 0.9em;
+            font-weight: 800;
+            padding: 15px 10px 5px 10px;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1); 
+        }
+        
+        .accordion-header i {
+            transition: transform 0.3s ease-in-out; 
+            margin: 0;
+        }
+        
+        .accordion-header.active-accordion i {
+            transform: rotate(-180deg);
+        }
+        
+        .accordion-content {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 0; 
+            overflow: hidden; 
+            transition: max-height 0.4s ease-in-out; 
+        }
+        
+        .accordion-content.open {
+            max-height: 500px; 
+        }
+        
+        /* --- Styles des Liens (Niveau 3) --- */
+        .category-section:not(:last-child) {
+            border-bottom: 2px solid rgba(255, 255, 255, 0.15); 
+        }
+        
+        .category-section li {
+            margin: 0;
+            border-left: 5px solid transparent;
+            transition: all 0.2s;
+        }
+        
+        .sidebar-link {
+            display: block;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: var(--text-light); 
+            font-weight: 500;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        
+        .sidebar-link i {
+            margin-right: 15px;
+            font-size: 1.2em;
+            color: var(--secondary-color); 
+        }
+        
+        .sidebar-link:hover, .active-link {
+            background-color: var(--pale-bg); 
+            color: var(--primary-color) !important; 
+            border-left-color: var(--secondary-color) !important; 
+        }
+        
+        .sidebar-link:hover i, .active-link i {
+            color: var(--secondary-color); 
+        }
+        
+        
+        /* 5.3 Zòn Kontni Pwogram yo */
+        .program-content-area {
+            flex-grow: 1; 
+            background-color: var(--background-card);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .content-detail h2 {
+            color: var(--primary-color);
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
+        
+        .content-detail p {
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+        
+        .detail-btn {
+            display: inline-block;
+            background-color: var(--secondary-color); 
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .detail-btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        /* Bannière de Retour */
+        .final-return-banner {
+            margin-top: 60px; 
+            padding: 30px;
+            background-color: var(--background-light); 
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .final-return-banner p {
+            font-size: 1.2em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .return-main-btn {
+            display: inline-block;
+            background-color: var(--primary-color); 
+            color: var(--text-light); 
+            text-decoration: none;
+            font-weight: bold;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s, transform 0.3s;
+            margin: 0 10px 10px 10px; 
+        }
+        
+        .return-main-btn:hover {
+            background-color: var(--secondary-color); 
+            transform: translateY(-2px);
+        }
+        
+        .students-work-btn {
+            background-color: var(--secondary-color); 
+        }
+        
+        .students-work-btn:hover {
+            background-color: #e67e22; 
+            transform: translateY(-2px);
+        }
+        
+        .agwoteknik-btn-green {
+            background-color: var(--accent-color); 
+        }
+        
+        .agwoteknik-btn-green:hover {
+            background-color: #1e8449; 
+        }
+        
+        /* Media Queries (spécifiques à la structure des programmes) */
+        @media (max-width: 900px) {
+            .program-structure {
+                flex-direction: column; 
+                gap: 20px; 
+            }
+            
+            .program-sidebar {
+                max-width: 100%; 
+                flex-basis: auto; 
+                position: static; 
+            }
+            
+            .program-content-area {
+                padding: 20px;
+            }
+            
+            .pwogram-intro {
+                text-align: left;
+            }
+        }
+
+        /* ================================================= */
+        /* STYLES FOURNIS PAR L'UTILISATEUR (Modification + Nouvelles sections) */
+        /* ================================================= */
+        
+        /* CSS pour Modification #2: Retire kwen won (border-radius: 0) */
+        .program-content-area .content-detail {
+            border-radius: 0; 
+            /* Ajoute yon tranzisyon pou l ka parèt pi dous */
+            transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.3s ease;
+        }
+
+        /* CSS pour Modification #1: Animasyon Slide-Down */
+        .slide-down {
+            animation: slideInDown 0.6s ease-out;
+        }
+
+        @keyframes slideInDown {
+            0% {
+                transform: translateY(-20px); /* Kòmanse 20px pi wo */
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        /* ================================================= */
+        /* NOUVEAU CSS POU SEKSYON OSPITALITE PWOFEZYONÈL */
+        /* ================================================= */
+
+        .hospitality-section {
+            padding: 80px 0;
+            /* Koulè background ki sanble ak koulè gri fonse nan imaj la */
+            background-color: #555; 
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        .hospitality-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .hospitality-title {
+            font-size: 2.5em;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .hospitality-subtitle {
+            font-size: 1.1em;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #ccc;
+        }
+
+        .plans-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap; 
+        }
+
+        /* --- Style de la Carte de Plan --- */
+
+        .plan-card {
+            background-color: #fff;
+            color: #333;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 280px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .plan-header {
+            padding: 25px 20px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .plan-name {
+            font-size: 1.5em;
+            margin: 0 0 5px 0;
+            font-weight: 700;
+        }
+
+        .plan-price {
+            font-size: 1.2em;
+            margin: 0;
+            opacity: 0.8;
+        }
+
+        .plan-features {
+            padding: 25px 20px;
+            flex-grow: 1;
+        }
+
+        .feature-cta {
+            font-size: 1.1em;
+            font-weight: bold;
+            text-align: center;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+            color: #004d99; /* Ble Prensipal */
+        }
+
+        .plan-features ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .plan-features li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px dotted #eee;
+            font-size: 0.95em;
+        }
+
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+
+        .check-icon {
+            color: #4CAF50; /* Vèt Pou Aksepte */
+            font-size: 1.1em;
+        }
+
+        .cross-icon {
+            color: #dc3545; /* Wouj Pou Refize */
+            font-size: 1.1em;
+        }
+
+        .plan-footer {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .plan-button {
+            display: block;
+            padding: 12px 25px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            background-color: #ff8c00;
+        }
+
+        .plan-button:hover {
+            background-color: #e67e22 !important; 
+        }
+
+        /* --- Media Query pou Mobil --- */
+        @media (max-width: 900px) {
+            .plans-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+            .plan-card {
+                max-width: 80%;
+                margin-bottom: 20px;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="container top-info">
+            <span class="contact-item"><i class="fas fa-bullhorn"></i>
+        </div>
+    </div>
+
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="logo1.png" alt="Logo NextGen Academy" class="logo-img">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Akèy</a></li>
+                <li><a href="kiyès.html">Kiyès nou ye</a></li>
+                <li><a href="pwogram.html" class="active">Pwogram e sèvis</a></li>
+                <li><a href="kontak.html">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<main class="container">
+    <section class="pwogram-intro">
+        <p class="intro-description">
+            Konprann tout pwogram nou yo an detay:
+        </p>
+    </section>
+
+    <div class="program-structure">
+        
+        <aside class="program-sidebar" id="programSidebar">
+            
+            <div class="category-section">
+                <h3 class="accordion-header active-accordion" data-target="formation-akademik">
+                    FÒMASYON AKADEMIK <i class="fas fa-chevron-down"></i>
+                </h3>
+                <ul class="accordion-content open" id="formation-akademik">
+                    <li>
+                        <a href="#" class="sidebar-link active-link" data-content="art" id="link-art">
+                            <i class="fas fa-palette"></i> Fòmasyon atistik
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="sidebar-link" data-content="tech" id="link-tech">
+                            <i class="fas fa-microchip"></i> Fòmasyon Teknoloji
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="category-section">
+                <h3 class="accordion-header" data-target="services-list">
+                    SÈVIS <i class="fas fa-chevron-down"></i>
+                </h3>
+                <ul class="accordion-content" id="services-list">
+                    <li>
+                        <a href="#" class="sidebar-link" data-content="import" id="link-import">
+                            <i class="fas fa-plane-departure"></i> Sèvis enpòtasyon
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="sidebar-link" data-content="dev" id="link-dev">
+                            <i class="fas fa-laptop-code"></i> Devlopman antrepriz
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="category-section">
+                 <h3 class="accordion-header" data-target="programmes-list">
+                    PROGRAM <i class="fas fa-chevron-down"></i>
+                </h3>
+                 <ul class="accordion-content" id="programmes-list">
+                    <li>
+                        <a href="#" class="sidebar-link" data-content="agricole" id="link-agricole">
+                            <i class="fas fa-seedling"></i> Inovasyon agrikòl
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="sidebar-link" data-content="bibli" id="link-bibli">
+                            <i class="fas fa-book"></i> Bibliyotèk
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </aside>
+
+        <div class="program-content-area">
+            
+<div id="content-art" class="content-detail">
+    <h2>Fòmasyon Atistik</h2>
+    <p><strong>Fòmasyon</strong> avanse nou yo nan domèn atistik e anviwonman vize bay moun zouti kap pèmèt yo <strong>konstui yon pwofil atistik solid.</strong></p>
+    <p>Kreyativite, se sa ki <strong>bay sans a lavi imen an.</strong> Lèw kreyatif ou wè lavi a pi lejè, pi bèl, ak plis sajès.</p>
+    <p>Nou bay opòtinite pou <strong>devlope kalite sa yo</strong>. ​Vin aprann eksprime talan w, <strong>dekouvri langaj atistik ou</strong>, mete yon skill lakay ou ki ka fè lespri w' travay nan <strong>yon mond pwograme 24H</strong>.</p>
+    <a href="art_detail.html" class="detail-btn">Wè Pwogram yo detaye <i class="fas fa-arrow-right"></i></a>
+</div>
+
+            
+<div id="content-tech" class="content-detail">
+    <h2>Fòmasyon Teknoloji</h2>
+    <p>Nou an 2026, e <strong>60% travay yo fèt aleka</strong>. Se yon revolisyon majè ki mande pou w' <strong>adaptew.</strong> Jèn ki metrize zouti teknolojik yo gen plis chans pou jwenn opòtinite.</p>
+    <p>Nou bay chak etidyan zouti ak konesans pou yo vin yon devlopè oswa yon teknisyen konpetan. Kit se avèk telefòn yo oswa òdinatè yo. Nou fòme w pou w <strong>fè pati gwoup moun ki gen gwo pwojè pou lavi yo nan 5 ane ankò.</strong></p>
+    <p>Nou kwè siksè pa sòti prensipalman nan lekòl tradisyonèl yo, men dabò nan kreyativite ak konesans modèn nan domèn enfòmasyon. <strong>Kèlkeswa laj ou</strong>, ou ka aprann avèk nou.</p>
+    <a href="tech_detail.html" class="detail-btn">Wè Pwogram yo detaye <i class="fas fa-arrow-right"></i></a>
+</div>
+
+            
+<div id="content-import" class="content-detail">
+    <h2>Sèvis Enpòtasyon</h2>
+    <p>NextGen Academy la pou ede w nan tout pwosesis pou <strong>achte ak enpòte materyèl</strong> pou edikasyon oswa pou biznis ou soti lòtbòdlo.</p>
+    <p>Nou reponn ak <strong>limitasyon</strong> ke majorite antreprenè genyen antèm de <strong>resous.</strong></p>
+    <p>Nou rann li posib pou w achte nenpòt bagay ou wè sou telefòn ou, e <strong>resevwa l san pwoblèm an Ayiti</strong>.</p>
+    <a href="import_detail.html" class="detail-btn">Wè sèvis yo <i class="fas fa-arrow-right"></i></a>
+</div>
+
+
+            <div id="content-dev" class="content-detail hidden">
+                <h2>Devlopman antrepriz </h2>
+                <p>Nou sipòte jèn lidè ak antreprenè nan kreyasyon ak <strong>estriktirasyon biznis</strong> yo, kit se yon ti pwojè, yon aktivite, oswa yon enstitisyon.</p>
+                Kòmanse avanse pwojè w la sou yon bon baz avèk <strong>sipò pwofesyonèl NGA yo.</strong></p></p>
+                <a href="dev_detail.html" class="detail-btn">Wè sèvis yo detaye <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div id="content-agricole" class="content-detail hidden">
+                <h2>Inovasyon Agrikòl</h2>
+    <p>Pwogram nou an vize bay <strong>peyizan yo nan Depatman Sid</strong> lan zouti ak konesans pou ankouraje peyizan yo nan travay lagrikilti.</p>
+    <p>Nou anvi kreye opòtinite pou kiltivatè yo <strong>elaji jaden d'aktivite yo ak modènize metòd agrikòl yo.</strong></p>
+  <a href="agricole_detail.html" class="detail-btn">Wè pwogram yo detaye <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div id="content-bibli" class="content-detail hidden">
+                <h2>Bibliyotèk</h2>
+    <p>Nou kreye yon <strong>espas pou aprann</strong>, pou fè rechèch. Nou vann liv elektwonik ki fèt pou eveye lespri w, pou <strong>devlope tèt ou.</strong></p>
+    <p>Bibliyotèk nou an se yon zouti pou jwenn konesans ki kapab retire w' nan mistè ak koutim ou leve jwenn yo. Liv nou yo <strong>baze sou psikoloji, sosyoloji, ak spirityalite.</strong></p>
+    <p>Voye je gade nan liv nou yo epi chache konesans pou <strong>kòmanse fòme tèt ou</strong>, pou pi byen prepare ak reyalite mond lan.</p>
+                <a href="bibli_detail.html" class="detail-btn">Wè opòtinite yo an detay <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+        </div>
+
+    </div>
+    
+    <section class="hospitality-section">
+        <div class="container hospitality-container">
+            
+            <h2 class="hospitality-title">Opòtinite pou nouvo enskri yo</h2>
+            <p class="hospitality-subtitle">
+                Byen gade enfòmasyon sou sit la avan w' aplike!
+            </p>
+            
+            <div class="plans-wrapper">
+                 <div class="plan-card">
+                    <div class="plan-header" style="background-image: linear-gradient(to right, #004d99, #007bff);">
+                        <h3 class="plan-name">Demi bous</h3>
+                        <p class="plan-price">RABÈ 50% SOU FRÈ FÒMASYON</p>
+                    </div>
+                    <div class="plan-features">
+                        <p class="feature-cta">Men sa pou w' konnen avan:</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle check-icon"></i> Kesyon yo ap sòti nan enfòmasyon ki sou sit lan</li>
+                            <li><i class="fas fa-check-circle check-icon"></i> Fè kaptidkran si w' elijib, voye l sou whatsapp</li>
+                            <li><i class="fas fa-check-circle check-icon"></i> Si fòmasyon an 4,000 goud wap peye 2 mil goud</li>
+                            <li><i class="fas fa-times-circle cross-icon"></i> Aplikab pou sèlman kou granmoun yo</li>
+                            <li><i class="fas fa-times-circle cross-icon"></i> Ou ka aplike yon sèl fwa</li>
+                        </ul>
+                    </div>
+                    <div class="plan-footer">
+                        <a href="quiznga.html#bourse" class="plan-button">APLIKE KOUNYA</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    </main>
+    
+    <footer>
+        <div class="container footer-content">
+            <div class="social-links">
+                <a href="https://wa.me/50931013968" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <p>&copy; 2026 NextGen Academy. Tout dwa rezève.</p>
+        </div>
+    </footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        // Clé de stockage pour mémoriser le dernier onglet actif
+        const STORAGE_KEY = 'active_program_tab'; 
+
+        // ===============================================
+        // 1. LOGIQUE DE L'ACCORDÉON (Barre Latérale)
+        // ===============================================
+
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+        function closeAccordionItem(content) {
+            content.style.maxHeight = "0";
+            content.classList.remove('open');
+            const correspondingHeader = content.previousElementSibling;
+            if (correspondingHeader) {
+                correspondingHeader.classList.remove('active-accordion');
+                correspondingHeader.querySelector('i').style.transform = 'rotate(0deg)';
+            }
+        }
+        
+        function openAccordionItem(content, header) {
+            header.classList.add('active-accordion');
+            content.classList.add('open');
+            content.style.maxHeight = content.scrollHeight + "px";
+            header.querySelector('i').style.transform = 'rotate(-180deg)';
+        }
+
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const targetId = header.getAttribute('data-target');
+                const content = document.getElementById(targetId);
+                
+                // Fermer tous les autres contenus avant d'ouvrir celui-ci
+                document.querySelectorAll('.accordion-content.open').forEach(openContent => {
+                    if (openContent.id !== targetId) {
+                        closeAccordionItem(openContent);
+                    }
+                });
+
+                // Ouvrir ou fermer le contenu cliqué
+                if (content.classList.contains('open')) {
+                    closeAccordionItem(content);
+                } else {
+                    openAccordionItem(content, header);
+                }
+            });
+            
+            // Gérer l'état initial (si 'open' est dans le HTML)
+            const targetId = header.getAttribute('data-target');
+            const content = document.getElementById(targetId);
+            if (content.classList.contains('open')) {
+                // Au chargement, on s'assure que le MaxHeight est bon
+                content.style.maxHeight = content.scrollHeight + "px"; 
+                header.querySelector('i').style.transform = 'rotate(-180deg)';
+            }
+        });
+
+
+        // ===============================================
+        // 2. LOGIQUE D'AFFICHAGE DE CONTENU DYNAMIQUE & SAUVEGARDE D'ÉTAT
+        // ===============================================
+
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+        const contentDetails = document.querySelectorAll('.program-content-area .content-detail');
+
+        function showContent(contentId) {
+            contentDetails.forEach(content => {
+                content.classList.add('hidden');
+                // Retirer la classe d'animation pour une ré-animation propre
+                content.classList.remove('slide-down'); 
+            });
+
+            const selectedContent = document.getElementById(`content-${contentId}`);
+            if (selectedContent) {
+                selectedContent.classList.remove('hidden');
+                
+                // LOGIQUE D'ANIMATION: Ajoute la classe après un court délai
+                setTimeout(() => {
+                    selectedContent.classList.add('slide-down');
+                }, 10); 
+            }
+        }
+        
+        /**
+         * Définit le lien actif, affiche le contenu, ouvre l'accordéon parent
+         * et sauvegarde l'état dans localStorage.
+         */
+        function setActiveLink(linkElement) {
+            // 1. Désactiver tous les liens
+            sidebarLinks.forEach(l => l.classList.remove('active-link'));
+            // 2. Activer le lien sélectionné
+            linkElement.classList.add('active-link');
+            
+            const contentId = linkElement.getAttribute('data-content');
+
+            // 3. Afficher le contenu correspondant (gère l'animation)
+            showContent(contentId);
+            
+            // 4. Ouvrir l'accordéon parent si nécessaire
+            const parentContent = linkElement.closest('.accordion-content');
+            if (parentContent && !parentContent.classList.contains('open')) {
+                const parentHeader = parentContent.previousElementSibling;
+                if (parentHeader) {
+                    // Fermer d'abord tous les autres pour éviter un affichage bizarre
+                    document.querySelectorAll('.accordion-content.open').forEach(openContent => {
+                        if (openContent.id !== parentContent.id) {
+                            closeAccordionItem(openContent);
+                        }
+                    });
+                    openAccordionItem(parentContent, parentHeader);
+                }
+            }
+            
+            // 5. SAUVEGARDER L'ÉTAT DANS LOCALSTORAGE
+            localStorage.setItem(STORAGE_KEY, contentId);
+        }
+
+
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                setActiveLink(link);
+            });
+        });
+
+        // ===============================================
+        // 3. CHARGEMENT DE L'ÉTAT AU RETOUR SUR LA PAGE (MODIFICATION AJOUTÉE)
+        // ===============================================
+        
+        const storedContentId = localStorage.getItem(STORAGE_KEY);
+        let initialLinkFound = false;
+        
+        if (storedContentId) {
+            // Tente de trouver le lien correspondant à l'ID stocké
+            const storedLink = document.getElementById(`link-${storedContentId}`);
+            if (storedLink) {
+                setActiveLink(storedLink);
+                initialLinkFound = true;
+            }
+        }
+
+        // Si aucun état stocké ou le lien stocké n'existe plus, revenir à la logique initiale
+        if (!initialLinkFound) {
+            // Utiliser le lien actif initialement défini dans le HTML ou le tout premier lien
+            const defaultLink = document.querySelector('.sidebar-link.active-link') || document.querySelector('.sidebar-link');
+            if (defaultLink) {
+                // Utiliser setActiveLink pour initialiser l'affichage
+                setActiveLink(defaultLink);
+            }
+        }
+    });
+</script>
+    
+</body>
+</html>

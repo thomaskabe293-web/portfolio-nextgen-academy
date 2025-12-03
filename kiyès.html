@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiyès nou ye | NextGen Academy</title>
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* =================================================================================== */
+        /* ######################### 4. STYLES PAGE KIYÈS NOU YE (KIYÈS.HTML) ################ */
+        /* =================================================================================== */
+
+        /* 4.1 Section Image de Fond */
+        .who-we-are-hero {
+            position: relative;
+            background: url('img5.jpg') no-repeat center/cover; 
+            background-position-y: top !important; 
+            height: 100vh; 
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+            padding: 0;
+            margin-bottom: 0; 
+        }
+
+        /* 4.2 Section Philosophie et Piliers */
+        .vision-pillars-section {
+            padding: 80px 0; 
+            padding-top: 100px; 
+            background-color: var(--background-light); /* Blanc/Gris clair */
+            text-align: center; 
+        }
+
+        .vision-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-subtitle {
+            font-size: 2em;
+            color: var(--secondary-color); /* COULEUR ORANGE D'ACCENT */
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .role-statement, .pillars-statement {
+            font-size: 1.1em; 
+            line-height: 1.6;
+            margin-bottom: 25px; 
+            font-weight: 500;
+            color: var(--text-dark); /* Bleu Marin */
+        }
+
+        .role-statement span {
+            font-weight: 700;
+            color: var(--text-dark); /* Bleu Marin */
+        }
+        .pillars-statement .pillar {
+            font-weight: 700;
+            color: var(--primary-color); /* Orange */
+        }
+
+
+        /* 4.3 Section Équipe (Team) */
+        .team-section {
+            /* MODIFICATION: Réduction de l'espace au-dessus du titre 'Ekip la' */
+            padding-top: 20px; /* Anvan: 40px, Kounye a 20px */
+            padding-bottom: 80px; 
+            background-color: var(--background-light); /* Blanc/Gris clair */
+            text-align: center;
+        }
+
+        /* Titre de section "Ekip la" (Appliqué en Orange) */
+        .section-title-clean {
+            font-size: 2.8em;
+            color: var(--secondary-color); /* Koulè Orange */
+            margin-bottom: 10px;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 15px;
+            animation: jump-title 15s infinite; 
+        }
+
+        .section-title-clean::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--secondary-color); /* Soulignement Orange (Secondary Color) */
+            margin: 0 auto;
+            margin-top: 10px;
+            border-radius: 2px;
+        }
+
+        .team-grid {
+            display: flex;
+            justify-content: center; 
+            gap: 80px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .team-member {
+            flex-basis: 40%; 
+            max-width: 350px;
+            padding: 30px;
+            text-align: center;
+            transition: transform var(--hover-duration);
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+                
+        .team-member img {
+            width: 180px;
+            height: 180px; 
+            object-fit: cover; 
+            border: 5px solid var(--primary-color); /* Bordure Bleu Marin */
+            border-radius: 50%;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .floating-image {
+            animation: float 6s ease-in-out infinite; 
+        }
+
+        /* Noms et titres au Bleu Marin */
+        .team-member h3 {
+            color: var(--text-dark); /* Bleu Marin */
+            margin-bottom: 5px;
+            font-size: 1.5em;
+        }
+
+        .team-member p {
+            color: var(--text-dark); /* Bleu Marin */
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        /* 4.4 Section Mission Finale */
+        .mission-finale {
+            background-color: var(--pale-bg); /* Fond pale */
+            color: var(--text-dark); /* Texte Bleu Marin */
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .mission-finale p {
+            font-size: 1.8em;
+            font-weight: 500;
+        }
+
+        /* Media Queries spécifiques à Kiyès */
+        @media (max-width: 900px) {
+            .team-grid {
+                flex-direction: column;
+                gap: 30px;
+            }
+            .team-member {
+                flex-basis: 100%;
+            }
+
+            .section-title-clean {
+                font-size: 2.2em;
+            }
+            
+            .who-we-are-hero {
+                height: 70vh; 
+                background-position-y: top !important; 
+            }
+            
+            .vision-pillars-section {
+                padding-top: 50px; 
+            }
+            /* MODIFICATION: Réduction de l'espace sur mobile également */
+            .team-section {
+                padding-top: 15px; /* Anvan: 30px, Kounye a 15px */
+            }
+        }
+    /* --- Style pou Onglet Notifikasyon Blouz la --- */
+.blouse-notify-tab {
+    /* Kache pa defo */
+    display: none; 
+    
+    /* Pozisyon fiks sou anlè adwat */
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    
+    z-index: 1000;
+    width: 280px;
+    
+    /* Fond Transparan ak yon ti flou (opsyonèl) */
+    background-color: rgba(255, 255, 255, 0.5); /* 50% Blan transparan */
+    backdrop-filter: blur(5px); /* Efè flou transparan (modèn) */
+    
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    
+    /* Animasyon pou l parèt */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transform: translateX(100%); /* Kòmanse deyò ekran an */
+}
+
+/* Klas pou fè notifikasyon an parèt */
+.blouse-notify-tab.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.notify-content p {
+    font-weight: bold;
+    color: var(--primary-color, #004a7c); /* Koulè tèks Ble Marine */
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 0.95em;
+}
+
+.notify-image {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+.close-notify {
+    position: absolute;
+    top: 5px;
+    right: 12px;
+    font-size: 1.5em;
+    color: var(--text-dark, #333);
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close-notify:hover {
+    color: red;
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="container top-info">
+            <span class="contact-item"><i class="fas fa-map-marker-alt"></i> Haiti, Cayes, Sud</span>
+        </div>
+    </div>
+
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="logo1.png" alt="Logo NextGen Academy" class="logo-img">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Akèy</a></li>
+                <li><a href="kiyès.html" class="active">Kiyès nou ye</a></li> 
+                <li><a href="pwogram.html">Pwogram e sèvis</a></li>
+                <li><a href="kontak.html">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        
+        <section class="who-we-are-hero">
+            <div class="who-we-are-content container">
+            </div>
+        </section>
+        
+        <section class="vision-pillars-section">
+            <div class="container vision-content">
+                <h3 class="section-subtitle">YON KOMINOTE LEGAL E REPITE </h3>            
+                <p class="role-statement">
+                    Wòl nou se <span style="font-weight: bold;">fòme e ankouraje</span> lidè, kreyatè, ak antreprenè kap kreye opòtinite isit lakay yo <span style="font-weight: bold;">pou bati avni yo</span>.
+                </p>
+                
+                <p class="pillars-statement">
+                    Nou kwè fòtman ke avni Ayiti chita sou 3 poto mitan sa yo, ki se : 
+                    <span class="pillar">Art</span>, 
+                    <span class="pillar">edikasyon</span> ak 
+                    <span class="pillar">teknoloji</span>.
+                </p>
+            </div>
+        </section>
+        
+        <section class="team-section team-anthracite-bg">
+            <h2 class="section-title-clean">Ekip la</h2> 
+            <div class="container">
+                <div class="team-grid">
+                    
+                    <div class="team-member">
+                        <img src="img3.jpg" alt="Photo de Thomas Kabé" class="floating-image">
+                        <h3>THOMAS KABÉ</h3>
+                        <p>Formateur principal & Responsable des opérations</p>
+                    </div>
+
+                    <div class="team-member">
+                        <img src="img4.jpg" alt="Photo de Francesse Gabriel" class="floating-image">
+                        <h3>FRANCESSE GABRIEL</h3>
+                        <p>Responsable administrative & assistante</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <section class="mission-finale">
+        <div class="container">
+            <p>
+                NextGen Academy se pon ki konekte potansyèl jèn yo ak reyalizasyon yon Ayiti pi djanm.
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="social-links">
+                <a href="https://wa.me/50931013968" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <p>&copy; 2026 NextGen Academy. Tout dwa rezève.</p>
+        </div>
+    </footer>
+    <div id="blouse-notification" class="blouse-notify-tab">
+    <span class="close-notify" onclick="closeNotification()">×</span>
+    <div class="notify-content">
+        <p>Blouz NextGen Academy yo poko disponib pou timoun aux Cayes yo.</p>
+        <img src="unifom.png" alt="Modèl Blouz NextGen Academy" class="notify-image">
+    </div>
+</div>
+<script>
+    // Fonksyon pou kache notifikasyon an
+    function closeNotification() {
+        const notification = document.getElementById('blouse-notification');
+        notification.classList.remove('show');
+        
+        // Opsyonèl: Kache li nèt apre tranzisyon an
+        setTimeout(() => {
+            notification.style.display = 'none';
+        }, 500); 
+    }
+
+    // Fonksyon pou parèt notifikasyon an
+    function showNotification() {
+        const notification = document.getElementById('blouse-notification');
+        notification.style.display = 'block';
+        
+        // Asire w ke animasyon parèt (glisman an) deklanche
+        // Nou itilize setTimeout 0ms pou asire CSS tranzisyon an mache
+        setTimeout(() => {
+            notification.classList.add('show');
+        }, 50); 
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const DELAY_MS = 30000; // 30 segonn
+
+        // Deklanche notifikasyon an apre 60 segonn
+        setTimeout(showNotification, DELAY_MS);
+    });
+</script>
+
+</body>
+</html>

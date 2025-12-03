@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fond de Certificat A4 Paysage (Vierge)</title>
+    <style>
+        /* --- DÉFINITION DES COULEURS --- */
+        :root {
+            --paper-color: #f7f1e6; /* Beige/Crème */
+            --border-color: #a58a5c; /* Or/Marron */
+        }
+
+        /* Styles de base du corps */
+        body {
+            background-color: #e0e0e0; 
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* --- CONTENEUR DU CERTIFICAT : A4 PAYSAGE --- */
+        .certificate-container {
+            width: 297mm;  /* Largeur A4 */
+            height: 210mm; /* Hauteur A4 */
+            background-color: var(--paper-color);
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            padding: 0; /* Pas de padding pour cette version */
+            box-sizing: border-box;
+            /* Le conteneur est vide de tout texte */
+        }
+
+        /* --- BORDURE EXTÉRIEURE --- */
+        .certificate-container::before {
+            content: '';
+            position: absolute;
+            top: 15mm;
+            left: 15mm;
+            right: 15mm;
+            bottom: 15mm;
+            border: 3px solid var(--border-color); /* Ligne épaisse */
+            pointer-events: none; 
+        }
+        
+        /* --- BORDURE INTÉRIEURE DÉCORATIVE --- */
+        .certificate-container::after {
+            content: '';
+            position: absolute;
+            top: 17mm;
+            left: 17mm;
+            right: 17mm;
+            bottom: 17mm;
+            border: 1px solid var(--border-color); /* Ligne fine et décalée */
+            pointer-events: none;
+        }
+
+        /* --- STYLES D'IMPRESSION (GARANTIE DU FORMAT) --- */
+        @media print {
+            body {
+                background: none;
+                min-height: auto;
+            }
+            .certificate-container {
+                margin: 0;
+                border: none;
+                box-shadow: none;
+                width: 100%; /* S'adapte à la page d'impression */
+                height: 100%;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="certificate-container">
+        </div>
+
+</body>
+</html>

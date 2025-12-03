@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konfimasyon - NextGen Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* --- Stil pou Konfimasyon --- */
+        :root {
+            --primary-color: #004d99;
+            --secondary-color: #ff6600;
+            --background-light: #f4f4f9;
+            --text-dark: #333;
+            --success-color: #28a745;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .confirmation-container {
+            width: 90%;
+            max-width: 500px;
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid var(--success-color);
+            position: relative; /* Nécessaire pour positionner le pseudo-élément */
+            overflow: hidden; /* Empêche le débordement de l'image de fond */
+            z-index: 1; /* Assure que le conteneur est au-dessus du body */
+        }
+        
+        /* Pseudo-élément pour l'image de fond avec opacité */
+        .confirmation-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('NGA.png'); /* Le logo NGA */
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 100%; /* Taille du logo dans le fond */
+            opacity: 0.1; /* Opacité 10% */
+            z-index: -1; /* Place l'image derrière le contenu */
+        }
+
+        .icon-success {
+            font-size: 4em;
+            color: var(--success-color);
+            margin-bottom: 20px;
+            animation: bounce 1s ease-in-out;
+        }
+
+        h2 {
+            color: var(--success-color);
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            color: #555;
+            z-index: 2; /* S'assurer que le texte est lisible */
+            position: relative;
+        }
+
+        .btn-program {
+            /* Le style fonctionne pour un bouton aussi */
+            padding: 12px 25px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none; /* Ajouté pour le bouton */
+            cursor: pointer; /* Ajouté pour le bouton */
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1em;
+            transition: background-color 0.3s;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        .btn-program:hover {
+            background-color: var(--secondary-color);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="confirmation-container">
+        <div class="icon-success">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        
+        <h2>Mesaj ou an ale!</h2>
+        
+        <p>Mèsi dèske ou kontakte NextGen Academy. Ou fin voye mesaj ou an, e n'ap egzamine l' avèk anpil atansyon.</p>
+        <p>N'ap reponn ou pi vit ke posib sou imèl oubyen nimewo telefòn ou bay la.</p>
+        
+        <button onclick="history.back()" class="btn-program">
+            <i class="fas fa-arrow-left"></i> Retounen kote ou te ye a
+        </button>
+    </div>
+</body>
+</html>

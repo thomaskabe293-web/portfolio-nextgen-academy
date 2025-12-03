@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akèy | NextGen Academy</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* =================================================================================== */
+        /* ######################### 1. CONFIGURATION GLOBALE & BASE (Thème Final) ########### */
+        /* (base.css) */
+        /* =================================================================================== */
+
+        /* 1.1 Variables de Couleur (Unifiées et Centralisées) */
+        :root {
+            
+            /* --- COULEURS THÈME --- */
+            --primary-color: #2c3e50;       /* BLEU MARINE */
+            --secondary-color: #FF8C00;     /* ORANGE VIF */
+            --accent-color: #27ae60;        /* VERT VIF */
+            
+            /* --- Couleurs de Fond & Neutres --- */
+            --background-light: #ecf0f1;    /* GRIS CLAIR */
+            --background-card: #ffffff;     /* Blanc pour les cartes et formulaires */
+            --pale-bg: #E6D8C0;             /* Beige */
+            
+            /* --- Couleurs de Texte --- */
+            --text-dark: #33334d;           /* Texte foncé général */
+            --text-light: #fff;             /* Texte clair sur fonds sombres */
+
+            /* --- Couleurs des Domaines (Mises à jour) --- */
+            --color-art-accent: var(--secondary-color);     /* Orange */
+            --color-education: var(--primary-color);        /* Bleu Marine */
+            --color-technologie: var(--accent-color);       /* Vert */
+            
+            /* Variables Anciennes conservées */
+            --couleur-academie-noir: #1E1E1E;      
+            --cta-purple: #8A2BE2; 
+            --form-bg: var(--background-card); 
+            --couleur-academie-orange-pale: #FFB366; 
+            
+            /* Structure */
+            --sidebar-width: 200px;
+            --hover-duration: 0.3s; 
+        }
+
+
+        /* 1.2 Base et Réinitialisation */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Titre générique de page */
+        .section-page-title {
+            text-align: center;
+            font-size: 2.5em; 
+            color: var(--secondary-color);
+            margin: 40px 0 60px 0; 
+            font-weight: bold;
+        }
+
+
+        /* 1.3 Keyframes (Regroupées) */
+
+        /* Animation de clignotement pour la Top Bar */
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Animation de l'équipe (kiyès.html) */
+        @keyframes float {
+            0% {
+                transform: translatey(0px);
+            }
+            50% {
+                transform: translatey(-8px);
+            }
+            100% {
+                transform: translatey(0px);
+            }
+        }
+
+        /* Animation des titres (kiyès.html) - Utilisation du titre pulsé/sauté */
+        @keyframes jump-title {
+            0%, 5%, 100% {
+                transform: translateY(0);
+            }
+            1% {
+                transform: translateY(-20px);
+            }
+            3% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Animations H1 (index.html) */
+        @keyframes slideInFromTop15s {
+            0% { transform: translateY(-100%); opacity: 0; }
+            5% { transform: translateY(0); opacity: 1; } 
+            90% { transform: translateY(0); opacity: 1; } 
+            100% { transform: translateY(-100%); opacity: 0; } 
+        }
+        @keyframes slideInFromTop {
+            0% { transform: translateY(-100%); opacity: 0; }
+            10% { transform: translateY(0); opacity: 1; } 
+            90% { transform: translateY(0); opacity: 1; } 
+            100% { transform: translateY(-100%); opacity: 0; } 
+        }
+        @keyframes slideInFromLeft {
+            0% { transform: translateX(-100%); opacity: 0; }
+            10% { transform: translateX(0); opacity: 1; } 
+            90% { transform: translateX(0); opacity: 1; } 
+            100% { transform: translateX(-100%); opacity: 0; } 
+        }
+        @keyframes slideInFromBottom {
+            0% { transform: translateY(100%); opacity: 0; }
+            10% { transform: translateY(0); opacity: 1; } 
+            90% { transform: translateY(0); opacity: 1; } 
+            100% { transform: translateY(100%); opacity: 0; } 
+        }
+
+        /* Animation Merci (merci.html) */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-15px); }
+            60% { transform: translateY(-7px); }
+        }
+
+        /* Animation CTA Flottant (pwogram.html) */
+        @keyframes float-cta {
+            0% {
+                transform: translatey(0px);
+            }
+            50% {
+                transform: translatey(-5px); 
+            }
+            100% {
+                transform: translatey(0px);
+            }
+        }
+
+        /* Animation d'entrée du CTA (pwogram.html) */
+        @keyframes slide-in-right {
+            0% {
+                transform: translate(100%, 0); 
+                opacity: 0;
+            }
+            100% {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+        }
+
+
+        /* =================================================================================== */
+        /* ######################### 2. NAVIGATION GLOBALE & HEADER ########################## */
+        /* (base.css) */
+        /* =================================================================================== */
+
+        /* 2.1 Top Bar Information */
+        .top-bar {
+            background-color: var(--secondary-color);
+            color: var(--text-light);
+            padding: 5px 0;
+            font-size: 0.9em;
+            animation: blink 2s infinite; 
+        }
+
+        .top-info {
+            display: flex;
+            justify-content: center; 
+            gap: 20px;
+            font-weight: bold;
+        }
+
+        .contact-item i {
+            margin-right: 8px; 
+            color: var(--primary-color);
+        }
+
+        /* 2.2 Header et Logo */
+        header {
+            background-color: var(--background-card); 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: -30px; 
+            position: relative;
+            z-index: 10;
+        }
+
+        nav.container {
+            display: flex;
+            flex-direction: column; 
+            align-items: center; 
+            padding: 10px 0;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: -30px; 
+        }
+
+        .logo-img {
+            height: 100px; 
+        }
+
+        /* 2.3 Liens de Navigation (Menu principal) */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            justify-content: center; 
+            padding: 0;
+        }
+
+        .nav-links li a {
+            color: var(--text-dark); 
+            background-color: transparent; 
+            text-decoration: none;
+            padding: 10px 15px; 
+            display: block;
+            margin: 0 5px; 
+            transition: color 0.3s, box-shadow 0.3s; 
+            font-weight: bold;
+        }
+
+        /* Style uniforme pour les liens actifs/hover */
+        .nav-links li a:hover, .nav-links li a.active {
+            color: var(--primary-color); 
+            box-shadow: 0 3px 0 0 var(--primary-color); 
+        }
+
+
+        /* --- Estil pou FOOTER la (base.css) --- */
+        footer {
+            background-color: var(--primary-color); 
+            color: var(--text-light); 
+            padding: 20px 0;
+            text-align: center;
+            border-top: 3px solid var(--secondary-color); 
+            font-size: 0.9em;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px; 
+        }
+
+        /* Lyen Rezo Sosyal yo */
+        .social-links {
+            margin-bottom: 5px;
+        }
+
+        .social-links a {
+            color: var(--text-light); 
+            font-size: 1.5em;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color); 
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* =================================================================================== */
+        /* ########################### 9. MEDIA QUERIES (RÉACTIVITÉ) ########################## */
+        /* (base.css) */
+        /* =================================================================================== */
+
+        @media (max-width: 900px) {
+            
+            /* Adaptations pour le Header et la Navigation */
+            nav.container {
+                padding-top: 50px; 
+            }
+
+            .logo {
+                margin-bottom: -15px; 
+            }
+            
+            /* Adaptations pour le Footer */
+            .footer-content {
+                padding: 0 15px;
+            }
+        }
+
+        /* Réactivité pour les très petits écrans */
+        @media (max-width: 600px) {
+            .nav-links {
+                flex-wrap: wrap;
+            }
+            .nav-links li a {
+                padding: 8px 10px;
+            }
+            
+            /* Footer */
+             footer {
+                padding: 15px 0;
+            }
+            .social-links a {
+                font-size: 1.3em;
+                margin: 0 8px;
+            }
+        }
+        
+        /* =================================================================================== */
+        /* ########################## STYLES DE LA PAGE D'ACCUEIL (INDEX.HTML) ############# */
+        /* (index_page.css) */
+        /* =================================================================================== */
+
+        /* 3.1 Hero Section et Bannière */
+        .hero-section {
+            position: relative;
+            padding: 50px 0;
+            background-color: var(--background-light); 
+            text-align: center;
+        }
+
+        .hero-content-centered {
+            display: flex;
+            flex-direction: column; 
+            align-items: center; 
+            gap: 30px;
+            padding: 0 5%;
+        }
+
+        .message-box-centered {
+            max-width: 800px;
+        }
+
+        /* Titre H1 Animé (Divise les mots pour l'animation) */
+        .message-box-centered h1 {
+            font-size: 3em;
+            font-weight: normal; 
+            color: var(--primary-color); 
+            margin-bottom: 15px;
+            display: flex; 
+            justify-content: center; 
+            flex-wrap: wrap; 
+            overflow: hidden; 
+        }
+
+        .message-box-centered h1 span {
+            display: inline-block; 
+            opacity: 0; 
+            margin-right: 15px; 
+        }
+
+        .message-box-centered h1 .highlight-academy {
+            font-weight: bold; 
+            color: var(--secondary-color); 
+        }
+
+        .banner-image-centered {
+            max-width: 900px;
+            width: 100%;
+            overflow: hidden; 
+        }
+
+        .main-gif {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Titre avec fond orange (Ex: "3 Piliers") */
+        .section-title-shape {
+            display: inline-block;
+            background-color: var(--pale-bg); 
+            color: var(--primary-color); 
+            padding: 10px 30px;
+            border-radius: 25px; 
+            margin-bottom: 40px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-size: 1.5em;
+        }
+
+        /* 3.2 Application des Animations (Index.html) */
+        .animate-top {
+            animation: slideInFromTop 10s ease-out 0s infinite;
+        }
+
+        .animate-left {
+            animation: slideInFromLeft 10s ease-out 0.5s infinite; 
+        }
+
+        /* 3.3 Section Piliers (Cartes) */
+        .piliers-section {
+            padding: 60px 0;
+            text-align: center;
+            background-color: var(--background-card); 
+        }
+
+        .piliers-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap; 
+        }
+
+        .pilier-item {
+            background-color: var(--background-card);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            flex-basis: 30%; 
+            max-width: 320px; 
+            transition: transform 0.3s;
+            margin-bottom: 20px; 
+            border-top: 3px solid var(--accent-color); 
+        }
+
+        .pilier-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .pilier-icon {
+            font-size: 3em;
+            color: var(--accent-color); 
+            margin-bottom: 15px;
+            display: block; 
+        }
+
+        .pilier-item h3 {
+            color: var(--primary-color); 
+            margin-bottom: 10px;
+        }
+
+        .pilier-item p {
+            font-size: 0.95em;
+            color: var(--text-dark); 
+        }
+        /* --- 3.5 Blòk Bouton Like (Anba Piliers) --- */
+        .like-container {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        .like-counter {
+            font-size: 1.5em;
+            color: var(--primary-color); 
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .like-btn {
+            background-color: var(--background-card); 
+            color: #aaa; 
+            border: 2px solid #aaa;
+            padding: 15px 20px;
+            border-radius: 50%; 
+            font-size: 1.8em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Lè Bouton an LIKED (Estati Liked) */
+        .like-btn.liked {
+            background-color: #dc3545; 
+            color: white; 
+            border-color: #dc3545;
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(220, 53, 69, 0.4);
+        }
+        
+        /* Logo NGA anba bouton an */
+        .nga-logo-footer {
+            margin-top: 20px;
+        }
+        
+        .small-logo {
+            width: 80px;
+            height: auto;
+            opacity: 0.7;
+        }
+
+        /* 3.4 Section d'Inscription et Paiement (Index.html) */
+        .transaction-section {
+            background-color: var(--primary-color); 
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        /* Correction de l'ancre */
+        #transaction-section {
+            scroll-margin-top: 80px; 
+        }
+
+        .transaction-section h2 {
+            color: var(--secondary-color); 
+            margin-bottom: 30px;
+        }
+
+        .form-container {
+            background-color: var(--background-card); 
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            margin-left: auto; 
+            margin-right: auto; 
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input,
+        .form-group textarea { 
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            resize: vertical; 
+        }
+
+        .file-upload-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .file-upload-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        /* Nouvo tèks intro anlè bouton peman yo */
+        .paiement-intro-text {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: var(--primary-color); 
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed #ccc;
+        }
+
+
+        /* --- BLOC PAIEMENT (MONCASH & NATCASH CÔTE À CÔTE) --- */
+        .paiement-options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; 
+            gap: 15px; 
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .option-item {
+            padding: 15px 5px;
+            border: 1px solid var(--border-color, #ddd);
+            border-radius: 8px;
+            background-color: var(--background-card);
+        }
+
+        .paiement-logo {
+            width: 120px; 
+            height: auto;
+            transition: transform 0.3s;
+            display: block; 
+            margin: 5px auto; 
+        }
+
+        .natcash-btn, .moncash-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            margin: 0;
+            display: block; 
+            width: 100%;
+        }
+
+        .natcash-btn:hover .paiement-logo, 
+        .moncash-btn:hover .paiement-logo {
+            transform: scale(1.05); 
+        }
+
+        .paiement-note {
+            font-size: 0.85em;
+            font-weight: bold;
+            color: var(--secondary-color); 
+            margin-top: 10px;
+        }
+        /* FIN BLOC PAIEMENT */
+
+        /* Bouton Soumettre */
+        .submit-btn {
+            background-color: var(--accent-color); 
+            color: var(--text-light);
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+            width: 100%; 
+            max-width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: #1e8449; 
+        }
+
+
+        /* --- Media Queries (Korèksyon Responsive Design) --- */
+        @media (max-width: 900px) {
+            .piliers-grid {
+                gap: 20px;
+            }
+
+            .pilier-item {
+                flex-basis: 45%; 
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 650px) {
+            /* Bouton peman yo youn anba lòt sou mobil */
+            .paiement-options-grid {
+                grid-template-columns: 1fr; 
+            }
+        }
+
+        @media (max-width: 600px) {
+            /* Korèksyon jeneral pou mobil */
+            .container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            .message-box-centered h1 {
+                font-size: 2em;
+            }
+            .section-title-shape {
+                font-size: 1.2em;
+                padding: 8px 20px;
+            }
+            .form-container {
+                padding: 30px 15px;
+            }
+            .piliers-grid {
+                flex-direction: column;
+            }
+            .pilier-item {
+                flex-basis: 100%;
+            }
+        }
+
+        /* =================================================================================== */
+        /* ###################### NOUVEAU STYLES NOTIFICATION CERTIFICAT ##################### */
+        /* =================================================================================== */
+        .certificate-notify-tab {
+            /* Kache pa defo */
+            display: none; 
+            
+            /* Pozisyon fiks sou anlè adwat */
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            
+            z-index: 1000;
+            width: 280px;
+            
+            /* Fond et Style */
+            background-color: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(3px);
+            
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid var(--accent-color, #27ae60); /* Bordure en Vert Vif */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            
+            /* Animasyon pour l parèt */
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            transform: translateX(100%); /* Kòmanse deyò ekran an */
+        }
+
+        /* Klas pou fè notifikasyon an parèt */
+        .certificate-notify-tab.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .notify-content p {
+            font-weight: bold;
+            color: var(--primary-color, #004a7c); /* Koulè tèks Ble Marine */
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 0.95em;
+        }
+
+        .notify-image {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }
+
+        .close-notify {
+            position: absolute;
+            top: 5px;
+            right: 12px;
+            font-size: 1.5em;
+            color: var(--text-dark, #333);
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .close-notify:hover {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="container top-info">
+            <span class="contact-item"><i class="fas fa-bullhorn"></i> La formation disponible actuellement</span>
+        </div>
+    </div>
+
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="logo1.png" alt="Logo NextGen Academy" class="logo-img">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Akèy</a></li>
+                <li><a href="kiyès.html">Kiyès nou ye</a></li>
+                <li><a href="pwogram.html">Pwogram e sèvis</a></li>
+                <li><a href="kontak.html">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero-section">
+        <div class="container hero-content-centered">
+            
+            <div class="message-box-centered">
+                <h1>
+                    <span class="animate-top">Byenvini sou</span> 
+                    <span class="highlight-academy animate-left">NextGen Academy</span>
+                </h1>
+               </div>
+            
+            <div class="banner-image-centered">
+                <img src="gif2.gif" alt="Bannière NextGen Academy" class="main-gif">
+            </div>
+
+        </div>
+    </section>
+
+    <section class="piliers-section">
+        <div class="container">
+            <h2 class="section-title-shape">3 poto mitan nou yo:</h2>
+            <div class="piliers-grid">
+                <div class="pilier-item">
+                    <span class="pilier-icon">🪴</span>
+                    <h3>Art</h3>
+                    <p>pou aprann kreye e eksprime sa w' santi atravè men w'.</p>
+                </div>
+                <div class="pilier-item">
+                    <span class="pilier-icon">🧠</span>
+                    <h3>Edikasyon</h3>
+                    <p>pou fòme tèt ou, dekouvri potansyèl ou, aprann pou vin meyè vèsyon de oumenm.</p>
+                </div>
+                <div class="pilier-item">
+                    <span class="pilier-icon">📡</span>
+                    <h3>Teknoloji</h3>
+                    <p>pou metrize zouti modèn yo pou viv pi byen nan mond dijital la.</p>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="like-container">
+    <div id="like-counter" class="like-counter">575 moun renmen paj NGA a</div>
+    
+    <button id="like-button" class="like-btn" onclick="toggleLike()">
+        <i class="fas fa-heart"></i> </button>
+    
+    <div class="nga-logo-footer">
+        <img src="nga.png" alt="Logo NextGen Academy" class="small-logo">
+    </div>
+</div>
+<audio id="like-sound" src="like.mp3" preload="auto"></audio>
+
+    </section>
+
+    <section class="transaction-section">
+        <div class="container form-container">
+            <h2>KOTE POU FÈ TRANZAKSYON</h2>
+            
+            <form id="transactionForm" action="https://getform.io/f/akkpolva" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input type="text" id="nom" name="Nom" placeholder="Non" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="siyati" name="Siyati" placeholder="Siyati" required>
+                </div>
+                
+                <div class="file-upload-group">
+                    <label for="transaction_capture">Kaptu dekran tranzaksyon an:</label>
+                    <input type="file" id="transaction_capture" name="Capture_Ecran_Paiement" accept="image/*" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" id="montant" name="Montant_Transfere" placeholder="Montan wap transfere a (eg. 500 HTG)" required>
+                </div>
+                
+                <div class="form-group">
+                    <textarea id="description" name="Description_Transaction" placeholder="Deskripsyon sou tranzaksyon an" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="telephone" name="Telephone_Contact" placeholder="Nimewo telefòn (WhatsApp)" required>
+                </div>
+
+                <input type="hidden" name="_gotof" value="/merci.html">
+
+                <p class="paiement-intro-text">Chwazi mwayen wap fè transfè an:</p>
+                
+                <div class="paiement-options-grid">
+                    
+                    <div class="option-item">
+                        <button type="button" class="natcash-btn" onclick="faireDonNatcash()">
+                            <img src="natcash1.png" alt="Bouton Natcash" class="paiement-logo">
+                        </button>
+                    </div>
+
+                    <div class="option-item">
+                        <button type="button" class="moncash-btn" onclick="faireDonMoncash()">
+                            <img src="img0.png" alt="Bouton Moncash" class="paiement-logo">
+                        </button>
+                    </div>
+                    
+                </div>
+
+                <button type="submit" class="submit-btn">Soumèt enfòmasyon yo</button>
+            </form>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container footer-content">
+            <div class="social-links">
+                <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <p>&copy; 2026 NextGen Academy. Tout dwa rezève.</p>
+        </div>
+    </footer>
+    
+    <div id="certificate-notification" class="certificate-notify-tab">
+        <span class="close-notify" onclick="closeCertificateNotification()">×</span>
+        <div class="notify-content">
+            <p>
+                Sètifika nou yo ofisyèlman valide pa SUISSE HAÏTI MARK.! 🇨🇭🇭🇹
+            </p>
+            <img src="imgr.jpg" alt="Logo de validation SUISSE HAÏTI MARK" class="notify-image">
+        </div>
+    </div>
+    
+<script>
+    // --- NOUVO VARIAB POU LIKE & PÈSISTANS ---
+    const LIKE_LS_KEY = 'nga_page_liked';
+    
+    // Valè inisyal kontè a, anvan nenpòt like
+    const BASE_COUNT = 575; 
+    
+    // Tcheke si itilizatè a te deja renmen paj la
+    let isLiked = localStorage.getItem(LIKE_LS_KEY) === 'true';
+    
+    // Valè kontè a depann de estati Like la
+    let likeCount = BASE_COUNT; 
+    if (isLiked) {
+        // Lè nou like, li monte a 581 (BASE_COUNT + 6)
+        likeCount = 581; 
+    }
+
+    // =======================================================
+    // ############ FONKSYON LOJIK AK ANIMASYON ############
+    // =======================================================
+    
+    // --- 1. Fonksyon Animasyon Kontè a (0 a 575/581 nan 20 segonn) ---
+    function animateCounter(targetElementId, targetValue, duration) {
+        const element = document.getElementById(targetElementId);
+        let startValue = 0;
+        const range = targetValue;
+        const startTime = performance.now();
+        const endTime = startTime + duration;
+
+        function updateCount(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Fòmil pou monte kontè a doulèman (Cube-out easing)
+            const easedProgress = 1 - Math.pow(1 - progress, 3); 
+            
+            const currentValue = Math.floor(easedProgress * range);
+            // Tèks Mizajou an
+            element.textContent = `${currentValue} moun renmen paj NGA a`;
+
+            if (elapsed < duration) {
+                requestAnimationFrame(updateCount);
+            } else {
+                // Asire l rive nan valè final la
+                element.textContent = `${targetValue} moun renmen paj NGA a`;
+            }
+        }
+
+        requestAnimationFrame(updateCount);
+    }
+
+    // --- 2. Fonksyon pou Jere Bouton Like la ak Son an (Avèk UNLIKE) ---
+    function toggleLike() {
+        const button = document.getElementById('like-button');
+        const counter = document.getElementById('like-counter');
+        const sound = document.getElementById('like-sound');
+
+        if (!isLiked) {
+            // LÒJIK POU LIKE
+            button.classList.add('liked');
+            likeCount = 581; // Monte kontè a 581
+            isLiked = true;
+            localStorage.setItem(LIKE_LS_KEY, 'true'); 
+
+            // Mizajou kontè san animasyon
+            counter.textContent = `${likeCount} moun renmen paj NGA a`;
+
+            // Jwe Son an
+            if (sound) {
+                sound.currentTime = 0; 
+                sound.play().catch(e => console.error("Erè lekti odyo like:", e));
+            }
+        } else {
+            // LÒJIK POU UNLIKE
+            button.classList.remove('liked');
+            likeCount = BASE_COUNT; // Retounen kontè a 575
+            isLiked = false;
+            localStorage.setItem(LIKE_LS_KEY, 'false'); 
+            
+            // Mizajou kontè san animasyon
+            counter.textContent = `${likeCount} moun renmen paj NGA a`;
+
+            // Opsyonèl: Ou ka jwe yon son diferan pou unlike
+        }
+    }
+    
+    // =======================================================
+    // ############ FONKSYON GESTION NOTIFICATION CERTIFICAT ############
+    // =======================================================
+    
+    // Fonksyon pour cacher la notification
+    function closeCertificateNotification() {
+        const notification = document.getElementById('certificate-notification');
+        notification.classList.remove('show');
+        
+        // Cacher complètement après l'animation de transition (500ms)
+        setTimeout(() => {
+            notification.style.display = 'none';
+        }, 500); 
+    }
+
+    // Fonksyon pour faire apparaître la notification
+    function showCertificateNotification() {
+        const notification = document.getElementById('certificate-notification');
+        
+        // 1. Afficher le bloc (pour que les transitions CSS fonctionnent)
+        notification.style.display = 'block';
+        
+        // 2. Déclencher l'animation (glissement)
+        setTimeout(() => {
+            notification.classList.add('show');
+        }, 50); 
+        
+        // 3. Déclencher la disparition automatique après 10 secondes d'affichage
+        const DURATION_MS = 7000; // 7 secondes d'affichage
+        setTimeout(closeCertificateNotification, DURATION_MS);
+    }
+
+
+    // =======================================================
+    // ############ FONKSYON TRANZAKSYON ############
+    // =======================================================
+
+    // Fonction pour gérer le clic sur le bouton Natcash
+    function faireDonNatcash() {
+        alert("Pou fè tranzaksyon Natcash: 1. Fè transfè a sou +509 3560-8869 / Kes* Ben*.");
+    }
+    
+    // FONKSYON POU MONCASH
+    function faireDonMoncash() {
+        alert("Pou fè tranzaksyon Moncash: 1. Fè transfè a sou +509 3101-3968 / Kes* Ben*.");
+    }
+
+    // =======================================================
+    // ############ DEKLANCHE LÈ PAJ LA CHAJÉ ############
+    // =======================================================
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. ANIME KONTÈ LIKE LA: Monte soti nan 0 rive nan valè aktyèl la (575 oswa 581) nan 50 segonn.
+        const ANIMATION_DURATION = 50000; // 50 segonn
+        animateCounter('like-counter', likeCount, ANIMATION_DURATION); 
+        
+        // 2. APLIKE ESTATI LIKED LA sou bouton an si li te deja liked
+        const likeButton = document.getElementById('like-button');
+        if (isLiked) {
+            likeButton.classList.add('liked');
+        }
+
+        // 3. JERE ANIMASYON TIT H1 A (Byenvini sou NextGen Academy)
+        const spans = document.querySelectorAll('.message-box-centered h1 span');
+        spans.forEach((span, index) => {
+            // S'assurer que le premier mot ('Byenvini sou') démarre l'animation en haut 
+            if (span.classList.contains('animate-top')) {
+                span.style.animationDelay = `${index * 0.1}s`;
+            }
+            // S'assurer que le deuxième mot ('NextGen Academy') démarre l'animation à gauche
+            else if (span.classList.contains('animate-left')) {
+                 span.style.animationDelay = `${index * 0.1 + 0.5}s`; // Un petit décalage
+            }
+        });
+        
+        // 4. DÉCLENCHER LA NOUVELLE NOTIFICATION APRÈS 10 SECONDES (10000 ms)
+        const CERT_DELAY_MS = 20000; // 20 secondes de délai
+        setTimeout(showCertificateNotification, CERT_DELAY_MS);
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+/* =================================================================================== */
+/* ########################### 7. STYLES PAGE MERCI (MERCI.HTML) ##################### */
+/* =================================================================================== */
+
+.merci-content-wrapper {
+    padding: 80px 20px;
+    text-align: center;
+    background-color: var(--background-light); 
+}
+
+.merci-box {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    border-top: 5px solid var(--accent-color); /* Vert de l'accent */
+}
+
+.merci-box i {
+    font-size: 4em;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    animation: bounce 1s ease-in-out; /* 'bounce' est défini dans base.css */
+}
+
+.merci-box h1 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    font-size: 2.5em;
+}
+
+.merci-box p {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.merci-box a.btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.merci-box a.btn:hover {
+    background-color: #0056b3;
+}
