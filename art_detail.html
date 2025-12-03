@@ -25,6 +25,9 @@
             --color-card-6: #17a2b8; 
             --color-card-7: #fd7e14; 
             --color-card-8: #6c757d; 
+            --promo-bg: #ffe082; /* Koulè jòn pal pou òf la */
+            --promo-text: #e65100; /* Koulè wouj fonse pou tèks òf la */
+            --whatsapp-green: #25D366;
         }
 
         /* Styles de la Page */
@@ -72,29 +75,28 @@
             font-size: 0.8em;
         }
 
-        /* --- Hero Section San GIF --- */
+        /* --- Hero Section (Seksyon Òf la) --- */
         .art-hero-section {
-            background-color: #e9ecef; /* Koulè solid pal */
-            background-image: none; /* Retirer GIF la */
-            height: 180px; 
+            background-color: var(--promo-bg); 
+            border: 2px solid var(--promo-text);
             border-radius: 10px;
-            margin-bottom: 30px;
+            margin: 30px 0; /* Espas anlè ak anba */
+            padding: 20px 15px; 
+            box-shadow: 0 0 15px rgba(255, 193, 7, 0.5); 
         }
 
         .art-hero-overlay {
-            background-color: transparent; /* Overlay nwa a retire */
             width: 100%;
-            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center; 
-            padding: 15px;
         }
 
         .art-hero-content {
-            background-color: rgba(255, 255, 255, 0.8); /* Yon ti background blan pou tèks la */
-            padding: 15px;
-            border-radius: 5px;
+            background-color: transparent; 
+            padding: 0;
+            text-align: center;
+            width: 100%;
         }
         
         .art-hero-description {
@@ -102,8 +104,54 @@
             font-size: 1.1em; 
             font-weight: 600;
             line-height: 1.4;
+            margin-bottom: 15px;
         }
-
+        
+        /* --- Styles Countdown Timer --- */
+        .countdown-timer {
+            font-size: 1.8em;
+            font-weight: 800;
+            color: var(--promo-text);
+            margin: 10px 0;
+            border-radius: 5px;
+            padding: 5px 10px;
+            display: inline-block;
+            background-color: var(--text-light);
+            border: 1px solid var(--promo-text);
+        }
+        
+        /* --- Bouton Pataj WhatsApp nan Òf la (Ranplase Capture d'écran) --- */
+        .whatsapp-promo-btn {
+            background-color: var(--whatsapp-green); 
+            color: var(--text-light);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 15px;
+            text-transform: uppercase;
+            text-decoration: none; /* Pou li sanble ak yon bouton */
+        }
+        .whatsapp-promo-btn:hover {
+            background-color: #1EBE57;
+        }
+        
+        /* --- Animation Ikòn Pataj la --- */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); color: var(--color-card-3); } /* Koulè jòn lè l ap bat */
+            100% { transform: scale(1); }
+        }
+        
+        .share-icon-pulse {
+            animation: pulse 1.5s infinite;
+        }
+        
         /* --- Courses Grid (Estil Kat rete) --- */
         .courses-grid {
             display: grid;
@@ -129,7 +177,7 @@
         }
         
         .course-block:nth-child(1) { border-top-color: var(--color-card-1); }
-        .course-block:nth-child(2) { border-top-color: var(--color-card-2); }
+        .course-block:nth-child(2) { border-top-color: var(--color-card-2); } 
         .course-block:nth-child(3) { border-top-color: var(--color-card-3); }
         .course-block:nth-child(4) { border-top-color: var(--color-card-4); }
         .course-block:nth-child(5) { border-top-color: var(--color-card-5); }
@@ -209,6 +257,11 @@
             position: relative;
         }
         
+        /* Modal espesifik pou Imaj Pataj la */
+        #shareImageModal .modal-content {
+            max-width: 450px;
+        }
+        
         .modal-content video {
             width: 100%;
             height: auto;
@@ -237,6 +290,24 @@
              color: var(--secondary-color); 
              margin-top: 0; 
              margin-bottom: 15px;
+        }
+        
+        /* --- Bouton Pataj WhatsApp nan Modal la --- */
+        .whatsapp-share-btn {
+             display: inline-flex;
+             align-items: center;
+             gap: 10px;
+             padding: 10px 20px;
+             border-radius: 5px;
+             text-decoration: none;
+             font-weight: bold;
+             background-color: var(--whatsapp-green); 
+             color: var(--text-light);
+             margin-top: 15px;
+             transition: background-color 0.2s;
+        }
+        .whatsapp-share-btn:hover {
+            background-color: #1EBE57;
         }
 
 
@@ -306,13 +377,6 @@
 
         /* --- Footer Styles --- */
         footer {
-            background-color: var(--primary-color);
-            color: var(--text-light);
-            padding: 15px 0;
-            text-align: center;
-        }
-        /* --- Footer Styles --- */
-        footer {
             /* RANPLASE VAR(---PRIMARY-COLOR) PAR BLE MARIN (#003366) */
             background-color: #003366; 
             color: var(--text-light); /* Blan (Rete Blan) */
@@ -351,7 +415,7 @@
         <h1>
             <span class="title-slogan">Devlope kreyativite w</span>
         </h1>
-
+        
         <section class="courses-grid"> 
             
             <div class="course-block">
@@ -476,6 +540,23 @@
 
         </section> 
         
+        <section id="unique-offer-banner" class="art-hero-section">
+            <div class="art-hero-overlay">
+                <div class="art-hero-content">
+                    <p class="art-hero-description" style="color: var(--promo-text);">
+                        <i class="fas fa-exclamation-triangle"></i> ÒF ESPESYAL, YON SÈL FWA! <i class="fas fa-exclamation-triangle"></i>
+                    </p>
+                    <p class="art-hero-description" style="margin-bottom: 5px;">
+                        Jwenn yon palèt atistik GRATIS lè w aplike sa kounye a!
+                    </p>
+                    <div class="countdown-timer" id="countdown">5 minit 59 segonn</div>
+                    
+                    <a id="shareArtButton" href="#" target="_blank" class="whatsapp-promo-btn">
+                        <i class="fab fa-whatsapp fa-2x share-icon-pulse"></i> Pataje pou reklame
+                    </a>
+                </div>
+            </div>
+        </section>
         <p class="warning-text">
             ⚠️ Pwogram sa yo ouvè soti mwa Fevriye rive mwa Jen. Chak Samdi nan vil aux Cayes pou timoun. Lasemèn pou granmoun, Camp-Perrin
         </p>
@@ -501,8 +582,19 @@
         <video id="modalVideoPlayer" controls autoplay preload="none" style="display: block;"></video>
       </div>
     </div>
-
     
+    <div id="shareImageModal" class="modal">
+      <div class="modal-content" style="max-width: 450px; text-align: center;">
+        <span class="close-btn" id="closeImageModal">&times;</span>
+        <h3 style="color: var(--accent-color);">Felisitasyon!</h3>
+        <p style="margin-bottom: 20px;">
+            Pou reklame yon palèt konsa, tanpri pataje opòtinite sa a avèk 15 zanmi w' ak 3 gwoup sou WhatsApp !
+        </p>
+        <img src="img01.png" alt="Palèt Atistik Gratis" style="width: 100%; height: auto; border-radius: 8px;">
+        
+        <p style="font-size: 0.85em; margin-top: 15px; color: #dc3545;">Nan ouvèti klas, wap resevwa li.</p>
+      </div>
+    </div>
     <footer>
         <div class="container footer-content">
             <div class="social-links">
@@ -518,14 +610,12 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
-            // --- KÒD POU MODAL VIDEWO A (RE-ENTEGRE) ---
-            
+            // --- KÒD POU MODAL VIDEWO A ---
             const modal = document.getElementById("videoModal");
             const btnClose = document.querySelector(".close-btn");
             const videoPlayer = document.getElementById("modalVideoPlayer");
             const modalTitle = document.getElementById("modalVideoTitle");
             
-            // JERE KLIK SOU TOUT BOUTON WÈ DEMO YO
             document.querySelectorAll('.video-modal-btn').forEach(button => {
                 button.addEventListener('click', () => {
                     const videoSrc = button.getAttribute('data-video-src');
@@ -540,32 +630,96 @@
                 });
             });
 
-            // JERE KLIK SOU FÈMEN (X)
             btnClose.addEventListener('click', closeModal);
 
-            // JERE KLIK DEYÒ MODAL LA
-            window.addEventListener('click', (event) => {
-                if (event.target == modal) {
-                    closeModal();
-                }
-            });
-            
-            // JERE KLIK SOU KLAVYE (ECHAP)
-             document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape' && modal.style.display === 'block') {
-                    closeModal();
-                }
-            });
-
-
-            // FUNKSYON POU FÈMEN MODAL LA
             function closeModal() {
                 videoPlayer.pause();
                 videoPlayer.src = "";
                 videoPlayer.load(); 
-                
                 modal.style.display = "none";
             }
+            
+            // --- KÒD POU MODAL PATAY IMAJ LA AK PATAJ WHATSAPP ---
+            
+            const shareButton = document.getElementById("shareArtButton");
+            const imageModal = document.getElementById("shareImageModal");
+            const closeImageButton = document.getElementById("closeImageModal");
+            
+            // Mesaj ak Lyen pou Pataj la (Lyen sa a ale sou WhatsApp)
+            const shareText = "https://nextgen-academ.netlify.app aplike pou demi bous nan fòmasyon atistik e teknoloji 🥰";
+            const whatsappLink = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
+            
+            // Mete lyen pataj WhatsApp sou bouton an
+            shareButton.href = whatsappLink;
+            
+            // Lè yo klike sou bouton pataj la, li louvri WhatsApp EPI li montre modal imaj la
+            shareButton.addEventListener('click', (event) => {
+                // Li pa bezwen preventDefault paske li dwe ouvri lyen an (WhatsApp)
+                
+                // Montre modal la kòm dezyèm aksyon an
+                setTimeout(() => {
+                   imageModal.style.display = "block";
+                }, 100); // Yon ti delè pou l pa bloke tranzisyon WhatsApp la
+            });
+            
+            // Fèmen Modal Imaj la
+            closeImageButton.addEventListener('click', closeImageModal);
+            
+            // Fèmen Modal Imaj la lè w klike deyò
+            window.addEventListener('click', (event) => {
+                if (event.target == imageModal) {
+                    closeImageModal();
+                }
+            });
+            
+            function closeImageModal() {
+                imageModal.style.display = "none";
+            }
+            
+            // JERE KLIK SOU KLAVYE (ECHAP) pou de modal yo
+             document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    if (modal.style.display === 'block') {
+                        closeModal(); // Fèmen modal videyo
+                    }
+                    if (imageModal.style.display === 'block') {
+                        closeImageModal(); // Fèmen modal imaj
+                    }
+                }
+            });
+            
+            // --- KÒD POU KONTE A REBOURS (COUNTDOWN TIMER) ---
+            
+            const countdownEl = document.getElementById('countdown');
+            const offerBanner = document.getElementById('unique-offer-banner');
+            
+            // 4 minit = 4 * 60 = 240 segonn
+            let timeRemaining = 240; 
+            
+            function updateCountdown() {
+                const minutes = Math.floor(timeRemaining / 60);
+                const seconds = timeRemaining % 60;
+                
+                const formattedSeconds = seconds < 10 ? '0' + seconds : seconds;
+                
+                countdownEl.textContent = `${minutes} minit ${formattedSeconds} segonn`;
+                
+                if (timeRemaining <= 0) {
+                    clearInterval(countdownInterval);
+                    countdownEl.textContent = "ÒF LA FINI";
+                    // Dezaktive bannè a apre òf la fini
+                    offerBanner.style.opacity = '0.7';
+                    offerBanner.style.pointerEvents = 'none';
+                    shareButton.style.backgroundColor = '#6c757d'; // Gri
+                    shareButton.textContent = 'Òf la Fini';
+                    
+                } else {
+                    timeRemaining--;
+                }
+            }
+            
+            const countdownInterval = setInterval(updateCountdown, 1000);
+            updateCountdown(); 
         });
     </script>
 
