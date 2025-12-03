@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akèy | NextGen Academy</title>
     
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TC5KBGRB');</script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
@@ -745,6 +750,8 @@
 </head>
 <body>
 
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TC5KBGRB"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="top-bar">
         <div class="container top-info">
             <span class="contact-item"><i class="fas fa-bullhorn"></i> La formation disponible actuellement</span>
@@ -1035,7 +1042,7 @@
         const ANIMATION_DURATION = 50000; // 50 segonn
         animateCounter('like-counter', likeCount, ANIMATION_DURATION); 
         
-        // 2. APLIKE ESTATI LIKED LA sou bouton an si li te deja liked
+        // 2. APLIKE ESTATI LIKED LA sur bouton an si li te deja liked
         const likeButton = document.getElementById('like-button');
         if (isLiked) {
             likeButton.classList.add('liked');
@@ -1054,7 +1061,7 @@
             }
         });
         
-        // 4. DÉCLENCHER LA NOUVELLE NOTIFICATION APRÈS 10 SECONDES (10000 ms)
+        // 4. DÉCLENCHER LA NOUVELLE NOTIFICATION APRÈS 20 SECONDES (20000 ms)
         const CERT_DELAY_MS = 20000; // 20 secondes de délai
         setTimeout(showCertificateNotification, CERT_DELAY_MS);
     });
