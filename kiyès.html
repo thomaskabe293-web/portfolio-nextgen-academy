@@ -27,9 +27,8 @@
 
         /* 4.2 Section Philosophie et Piliers */
         .vision-pillars-section {
-            padding: 80px 0; 
-            padding-top: 100px; 
-            background-color: var(--background-light); /* Blanc/Gris clair */
+            padding: 100px 0 30px 0; /* top: 100, right/left: 0, bottom: 30 (réduit) */
+            background-color: var(--background-light); /* Blanc/gris clair */
             text-align: center; 
         }
 
@@ -40,7 +39,7 @@
 
         .section-subtitle {
             font-size: 2em;
-            color: var(--secondary-color); /* COULEUR ORANGE D'ACCENT */
+            color: var(--secondary-color); /* Couleur orange d'accent */
             margin-bottom: 40px;
             font-weight: 700;
         }
@@ -50,12 +49,12 @@
             line-height: 1.6;
             margin-bottom: 25px; 
             font-weight: 500;
-            color: var(--text-dark); /* Bleu Marin */
+            color: var(--text-dark); /* Bleu marin */
         }
 
         .role-statement span {
             font-weight: 700;
-            color: var(--text-dark); /* Bleu Marin */
+            color: var(--text-dark); /* Bleu marin */
         }
         .pillars-statement .pillar {
             font-weight: 700;
@@ -65,17 +64,16 @@
 
         /* 4.3 Section Équipe (Team) */
         .team-section {
-            /* MODIFICATION: Réduction de l'espace au-dessus du titre 'Ekip la' */
-            padding-top: 20px; /* Anvan: 40px, Kounye a 20px */
+            padding-top: 0; 
             padding-bottom: 80px; 
-            background-color: var(--background-light); /* Blanc/Gris clair */
+            background-color: var(--background-light); /* Blanc/gris clair */
             text-align: center;
         }
 
         /* Titre de section "Ekip la" (Appliqué en Orange) */
         .section-title-clean {
             font-size: 2.8em;
-            color: var(--secondary-color); /* Koulè Orange */
+            color: var(--secondary-color); /* Couleur orange */
             margin-bottom: 10px;
             font-weight: 700;
             position: relative;
@@ -88,17 +86,35 @@
             display: block;
             width: 60px;
             height: 4px;
-            background-color: var(--secondary-color); /* Soulignement Orange (Secondary Color) */
+            background-color: var(--secondary-color); /* Soulignement orange (secondary color) */
             margin: 0 auto;
             margin-top: 10px;
             border-radius: 2px;
+        }
+        
+        /* Style pour la nouvelle image insérée */
+        .image-before-team {
+            max-width: 100%;
+            /* MODIFICATION PRINCIPALE 1: Augmentation de la marge inférieure pour séparer le titre */
+            margin: 30px auto; /* Ansyen: 15px auto */
+            display: block;
+        }
+        .image-before-team img {
+            max-width: 600px;
+            width: 90%;
+            height: auto;
+            display: block;
+            margin: 0 auto; /* Centrage */
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .team-grid {
             display: flex;
             justify-content: center; 
             gap: 80px;
-            margin-top: 60px;
+            /* MODIFICATION PRINCIPALE 2: Augmentation de la marge supérieure pour séparer le titre */
+            margin-top: 80px; /* Ansyen: 60px */
             flex-wrap: wrap;
         }
 
@@ -118,7 +134,7 @@
             width: 180px;
             height: 180px; 
             object-fit: cover; 
-            border: 5px solid var(--primary-color); /* Bordure Bleu Marin */
+            border: 5px solid var(--primary-color); /* Bordure bleu marin */
             border-radius: 50%;
             margin-bottom: 20px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
@@ -130,13 +146,13 @@
 
         /* Noms et titres au Bleu Marin */
         .team-member h3 {
-            color: var(--text-dark); /* Bleu Marin */
+            color: var(--text-dark); /* Bleu marin */
             margin-bottom: 5px;
             font-size: 1.5em;
         }
 
         .team-member p {
-            color: var(--text-dark); /* Bleu Marin */
+            color: var(--text-dark); /* Bleu marin */
             font-weight: 600;
             font-style: italic;
         }
@@ -144,7 +160,7 @@
         /* 4.4 Section Mission Finale */
         .mission-finale {
             background-color: var(--pale-bg); /* Fond pale */
-            color: var(--text-dark); /* Texte Bleu Marin */
+            color: var(--text-dark); /* Texte bleu marin */
             padding: 40px 0;
             text-align: center;
         }
@@ -176,9 +192,12 @@
             .vision-pillars-section {
                 padding-top: 50px; 
             }
-            /* MODIFICATION: Réduction de l'espace sur mobile également */
+            
             .team-section {
-                padding-top: 15px; /* Anvan: 30px, Kounye a 15px */
+                padding-top: 15px; 
+            }
+            .image-before-team img {
+                width: 100%;
             }
         }
     /* --- Style pou Onglet Notifikasyon Blouz la --- */
@@ -196,7 +215,7 @@
     
     /* Fond Transparan ak yon ti flou (opsyonèl) */
     background-color: rgba(255, 255, 255, 0.5); /* 50% Blan transparan */
-    backdrop-filter: blur(5px); /* Efè flou transparan (modèn) */
+    backdrop-filter: blur(5px); /* Effet flou transparan (moderne) */
     
     padding: 15px;
     border-radius: 10px;
@@ -206,7 +225,7 @@
     /* Animasyon pou l parèt */
     opacity: 0;
     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-    transform: translateX(100%); /* Kòmanse deyò ekran an */
+    transform: translateX(100%); /* Kòmanse deyò écran an */
 }
 
 /* Klas pou fè notifikasyon an parèt */
@@ -217,7 +236,7 @@
 
 .notify-content p {
     font-weight: bold;
-    color: var(--primary-color, #004a7c); /* Koulè tèks Ble Marine */
+    color: var(--primary-color, #004a7c); /* Couleur texte bleu marine */
     margin-top: 0;
     margin-bottom: 10px;
     font-size: 0.95em;
@@ -249,7 +268,7 @@
 
     <div class="top-bar">
         <div class="container top-info">
-            <span class="contact-item"><i class="fas fa-map-marker-alt"></i> Haiti, Cayes, Sud</span>
+            <span class="contact-item"><i class="fas fa-map-marker-alt"></i> Haïti, Cayes, Sud</span>
         </div>
     </div>
 
@@ -276,7 +295,7 @@
         
         <section class="vision-pillars-section">
             <div class="container vision-content">
-                <h3 class="section-subtitle">YON KOMINOTE LEGAL E REPITE </h3>            
+                <h3 class="section-subtitle">Yon kominote legal e repite </h3>            
                 <p class="role-statement">
                     Wòl nou se <span style="font-weight: bold;">fòme e ankouraje</span> lidè, kreyatè, ak antreprenè kap kreye opòtinite isit lakay yo <span style="font-weight: bold;">pou bati avni yo</span>.
                 </p>
@@ -291,14 +310,20 @@
         </section>
         
         <section class="team-section team-anthracite-bg">
-            <h2 class="section-title-clean">Ekip la</h2> 
+            
             <div class="container">
+                <div class="image-before-team">
+                    <img src="imgr.jpg" alt="Image illustrative des piliers de NextGen Academy">
+                    
+                </div>
+                <h2 class="section-title-clean">Ekip la</h2> 
+                
                 <div class="team-grid">
                     
                     <div class="team-member">
                         <img src="img3.jpg" alt="Photo de Thomas Kabé" class="floating-image">
                         <h3>THOMAS KABÉ</h3>
-                        <p>Formateur principal & Responsable des opérations</p>
+                        <p>Formateur principal & responsable des opérations</p>
                     </div>
 
                     <div class="team-member">
@@ -334,38 +359,37 @@
     <div id="blouse-notification" class="blouse-notify-tab">
     <span class="close-notify" onclick="closeNotification()">×</span>
     <div class="notify-content">
-        <p>Fòmasyon ko disponib aktyèlman se INSTALKATION CAMERA DE SURVEILLANCE (wap jwenn nan pati teknoloji an)</p>
-        <img src="unifom.png" alt="Modèl Blouz NextGen Academy" class="notify-image">
+        <p>Fòmasyon ki disponib aktyèlman se acha entènasyonal ✈️🛥📊📦📦 (wap jwenn nan pati teknoloji an)</p>
+        <img src="unifom.png" alt="Modèl blouz NextGen Academy" class="notify-image">
     </div>
 </div>
 <script>
-    // Fonksyon pou kache notifikasyon an
+    // Fonction pour cacher la notification
     function closeNotification() {
         const notification = document.getElementById('blouse-notification');
         notification.classList.remove('show');
         
-        // Opsyonèl: Kache li nèt apre tranzisyon an
+        // Optionnel: cacher le bloc après la transition
         setTimeout(() => {
             notification.style.display = 'none';
         }, 500); 
     }
 
-    // Fonksyon pou parèt notifikasyon an
+    // Fonction pour faire apparaître la notification
     function showNotification() {
         const notification = document.getElementById('blouse-notification');
         notification.style.display = 'block';
         
-        // Asire w ke animasyon parèt (glisman an) deklanche
-        // Nou itilize setTimeout 0ms pou asire CSS tranzisyon an mache
+        // Assurer que l'animation apparaît (le glissement) se déclenche
         setTimeout(() => {
             notification.classList.add('show');
         }, 50); 
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-        const DELAY_MS = 5000; // 30 segonn
+        const DELAY_MS = 5000; // 5 secondes (modifié pour le test)
 
-        // Deklanche notifikasyon an apre 60 segonn
+        // Déclencher la notification après 5 secondes
         setTimeout(showNotification, DELAY_MS);
     });
 </script>

@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
 <style>
-        /* Variables du thème (MISE À JOUR POU TEKNOLOJI) */
+        /* Variables du thème (mise à jour pou teknoloji) */
         :root {
-            --primary-color: #004d99; /* BLEU MARINE (Koulè prensipal pou Teknoloji) */
-            --secondary-color: #7b68ee; /* VYOLÈT ELEKTRONIK (Pou bouton detay) */
-            --accent-color: #28a745; /* Vert Vif (Agwoteknik) */
+            --primary-color: #004d99; /* bleu marine (koulè prensipal pou teknoloji) */
+            --secondary-color: #7b68ee; /* vyolèt elektwonik (pou bouton detay) */
+            --accent-color: #28a745; /* vert vif (agwoteknik) */
             --text-dark: #333;
             --background-light: #f4f4f9;
             --text-light: #fff;
@@ -25,7 +25,7 @@
             --color-card-6: #17a2b8; 
             --color-card-7: #fd7e14; 
             --color-card-8: #6c757d; 
-            --color-card-9: #e83e8c; /* Lòt koulè pou elaji */
+            --color-card-9: #e83e8c; /* lòt koulè pou elaji */
         }
 
         /* Styles de la Page */
@@ -50,9 +50,12 @@
             align-items: center;
             gap: 8px;
             text-decoration: none;
-            color: var(--primary-color); /* Chanje an koulè Teknoloji */
+            color: var(--primary-color); 
             font-weight: 600;
             margin-bottom: 20px;
+            /* Correction: texte en miniscule selon la demande initiale, 
+               sauf si la nouvelle règle implique une majuscule ici (début de phrase) */
+            text-transform: capitalize; 
         }
 
         h1 {
@@ -76,7 +79,7 @@
 
         /* --- Hero Section San GIF --- */
         .art-hero-section {
-            background-color: #004d99; /* Koulè solid pal (Pou Teknoloji) */
+            background-color: #004d99; 
             background-image: none; 
             height: 180px; 
             border-radius: 10px;
@@ -145,16 +148,16 @@
         }
         
         /* Koulè varye pou bèl prezantasyon */
-        .course-block:nth-child(2) { border-top-color: var(--color-card-1); } /* Granmoun 1: Dev Web */
-        .course-block:nth-child(3) { border-top-color: var(--color-card-2); } /* Granmoun 2: Dev APK */
-        .course-block:nth-child(4) { border-top-color: var(--color-card-3); } /* Granmoun 3: Reparasyon */
-        .course-block:nth-child(5) { border-top-color: var(--color-card-4); } /* Granmoun 4: Kamera */
-        .course-block:nth-child(6) { border-top-color: var(--color-card-5); } /* Granmoun 5: Elektrisite */
-        .course-block:nth-child(7) { border-top-color: var(--color-card-6); } /* Granmoun 6: Mkt Digital */
-        .course-block:nth-child(8) { border-top-color: var(--color-card-7); } /* Granmoun 7: Grafik Dizay */
+        .course-block:nth-child(2) { border-top-color: var(--color-card-1); } 
+        .course-block:nth-child(3) { border-top-color: var(--color-card-2); } 
+        .course-block:nth-child(4) { border-top-color: var(--color-card-3); } 
+        .course-block:nth-child(5) { border-top-color: var(--color-card-4); } 
+        .course-block:nth-child(6) { border-top-color: var(--color-card-5); } 
+        .course-block:nth-child(7) { border-top-color: var(--color-card-6); } 
+        .course-block:nth-child(8) { border-top-color: var(--color-card-7); } 
         
-        .course-block:nth-child(10) { border-top-color: var(--color-card-9); } /* Timoun 1: Elektwoteknik */
-        .course-block:nth-child(11) { border-top-color: var(--color-card-8); } /* Timoun 2: Fizik Aplike */
+        .course-block:nth-child(10) { border-top-color: var(--color-card-9); } 
+        .course-block:nth-child(11) { border-top-color: var(--color-card-8); } 
 
         .course-icon {
             font-size: 2em; 
@@ -165,7 +168,7 @@
         .course-block:nth-child(2) .course-icon { color: var(--color-card-1); }
         .course-block:nth-child(3) .course-icon { color: var(--color-card-2); }
         .course-block:nth-child(4) .course-icon { color: var(--color-card-3); }
-        /* ... elatriye pou tout 11 koulè yo */
+        
 
 
         .course-block h2 {
@@ -181,6 +184,26 @@
             font-size: 0.95em;
             color: var(--text-dark);
             flex-grow: 1; 
+        }
+        
+        /* NOUVEAU: Style pour le Compte à Rebours */
+        .countdown-container {
+            font-size: 0.9em;
+            font-weight: bold;
+            color: var(--color-card-4); /* Rouge */
+            margin-bottom: 10px;
+            padding: 5px 0;
+            border-top: 1px dotted #ff0000;
+            border-bottom: 1px dotted #ff0000;
+            text-align: center;
+        }
+        .countdown-container i {
+            margin-right: 5px;
+        }
+        .countdown-text {
+            display: block;
+            margin-top: 5px;
+            font-size: 1.1em;
         }
 
         /* --- Bouton Detay/Info (Modifikasyon) --- */
@@ -200,7 +223,7 @@
             text-decoration: none;
             font-weight: 600;
             transition: background-color 0.2s;
-            background-color: var(--secondary-color); /* VYOLÈT */
+            background-color: var(--secondary-color); /* Vyolèt */
             color: var(--text-light);
             align-self: center; 
         }
@@ -276,11 +299,11 @@
 
         /* --- Final Banner (Avis d'avertissement) --- */
         .warning-text {
-            border: 2px solid #FF0000; 
+            border: 2px solid #ff0000; 
             padding: 12px;
             border-radius: 8px;
             margin-bottom: 30px; 
-            color: #FF0000; 
+            color: #ff0000; 
             font-weight: bold; 
             text-align: center; 
             margin-top: 30px; 
@@ -353,24 +376,24 @@
             transition: color 0.3s;
         }
         .social-links a:hover {
-            color: var(--secondary-color); /* Vyolèt lè w hover */
+            color: var(--secondary-color); 
         }
         
-        /* --- NOUVO STIL: MODAL RABÈ A (Kopie/Kole) --- */
+        /* --- NOUVEAU STIL: MODAL RABÈ A --- */
         #discountModal {
             display: none;
             position: fixed;
-            z-index: 1100; /* Pi wo pase lòt modal yo */
+            z-index: 1100; 
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7); /* Background transparan semi-nwa */
+            background-color: rgba(0, 0, 0, 0.7); 
             overflow: auto;
         }
 
         .discount-content {
-            background-color: var(--text-light); /* Background blan */
+            background-color: var(--text-light); 
             margin: 0 auto;
             padding: 25px;
             border-radius: 10px;
@@ -385,7 +408,7 @@
 
         @keyframes slideDown {
             from {transform: translateY(-100%); opacity: 0;}
-            to {transform: translateY(100px); opacity: 1;} /* Desann a 100px soti anlè a */
+            to {transform: translateY(100px); opacity: 1;} 
         }
         
         .discount-content h2 {
@@ -411,7 +434,7 @@
         /* Polis pi gwo pou rabè an */
         .discount-list li:first-child,
         .discount-list li:nth-child(2) {
-            font-size: 1.2em; /* Polis pi gwo */
+            font-size: 1.2em; 
             font-weight: bold;
         }
 
@@ -420,7 +443,7 @@
             font-size: 0.95em;
             text-align: center;
             margin-top: 20px;
-            /* Animation pou enfòmasyon an */
+            /* Animasyon pou enfòmasyon an */
             animation: pulse 1.5s infinite;
         }
         
@@ -455,10 +478,10 @@
     <header></header>
     <main class="container detail-main">
         
-        <a href="pwogram.html" class="back-link"><i class="fas fa-arrow-left"></i> Retounen nan Pwogram yo</a>
+        <a href="pwogram.html" class="back-link"><i class="fas fa-arrow-left"></i> Retounen nan pwogram yo</a>
 
         <h1>
-<span class="title-slogan">Kreye yon avni dijital nan yon sistèm open source</span>
+            <span class="title-slogan">Kreye yon avni dijital nan yon sistèm open source</span>
         </h1>
         
         <div class="art-hero-section">
@@ -477,9 +500,9 @@
             
             <div class="course-block">
                 <div class="course-icon"><i class="fas fa-code"></i></div>
-                <h2>DEV. WEB</h2>
+                <h2>Dev. web</h2>
                 <p class="course-description-short">
-                    Aprann HTML, CSS, JavaScript, epi Python/PHP pou kreye sit entènèt ak aplikasyon web konplè. Pwojè: Kreye yon sit e-commerce.
+                    Aprann HTML, CSS, JavaScript, epi Python/PHP pou kreye sit entènèt ak aplikasyon web konplè. Pwojè: kreye yon sit e-commerce.
                 </p>
                 <div class="info-preview-box">
                     <button class="info-modal-btn" 
@@ -491,7 +514,7 @@
 
             <div class="course-block">
                 <div class="course-icon"><i class="fas fa-mobile-alt"></i></div>
-                <h2>DEV. APK (MOBIL)</h2>
+                <h2>Dev. apk (mobil)</h2>
                 <p class="course-description-short">
                     Konsepsyon aplikasyon Android/iOS avèk langaj modèn (Kotlin/Java). Aprann koneksyon API ak piblikasyon sou magazen yo.
                 </p>
@@ -505,7 +528,7 @@
 
             <div class="course-block">
                 <div class="course-icon"><i class="fas fa-wrench"></i></div>
-                <h2>REPARASYON MOTO</h2>
+                <h2>Reparasyon moto</h2>
                 <p class="course-description-short">
                     Dyagnostik ak reparasyon pyès ki anpàn nan vehikil ou. Mentnans ak ranplasman pyès.
                 </p>
@@ -519,9 +542,9 @@
 
             <div class="course-block">
                 <div class="course-icon"><i class="fas fa-video"></i></div>
-                <h2>ENSTLS KAMERA</h2>
+                <h2>Enstls kamera</h2>
                 <p class="course-description-short">
-                    Aprann chwazi ak enstale kamera sekirite (IP/CCTV). Konfigirasyon DVR/NVR, Réseau (PoE), ak vizyon adistans sou mobil.
+                    Aprann chwazi ak enstale kamera sekirite (IP/CCTV). Konfigirasyon DVR/NVR, réseau (POE), ak vizyon adistans sou mobil.
                 </p>
                 <div class="info-preview-box">
                      <button class="info-modal-btn" 
@@ -533,7 +556,7 @@
             
             <div class="course-block">
                 <div class="course-icon"><i class="fas fa-lightbulb"></i></div>
-                <h2>ELEKTRISITE DOMESTIK</h2>
+                <h2>Elektrisite domestik</h2>
                 <p class="course-description-short">
                     Prensip fondamantal elektrisite, dyagram sikui, enstalasyon breaker, priz, ak switch. Sekirite ak nòm elektrik.
                 </p>
@@ -547,7 +570,7 @@
             
             <div class="course-block">
                 <div class="course-icon"><i class="fas fa-bullhorn"></i></div>
-                <h2>MKT DIGITAL</h2>
+                <h2>Mkt digital</h2>
                 <p class="course-description-short">
                     Estrateji rezo sosyal (Facebook Ads, Instagram), SEO, Email Marketing, ak zouti analiz. Aprann fè kòmand entènasyonal pou pwomosyon.
                 </p>
@@ -561,9 +584,9 @@
             
             <div class="course-block">
                 <div class="course-icon"><i class="fas fa-layer-group"></i></div>
-                <h2>GRAFIK DIZAY</h2>
+                <h2>Grafik dizay</h2>
                 <p class="course-description-short">
-                    Prensip design, kreyasyon logo, kat vizit, ak konsepsyon pou Web. Entwodiksyon nan Serigrafi ak preparasyon fichye pou enpresyon.
+                    Prensip design, kreyasyon logo, kat vizit, ak konsepsyon pou web. Entwodiksyon nan serigrafi ak preparasyon fichye pou enpresyon.
                 </p>
                 <div class="info-preview-box">
                      <button class="info-modal-btn" 
@@ -573,40 +596,44 @@
                 </div>
             </div>
             <div class="course-block">
-    <div class="course-icon"><i class="fas fa-tshirt"></i></div>
-    <h2>CUSTOMIZATION DIGITAL</h2>
-    <p class="course-description-short">
-        Metòd gwo konpayi ak pati politik yo itilize pou kòmande stòk mayo pou aktivite yo. Pandan w dèyè ekran telefòn ou sèlman, ou fè tout bagay: mayo, bijou, kepi, valiz. Rejwenn ou sou 25 jou.
-    </p>
-    <div class="info-preview-box">
-         <button class="info-modal-btn" 
-                data-course-key="customizationdigital">
-            <i class="fas fa-info-circle"></i> Wè Plan Konplè
-        </button>
-    </div>
-</div>
+                <div class="course-icon"><i class="fas fa-tshirt"></i></div>
+                <h2>Customization digital</h2>
+                <p class="course-description-short">
+                    Metòd gwo konpayi ak pati politik yo itilize pou kòmande stòk mayo pou aktivite yo. Pandan w dèyè ekran telefòn ou sèlman, ou fè tout bagay: mayo, bijou, kepi, valiz. Rejwenn ou sou 25 jou.
+                </p>
+                <div class="info-preview-box">
+                     <button class="info-modal-btn" 
+                            data-course-key="customizationdigital">
+                        <i class="fas fa-info-circle"></i> Wè plan konplè
+                    </button>
+                </div>
+            </div>
 
             <div class="course-block">
-    <div class="course-icon"><i class="fas fa-globe"></i></div>
-    <h2>ACHA ENTÈNASYONAL</h2>
-    <p class="course-description-short">
-        Aprann achte sou platfòm entènasyonal yo, chwazi bon founisè, òganize anbakman rapid avèk konpayi eksprès, fè tranzaksyon sekirize, fè acha angwo pou biznis.
-    </p>
-    <div class="info-preview-box">
-         <button class="info-modal-btn" 
-                data-course-key="achainternasyonal">
-            <i class="fas fa-info-circle"></i> Wè plan konplè
-        </button>
-    </div>
-</div>
+                <div class="course-icon"><i class="fas fa-globe"></i></div>
+                <h2>Acha entènasyonal</h2>
+                <p class="course-description-short">
+                    Aprann achte sou platfòm entènasyonal yo, chwazi bon founisè, òganize anbakman rapid avèk konpayi eksprès, fè tranzaksyon sekirize, fè acha angwo pou biznis.
+                </p>
+                 <div class="countdown-container">
+                    <i class="fas fa-clock"></i> Enskripsyon louvri: 
+                    <span id="internationalCountdown" class="countdown-text"></span>
+                </div>
+                <div class="info-preview-box">
+                     <button class="info-modal-btn" 
+                            data-course-key="achainternasyonal">
+                        <i class="fas fa-info-circle"></i> Wè plan konplè
+                    </button>
+                </div>
+            </div>
 
             <h2 class="section-separator"><i class="fas fa-child"></i> Fòmasyon timoun (2 kou)</h2>
 
             <div class="course-block">
                 <div class="course-icon"><i class="fas fa-robot"></i></div>
-                <h2>ELEKTWOTEKNIK</h2>
+                <h2>Elektrwoteknik</h2>
                 <p class="course-description-short">
-                    Aprann sa k' kouran, sikui elektrik de baz, ak konstriksyon aparèy senp. Pwojè: Konstriksyon yon ti sistèm robotik ki fonksyone.
+                    Aprann sa k' kouran, sikui elektrik de baz, ak konstriksyon aparèy senp. Pwojè: konstriksyon yon ti sistèm robotik ki fonksyone.
                 </p>
                 <div class="info-preview-box">
                      <button class="info-modal-btn" 
@@ -618,7 +645,7 @@
             
             <div class="course-block">
                 <div class="course-icon"><i class="fas fa-atom"></i></div>
-                <h2>FIZIK APLIKE</h2>
+                <h2>Fizik aplike</h2>
                 <p class="course-description-short">
                     Eksperyans sou fòs, mouvman, enèji, ak presyon. Prensip senp nan konstriksyon pou kreye avyon papye pèfòman.
                 </p>
@@ -633,11 +660,11 @@
         </section> 
         
         <p class="warning-text">
-            ⚠️ Fòmasyon sa yo fèt pou granmoun (Lasemèn, Camp-Perrin) ak pou timoun (Samdi, Aux Cayes).
+            ⚠️ Fòmasyon sa yo fèt pou granmoun (lasemèn, Camp-Perrin) ak pou timoun (samdi, Aux Cayes).
         </p>
 
         <section class="final-return-banner">
-            <p>Pa bliye ou ka benefisye yon fòmasyon teknoloji gratis (pou adilt), lè w enskri 2 timoun nan fòmasyon ki pou timoun yo, oswa lèw te suiv yon premye fòmasyon teknoloji.</p>
+            <p>Pa bliye ou ka benefisye yon fòmasyon teknoloji gratis (pou adilt), lè w enskri 2 timoun nan fòmasyon ki pou timoun yo, oswa lè w te suiv yon premye fòmasyon teknoloji.</p>
         </section>
         
     </main>
@@ -645,7 +672,7 @@
     <div id="courseModal" class="modal">
       <div class="modal-content">
         <span class="close-btn">&times;</span>
-        <h3 id="modalTitle">Plan Konplè Fòmasyon</h3>
+        <h3 id="modalTitle">Plan konplè fòmasyon</h3>
         <ul id="modalCourseList" class="modal-course-list">
           </ul>
       </div>
@@ -653,18 +680,18 @@
     
     <div id="discountModal">
         <div class="discount-content">
-            <h2>Kijan Pou W Jwenn 50% Rabè</h2>
+            <h2>Kijan pou w jwenn 50% rabè</h2>
             
-            <p>Apre quiz la ki te ka ba ou 50% rabè sou fòmasyon nou yo, men kijan ou ka toujou jwenn 50% rabè:</p>
+            <p>Aprè quiz la ki te ka ba ou 50% rabè sou fòmasyon nou yo, men kijan ou ka toujou jwenn 50% rabè:</p>
 
             <ul class="discount-list">
-                <li>1. Chak lèw <strong>patisipe nan yon fòmasyon</strong>, ou gen 50% rabè sou enskripsyon <strong>yon pwochen</strong>.</li>
-                <li>2. Lèw pran 3 fòmasyon, ou gen yon katriyèm gratis.</li>
+                <li>1. Chak lè w patisipe nan yon fòmasyon, ou gen 50% rabè sou enskripsyon yon pwochen.</li>
+                <li>2. Lè w pran 3 fòmasyon, ou gen yon katriyèm gratis.</li>
             </ul>
             
             <p class="discount-quiz-info">Oumenm ki nouvo sou NextGen, pa bliye pase quiz la pou rabè k' pi fasil lan.</p>
             
-            <button class="discount-ok-btn" id="closeDiscountModal">OK</button>
+            <button class="discount-ok-btn" id="closeDiscountModal">Ok</button>
         </div>
     </div>
     <footer>
@@ -682,163 +709,163 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
-            // --- KÒD POU MODAL LIS KOU A ---
+            // --- Kòd pou modal lis kou a ---
             
             const modal = document.getElementById("courseModal");
             const btnClose = document.querySelector(".close-btn");
             const modalTitle = document.getElementById("modalTitle");
             const modalCourseList = document.getElementById("modalCourseList");
             
-            // Definisyon Detay Kou yo (Menm jan ak nan dosye teknoloji orijinal la)
+            // Definisyon Detay Kou yo 
             const courseDetails = {
                 // Détails pour la section Adulte
                 devlopmanweb: {
-                    title: "Devlopman Web: Plan Konplè",
+                    title: "Devlopman web: plan konplè",
                     content: [
-                        "Modil 1: Baz Entènèt (Fonksyonman, Tèminoloji)",
-                        "Modil 2: HTML5 & CSS3 (Estrikti ak Design Sit)",
-                        "Modil 3: JavaScript de Baz (Entèaktivite)",
+                        "Modil 1: Baz entènèt (fonksyonman, tèminoloji)",
+                        "Modil 2: HTML5 & CSS3 (estrikti ak design sit)",
+                        "Modil 3: JavaScript de baz (entèaktivite)",
                         "Modil 4: Frameworks CSS (Bootstrap/Tailwind)",
-                        "Modil 5: Jesyon Baz Done (MySQL/PostgreSQL)",
-                        "Modil 6: Devlopman Back-end (PHP, Python oubyen Node.js)",
-                        "Modil 7: Sekirite Sit ak Pèfòmans (SSL, SEO)",
-                        "Modil 8: Pwojè Final: Kreye yon E-commerce oswa Blog konplè."
+                        "Modil 5: Jesyon baz done (MySQL/PostgreSQL)",
+                        "Modil 6: Devlopman back-end (PHP, Python oubyen Node.js)",
+                        "Modil 7: Sekirite sit ak pèfòmans (SSL, SEO)",
+                        "Modil 8: Pwojè final: kreye yon e-commerce oswa blog konplè."
                     ]
                 },
                 devlopmanapk: {
-                    title: "Devlopman Aplikasyon Mobil (APK): Plan Konplè",
+                    title: "Devlopman aplikasyon mobil (APK): plan konplè",
                     content: [
-                        "Modil 1: Entwodiksyon Android Studio ak Langaj (Kotlin/Java)",
-                        "Modil 2: Konsepsyon UI/UX pou Mobile (Materyal Design)",
-                        "Modil 3: Jesyon Etatik ak Done Lokal",
-                        "Modil 4: Koneksyon API ak Sèvè (JSON, REST)",
-                        "Modil 5: Notifikasyon Pouse ak Sèvis Kote (GPS)",
-                        "Modil 6: Tès (Testing), Debugging ak Sekirite",
-                        "Modil 7: Piblikasyon sou Google Play Store (Pwosedi, Konsèy)",
-                        "Modil 8: Pwojè Final: Kreye yon aplikasyon fonksyonèl."
+                        "Modil 1: Entwodiksyon Android Studio ak langaj (Kotlin/Java)",
+                        "Modil 2: Konsepsyon UI/UX pou mobile (Material Design)",
+                        "Modil 3: Jesyon etatik ak done lokal",
+                        "Modil 4: Koneksyon API ak sèvè (JSON, REST)",
+                        "Modil 5: Notifikasyon pouse ak sèvis kote (GPS)",
+                        "Modil 6: Tès (testing), debugging ak sekirite",
+                        "Modil 7: Piblikasyon sou Google Play Store (pwosedi, konsèy)",
+                        "Modil 8: Pwojè final: kreye yon aplikasyon fonksyonèl."
                     ]
                 },
                 reparasyonteknik: {
-                    title: "Reparasyon Teknik (Òdinatè/Telefòn): Plan Konplè",
+                    title: "Reparasyon teknik (òdinatè/telefòn): plan konplè",
                     content: [
-                        "Modil 1: Dyagnostik pyès ki pa bon (Ram, Disk, Carte mère)",
-                        "Modil 2: Reparasyon ak Ranplasman eleman Laptop/Desktop (Ekran, Klavye, Batri)",
-                        "Modil 3: Enstalasyon ak Konfigirasyon Sistèm Operasyon (Windows, Linux)",
-                        "Modil 4: Elimine Viris ak Malware (Sekirite Lojisyèl)",
-                        "Modil 5: Solisyon Pwoblèm Alimantasyon (Power Supply, Adapteur)",
-                        "Modil 6: Depanaj Telefòn Mobil de Baz (Ranplasman Ekran/Pò Chajman)",
-                        "Modil 7: Teknik Soudi de Baz (Elektronik)",
-                        "Modil 8: Jesyon Kliyan ak Antretyen Prevansyon."
+                        "Modil 1: Dyagnostik pyès ki pa bon (RAM, disk, carte mère)",
+                        "Modil 2: Reparasyon ak ranplasman eleman laptop/desktop (ekran, klavye, batri)",
+                        "Modil 3: Enstalasyon ak konfigirasyon sistèm operasyon (Windows, Linux)",
+                        "Modil 4: Elimine viris ak malware (sekirite lojisyèl)",
+                        "Modil 5: Solisyon pwoblèm alimantasyon (Power Supply, adapteur)",
+                        "Modil 6: Depanaj telefòn mobil de baz (ranplasman ekran/pò chajman)",
+                        "Modil 7: Teknik soudi de baz (elektronik)",
+                        "Modil 8: Jesyon kliyan ak antretyen prevansyon."
                     ]
                 },
                 installationcam: {
-                    title: "Enstalasyon Kamera Sekirite (Cam): Plan Konplè",
+                    title: "Enstalasyon kamera sekirite (CAM): plan konplè",
                     content: [
-                        "Modil 1: Tip de Kamera (CCTV, IP) ak Chwa Ekipman",
-                        "Modil 2: Planifikasyon ak Estrateji Pozisyon Kamera",
-                        "Modil 3: Enstalasyon Kab ak Prensip Réseau (Ethernet, PoE)",
-                        "Modil 4: Konfigirasyon DVR/NVR ak Disques Durs",
-                        "Modil 5: Konfigirasyon Adistans (Vizyon sou Mobil/PC)",
-                        "Modil 6: Sekirite Sistèm ak Modpas Pwoteksyon",
-                        "Modil 7: Solisyon Pwoblèm Réseau ak Kouran",
-                        "Modil 8: Antretyen ak Mizajou Sistèm."
+                        "Modil 1: Tip de kamera (CCTV, IP) ak chwa ekipman",
+                        "Modil 2: Planifikasyon ak estrateji pozisyon kamera",
+                        "Modil 3: Enstalasyon kab ak prensip réseau (Ethernet, POE)",
+                        "Modil 4: Konfigirasyon DVR/NVR ak disques durs",
+                        "Modil 5: Konfigirasyon adistans (vizyon sou mobil/PC)",
+                        "Modil 6: Sekirite sistèm ak modpas pwoteksyon",
+                        "Modil 7: Solisyon pwoblèm réseau ak kouran",
+                        "Modil 8: Antretyen ak mizajou sistèm."
                     ]
                 },
                 elektrisite: {
-                    title: "Elektrisite Domestik: Plan Konplè",
+                    title: "Elektrisite domestik: plan konplè",
                     content: [
-                        "Modil 1: Prensip Fondamantal Elektrisite (Kouran, Tension, Rezistans)",
-                        "Modil 2: Dyagram Sikui Elektrik (Seri, Paralèl)",
-                        "Modil 3: Enstalasyon Disjoncteurs, Prises ak Switches",
-                        "Modil 4: Kalibrasyon Fil ak Mezire Kouran",
-                        "Modil 5: Sekirite Elektrik ak Nòm Lokal",
-                        "Modil 6: Enstalasyon Limyè ak Pwen Espesyal (Chofaj, Klima)",
-                        "Modil 7: Reparasyon Pwoblèm Kouran de Baz (Fils kase, Surcharge)",
-                        "Modil 8: Pwojè Pratik sou yon Enstalasyon Kay."
+                        "Modil 1: Prensip fondamantal elektrisite (kouran, tension, rezistans)",
+                        "Modil 2: Dyagram sikui elektrik (seri, paralèl)",
+                        "Modil 3: Enstalasyon disjoncteurs, prises ak switches",
+                        "Modil 4: Kalibrasyon fil ak mezire kouran",
+                        "Modil 5: Sekirite elektrik ak nòm lokal",
+                        "Modil 6: Enstalasyon limyè ak pwen espesyal (chofaj, klima)",
+                        "Modil 7: Reparasyon pwoblèm kouran de baz (fils kase, surcharge)",
+                        "Modil 8: Pwojè pratik sou yon enstalasyon kay."
                     ]
                 },
                 marketingdigital: {
-                    title: "Marketing Digital e Piblisite: Plan Konplè",
+                    title: "Marketing digital e piblisite: plan konplè",
                     content: [
-                        "Modil 1: Baz Digital Marketing (Tèminoloji, Objektif)",
-                        "Modil 2: Estrateji Kontni ak Storytelling",
-                        "Modil 3: Rzo Sosyal: Jesyon ak Piblisite (Facebook Ads, Instagram)",
-                        "Modil 4: Kreye Landing Pages ak Email Marketing",
-                        "Modil 5: SEO ak SEA (Referansman ak Achats Mots-clés)",
-                        "Modil 6: Zouti Analiz ak Pèfòmans (Google Analytics)",
+                        "Modil 1: Baz digital marketing (tèminoloji, objektif)",
+                        "Modil 2: Estrateji kontni ak storytelling",
+                        "Modil 3: Rezo sosyal: jesyon ak piblisite (Facebook Ads, Instagram)",
+                        "Modil 4: Kreye landing pages ak email marketing",
+                        "Modil 5: SEO ak SEA (referansman ak achats mots-clés)",
+                        "Modil 6: Zouti analiz ak pèfòmans (Google Analytics)",
                         "Modil 7: Kòmann entènasyonal pou pwomosyon",
-                        "Modil 8: Kreye yon Plan Marketing Konplè."
+                        "Modil 8: Kreye yon plan marketing konplè."
                     ]
                 },
                 grafikdizay: {
-                    title: "Grafik Dizay e Serigrafi: Plan Konplè",
+                    title: "Grafik dizay e serigrafi: plan konplè",
                     content: [
-                        "Modil 1: Prensip Design (Koulè, Tipografi, Konpozisyon)",
-                        "Modil 2: Entwodiksyon nan Lojisyèl Grafik (Canva, Inkscape, Photoshop de Baz)",
-                        "Modil 3: Kreye Logo, Kat Vizit ak Afich",
-                        "Modil 4: Konsepsyon pou Rzo Sosyal ak Web",
-                        "Modil 5: Entwodiksyon nan Serigrafi (Preparasyon Ekran, Enk)",
-                        "Modil 6: Teknik Enpresyon ak Tès Koulè",
-                        "Modil 7: Prepare Fichye pou Enpresyon Pwofesyonèl",
-                        "Modil 8: Pwojè Final: Kreye yon Idantite Vizyèl konplè."
+                        "Modil 1: Prensip design (koulè, tipografi, konpozisyon)",
+                        "Modil 2: Entwodiksyon nan lojisyèl grafik (Canva, Inkscape, Photoshop de baz)",
+                        "Modil 3: Kreye logo, kat vizit ak afich",
+                        "Modil 4: Konsepsyon pou rezo sosyal ak web",
+                        "Modil 5: Entwodiksyon nan serigrafi (preparasyon ekran, enk)",
+                        "Modil 6: Teknik enpresyon ak tès koulè",
+                        "Modil 7: Prepare fichye pou enpresyon pwofesyonèl",
+                        "Modil 8: Pwojè final: kreye yon idantite vizyèl konplè."
                     ]
                 },
                 customizationdigital: {
-                    title: "CUSTOMIZATION DIGITAL: Design ak Pèsonalizasyon Pwodwi",
+                    title: "Customization digital: design ak pèsonalizasyon pwodwi",
                     content: [
-                        "Modil 1: Prensip dezay Vizyèl (Koulè, Fòm, Tipografi) ak Konpozisyon",
-                        "Modil 2: Konsepsyon sou Telefòn: Itilize Zouti Mobil (App Design) pou kreye modèl",
-                        "Modil 3: Kreyasyon Logo, Ilistrasyon, ak Vizyèl pou Pwodwi Kòstòmize",
-                        "Modil 4: Aplikasyon Digital: Preparasyon Fichye pou Pèsonalizasyon Mayo, Bijou, ak Valiz",
-                        "Modil 5: Entwodiksyon nan Teknik Serigrafi, Sublimasyon, ak Gravure (pou konprann aplikasyon an)",
-                        "Modil 6: Kòmann ak Lojistik Anliy: Chwazi bon Founisè ak Platfòm Pèsonalizasyon",
-                        "Modil 7: Fè Mockup 3D ak Prezantasyon Pwodwi ou yo anliy (Digital Showroom)",
-                        "Modil 8: Pwojè Final: Design, Kòmann anliy, ak Resepsyon yon Liy Pwodwi Kòstòmize."
+                        "Modil 1: Prensip dezay vizyèl (koulè, fòm, tipografi) ak konpozisyon",
+                        "Modil 2: Konsepsyon sou telefòn: itilize zouti mobil (app design) pou kreye modèl",
+                        "Modil 3: Kreyasyon logo, ilistrasyon, ak vizyèl pou pwodwi kòstòmize",
+                        "Modil 4: Aplikasyon digital: preparasyon fichye pou pèsonalizasyon mayo, bijou, ak valiz",
+                        "Modil 5: Entwodiksyon nan teknik serigrafi, sublimasyon, ak gravure (pou konprann aplikasyon an)",
+                        "Modil 6: Kòmann ak lojistik anliy: chwazi bon founisè ak platfòm pèsonalizasyon",
+                        "Modil 7: Fè mockup 3D ak prezantasyon pwodwi ou yo anliy (digital showroom)",
+                        "Modil 8: Pwojè final: design, kòmann anliy, ak resepsyon yon liy pwodwi kòstòmize."
                     ]
                 },
                 achainternasyonal: {
-                    title: "Acha Entènasyonal Pwofesyonèl: Plan Konplè",
+                    title: "Acha entènasyonal pwofesyonèl: plan konplè",
                     content: [
-                        "Modil 1: Analiz Platfòm (Amazon, Alibaba, eBay) ak Chwa Pwodwi Pri Ba",
-                        "Modil 2: Verifikasyon Founisè: Metòd pou Idantifye Vandè Serye ak Fyab",
-                        "Modil 3: Kreyasyon Kont, Metòd Peman (Pou Biznis), ak Jesyon Fakti",
-                        "Modil 4: Estrateji Acha an Gro (Negosiyasyon Pri, MOQ) ak Rabè",
-                        "Modil 5: Lojistik Ekspres: Òganizasyon Anbake Rapid avèk Kompanyi Serye (DHL, FedEx, Freight)",
-                        "Modil 6: Kalkil Taks, Frè Ladwan, ak Pri Final Enpòtasyon yo",
-                        "Modil 7: Swivi Kòmann, Enspeksyon Kalite, ak Jesyon Retou (si gen Pwoblèm)",
-                        "Modil 8: Pwojè Final: Fè yon acha soti nan chwa founisè rive nan resepsyon an Ayiti."
+                        "Modil 1: Analiz platfòm (Amazon, Alibaba, Ebay) ak chwa pwodwi pri ba",
+                        "Modil 2: Verifikasyon founisè: metòd pou idantifye vandè serye ak fyab",
+                        "Modil 3: Kreyasyon kont, metòd peman (pou biznis), ak jesyon faktire",
+                        "Modil 4: Estrateji acha an gro (negosiyasyon pri, MOQ) ak rabè",
+                        "Modil 5: Lojistik ekspres: òganizasyon anbake rapid avèk kompanyi serye (DHL, FedEx, Freight)",
+                        "Modil 6: Kalkil taks, frè ladwan, ak pri final enpòtasyon yo",
+                        "Modil 7: Swivi kòmann, enspeksyon kalite, ak jesyon retou (si gen pwoblèm)",
+                        "Modil 8: Pwojè final: fè yon acha soti nan chwa founisè rive nan resepsyon an Ayiti."
                     ]
                 },
                 // Détails pour la section Timoun
                 elektwoteknik: {
-                    title: "Elektwoteknik pou Timoun: Plan Konplè",
+                    title: "Elektrwoteknik pou timoun: plan konplè",
                     content: [
-                        "Modil 1: Ki sa ki Kouran? (Eksperyans Senp)",
-                        "Modil 2: Sikui Elektrik de Baz (Batri, Fil, Limyè)",
-                        "Modil 3: Dekouvèt Konpozan (Rezistans, Bouton)",
-                        "Modil 4: Pwojè Ti Robotik (Konstriksyon yon Ti Fanatik)",
-                        "Modil 5: Sekirite Avèk Elektrisite (Leson Enpòtan)",
-                        "Modil 6: Konstriksyon Aparèy K ap Fonksyone (Limen LED ak yon Bouton)",
-                        "Modil 7: Prensip Magnetis ak Elektwomagnetis",
-                        "Modil 8: Pwojè Final Kreyatif."
+                        "Modil 1: Ki sa ki kouran? (eksperyans senp)",
+                        "Modil 2: Sikui elektrik de baz (batri, fil, limyè)",
+                        "Modil 3: Dekouvèt konpozan (rezistans, bouton)",
+                        "Modil 4: Pwojè ti robotik (konstriksyon yon ti fanatik)",
+                        "Modil 5: Sekirite avèk elektrisite (leson enpòtan)",
+                        "Modil 6: Konstriksyon aparèy k ap fonksyone (limen LED ak yon bouton)",
+                        "Modil 7: Prensip magnetis ak elektwomagnetis",
+                        "Modil 8: Pwojè final kreyatif."
                     ]
                 },
                 fizikaplike: {
-                    title: "Fizik Aplike pou Timoun: Plan Konplè",
+                    title: "Fizik aplike pou timoun: plan konplè",
                     content: [
-                        "Modil 1: Fòs ak Mouvman (Pouse ak Rale)",
-                        "Modil 2: Gravite ak Mas (Eksperyans Chute)",
-                        "Modil 3: Enèji (Potansyèl ak Kinetik)",
-                        "Modil 4: Son ak Limyè (Eksperyans ak Refleksyon)",
-                        "Modil 5: Prensip Senp nan Konstriksyon (Pons, Levier)",
-                        "Modil 6: Presyon ak Likid (Eksperyans Dlo)",
+                        "Modil 1: Fòs ak mouvman (pouse ak rale)",
+                        "Modil 2: Gravite ak mas (eksperyans chute)",
+                        "Modil 3: Enèji (potansyèl ak kinetik)",
+                        "Modil 4: Son ak limyè (eksperyans ak refleksyon)",
+                        "Modil 5: Prensip senp nan konstriksyon (pons, levier)",
+                        "Modil 6: Presyon ak likid (eksperyans dlo)",
                         "Modil 7: Ki jan bagay vole ak naje?",
-                        "Modil 8: Pwojè Konstriksyon Kreyatif (Avyon papye pèfòman)."
+                        "Modil 8: Pwojè konstriksyon kreyatif (avyon papye pèfòman)."
                     ]
                 }
             };
             
-            // JERE KLIK SOU TOUT BOUTON WÈ PLAN KONPLÈ YO
+            // GERE KLIK SOU TOUT BOUTON WÈ PLAN KONPLÈ YO
             document.querySelectorAll('.info-modal-btn').forEach(button => {
                 button.addEventListener('click', (e) => {
                     const courseKey = e.currentTarget.getAttribute('data-course-key');
@@ -860,17 +887,17 @@
             });
 
 
-            // JERE KLIK SOU FÈMEN (X)
+            // GERE KLIK SOU FÈMEN (X)
             btnClose.addEventListener('click', closeModal);
 
-            // JERE KLIK DEYÒ MODAL LA
+            // GERE KLIK DEYÒ MODAL LA
             window.addEventListener('click', (event) => {
                 if (event.target == modal) {
                     closeModal();
                 }
             });
             
-            // JERE KLIK SOU KLAVYE (ECHAP)
+            // GERE KLIK SOU KLAVYE (ECHAP)
              document.addEventListener('keydown', (event) => {
                 if (event.key === 'Escape' && modal.style.display === 'block') {
                     closeModal();
@@ -878,14 +905,15 @@
             });
 
 
-            // FUNKSYON POU FÈMEN MODAL LA (Senp pou modal enfòmasyon)
+            // FUNKSYON POU FÈMEN MODAL LA 
             function closeModal() {
                 modal.style.display = "none";
                 modalCourseList.innerHTML = ''; 
-                modalTitle.textContent = "Plan Konplè Fòmasyon";
+                // Tit corrigé
+                modalTitle.textContent = "Plan konplè fòmasyon";
             }
             
-            // --- NOUVO KÒD POU MODAL RABÈ A (Kopie/Kole) ---
+            // --- KÒD POU MODAL RABÈ A ---
             const discountModal = document.getElementById('discountModal');
             const closeDiscountModalBtn = document.getElementById('closeDiscountModal');
             
@@ -908,7 +936,64 @@
                     discountModal.style.display = 'none';
                 }
             });
-            // --- FEN NOUVO KÒD POU MODAL RABÈ A ---
+            // --- FEN KÒD POU MODAL RABÈ A ---
+            
+// --- KÒD POU COMPTE À REBOURS ACHAT INTERNATIONAL AVEC LOCALSTORAGE ---
+function startCountdown() {
+    const countdownElement = document.getElementById('internationalCountdown'); 
+    const storageKey = 'internationalCountdownExpiry'; 
+
+    // Temps de référence fixe pour l'expiration (7j 12h 24m) en millisecondes
+    const initialOffsetMs = (7 * 24 * 60 * 60 * 1000) + (12 * 60 * 60 * 1000) + (24 * 60 * 1000);
+    
+    let expiryDateMs;
+
+    // 1. Tenter de récupérer la date d'expiration sauvegardée
+    const storedExpiry = localStorage.getItem(storageKey);
+
+    if (storedExpiry) {
+        // Utiliser la date stockée
+        expiryDateMs = parseInt(storedExpiry);
+    } else {
+        // 2. Si non stockée, calculer la date d'expiration et la sauvegarder
+        const now = new Date().getTime();
+        expiryDateMs = now + initialOffsetMs;
+        localStorage.setItem(storageKey, expiryDateMs.toString());
+    }
+    
+    const interval = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = expiryDateMs - now;
+
+        // Calculer les jours, heures, minutes et secondes
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        // Formatage pour l'affichage
+        const formattedDays = String(days).padStart(2, '0');
+        const formattedHours = String(hours).padStart(2, '0');
+        const formattedMinutes = String(minutes).padStart(2, '0');
+        const formattedSeconds = String(seconds).padStart(2, '0');
+
+        if (distance > 0) {
+            countdownElement.innerHTML = 
+                `${formattedDays}j ${formattedHours}h ${formattedMinutes}m ${formattedSeconds}s`;
+        } else {
+            // Si le compte à rebours est terminé
+            clearInterval(interval);
+            // Texte corrigé
+            countdownElement.innerHTML = "Enskripsyon fèmen";
+            // Nettoyer la clé de LocalStorage une fois le temps écoulé
+            localStorage.removeItem(storageKey);
+        }
+    }, 1000);
+}
+// --- FIN KÒD POU COMPTE À REBOURS ACHAT INTERNATIONAL AVEC LOCALSTORAGE ---
+
+            // Démarrer le compte à rebours
+            startCountdown();
             
         });
     </script>
