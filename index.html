@@ -484,7 +484,63 @@
         .submit-btn:hover {
             background-color: #1e8449; /* Vert plus foncé au survol */
         }
-        
+        /* --- Styles pour la Modale de Paiement --- */
+.modal {
+    display: none; /* Masqué par défaut */
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.7); /* Fond noir transparent */
+}
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto; /* 15% du haut et centré */
+    padding: 25px;
+    border-radius: 8px;
+    border: 3px solid var(--primary-color);
+    width: 80%;
+    max-width: 400px; 
+    text-align: center;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+.close-btn:hover,
+.close-btn:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.modal-number {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--secondary-color);
+    margin: 10px 0;
+}
+.modal-name {
+    font-size: 1.2em;
+    color: var(--text-dark);
+}
+.modal-note {
+    margin-top: 15px;
+    font-size: 0.9em;
+    color: #dc3545; /* Rouge d'alerte */
+    border-top: 1px dashed #ccc;
+    padding-top: 10px;
+}
+
         
         /* ------------------------------------------------ */
         /* --- Blòk Bouton Like (Déplacé après Transaction) --- */
@@ -565,7 +621,7 @@
             <div class="message-box-centered">
                 <h1>
                     <span class="animate-top">Byenvini sou</span> 
-                    <span class="highlight-academy animate-left">Nextgen academy</span>
+                    <span class="highlight-academy animate-left">NextGen Academy</span>
                 </h1>
             </div>
             
@@ -667,7 +723,7 @@ Byen gade enfòmasyon sou sit la epi aplike nan yon quiz 5 kesyon. Ou ka jwenn 5
         </a>
     </section>
           
-    <section class="transaction-section">
+<section class="transaction-section">
         <div class="container form-container">
             <h2>Kote pou fè tranzaksyon</h2>
             <form id="transactionForm" action="https://getform.io/f/akkpolva" method="POST" enctype="multipart/form-data">
@@ -686,26 +742,57 @@ Byen gade enfòmasyon sou sit la epi aplike nan yon quiz 5 kesyon. Ou ka jwenn 5
                     <div class="option-item">
                     <input type="hidden" name="_gotof" value="/merci.html">
                         
-                        <button type="button" class="natcash-btn"><img src="natcash1.png" class="paiement-logo"></button>
+                        <button type="button" class="natcash-btn" onclick="showPaymentDetails('35 60 88 65', 'Kes* Ben*')"><img src="natcash1.png" class="paiement-logo"></button>
                     </div>
                     <div class="option-item">
-                        <button type="button" class="moncash-btn"><img src="img0.png" class="paiement-logo"></button>
+                        <button type="button" class="moncash-btn" onclick="showPaymentDetails('31 01 39 68', 'Kes* Ben*')"><img src="img0.png" class="paiement-logo"></button>
                     </div>
                 </div>
                 <button type="submit" class="submit-btn">Soumèt enfòmasyon yo</button>
             </form>
         </div>
     </section>
-    <div class="like-container">
-        <div id="like-counter" class="like-counter">575 moun renmen paj nga a</div>
-        <button id="like-button" class="like-btn" onclick="toggleLike()">
-            <i class="fas fa-heart"></i>
-        </button>
-        <div class="nga-logo-footer"></div>
-    </div>
-    <audio id="like-sound" src="like.mp3" preload="auto"></audio>
-
+ 
     <footer>
         <div class="container footer-content">
             <div class="social-links">
-          
+                </div>
+            <p>&copy; 2024 NextGen Academy. Tout dwa rezève.</p>
+        </div>
+    </footer>
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3>Nimewo pou tranzaksyon</h3>
+            <p>Peye sou kont sa a:</p>
+            <p id="modalNumber" class="modal-number"></p>
+            <p id="modalName" class="modal-name"></p>
+            <p class="modal-note">Pa bliye fè kapti dekran an, pou ou ka soumèt fòmilè an.</p>
+        </div>
+    </div>
+    <script>
+        // --- Fonctions pour la Modale de Paiement ---
+        const modal = document.getElementById('paymentModal');
+        const closeBtn = document.querySelector('.close-btn');
+        
+        // Fonction globale appelée par les boutons NatCash/MonCash
+        window.showPaymentDetails = function(number, name) {
+            document.getElementById('modalNumber').textContent = number;
+            document.getElementById('modalName').textContent = name;
+            modal.style.display = "block"; // Afficher la modale
+        }
+
+        // Pour fermer la modale en cliquant sur le 'x'
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Fermer la modale si l'utilisateur clique en dehors de son contenu
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+    </body>
+</html>
