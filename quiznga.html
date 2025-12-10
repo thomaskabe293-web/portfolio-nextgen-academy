@@ -317,7 +317,8 @@
     const LS_MISTAKES_KEY = 'nga_quiz_mistakes';
     const LS_CODE_KEY = 'nga_eligibility_code';
     const LS_CURRENT_Q_KEY = 'nga_current_q';
-    const LS_GAME_FINISHED = 'nga_game_finished'; // NOUVO KLE POU MAKE SI JWÈT LA FINI
+    const LS_GAME_FINISHED = 'nga_game_finished'; 
+    // KONSTAN NÒT MINIMÒM NAN PA ENPÒTAN ANKÒ, NOU FÒSE FELISITASYON AN
 
     let currentQuestion = 1;
     let score = 0;
@@ -332,18 +333,10 @@
 
     // --- Fonksyon localStorage ---
     function loadState() {
-        // Tcheke si jwèt la deja make kòm fini
-        if (localStorage.getItem(LS_GAME_FINISHED) === 'true') {
-            // Si l fini, nou chaje sèlman nòt final la pou nou ka afiche rezilta a ankò.
-            score = parseInt(localStorage.getItem(LS_SCORE_KEY) || '0', 10);
-            return;
-        }
-
         score = parseInt(localStorage.getItem(LS_SCORE_KEY) || '0', 10);
         mistakesMade = parseInt(localStorage.getItem(LS_MISTAKES_KEY) || '0', 10);
         currentQuestion = parseInt(localStorage.getItem(LS_CURRENT_Q_KEY) || '1', 10);
         
-        // Mete ajou kontè erè a
         document.getElementById('mistake-counter').textContent = `Erè : ${mistakesMade}/2`;
     }
 
@@ -354,30 +347,28 @@
     }
 
     function resetActiveGameProgress() {
-        // Efase sèlman kle pwogrè yo, PA kòd eliyibilite a.
+        // Efase kle pwogrè yo.
         localStorage.removeItem(LS_SCORE_KEY);
         localStorage.removeItem(LS_MISTAKES_KEY);
         localStorage.removeItem(LS_CURRENT_Q_KEY);
     }
     
-    // --- Lojik Jwèt ---
+    // --- Lojik Jwèt (pa gen chanjman la) ---
     function playSound(sound) {
         sound.currentTime = 0;
         sound.play().catch(e => console.error("Erè nan lekti odyo:", e));
     }
 
     function nextQuestion(qNum) {
-        // Kache kesyon aktyèl la (si l egziste)
         const activeQEl = document.querySelector('.question-section.active');
         if (activeQEl) {
              activeQEl.classList.remove('active');
         }
 
         currentQuestion = qNum;
-        saveState(); // Sove pwogrè a
+        saveState(); 
 
         if (currentQuestion <= totalQuestions) {
-            // Afiche nouvo kesyon prensipal la
             const nextQEl = document.getElementById('q' + currentQuestion);
             if (nextQEl) {
                 nextQEl.classList.add('active');
@@ -416,7 +407,7 @@
                 document.getElementById('q' + currentQuestion).classList.remove('active');
                 document.getElementById('reserve-q').classList.add('active');
             } else if (mistakesMade === 2) {
-                endQuiz(true);
+                endQuiz(true); // Eliminasyon
             }
         }
     }
@@ -447,44 +438,28 @@
             document.getElementById('mistake-counter').textContent = `Erè : ${mistakesMade}/2`;
             playSound(wrongSound);
             saveState();
-            endQuiz(true);
+            endQuiz(true); // Eliminasyon
         }
     }
 
+    // --- CHAJMAN KRITIK LA FE LA A ---
     function endQuiz(isEliminated = false) {
-        // Mark as finished
+        // 1. Mark as finished kèlkeswa rezon an
         localStorage.setItem(LS_GAME_FINISHED, 'true');
 
-        // Asire tout kesyon yo kache
+        // 2. Efase pwogrè jwèt la
+        resetActiveGameProgress(); 
+
+        // 3. Kache tout kesyon ak kontè erè a
         document.querySelectorAll('.question-section').forEach(el => el.classList.remove('active'));
-        
-        const resultSection = document.getElementById('result-section');
-        const finalScoreEl = document.getElementById('final-score');
-        const finalMessageEl = document.getElementById('final-message');
+        document.getElementById('result-section').style.display = 'none';
         document.getElementById('mistake-counter').style.display = 'none';
 
-        if (isEliminated) {
-            resetActiveGameProgress(); // Efase pwogrè ki pa fini an
-            resultSection.style.display = 'block';
-            finalScoreEl.innerHTML = ``;
-            finalMessageEl.innerHTML = '...se te yon plezi';
-        } else {
-            // Fin nòmal (5 kesyon fini)
-            if (score === 10) {
-                // SI Siksè (10/10), nou kite LS_SCORE_KEY pou li ka toujou afiche seksyon eliyibilite a
-                resetActiveGameProgress(); // Efase pwogrè, men kite nòt la ak GAME_FINISHED = true
-                resultSection.style.display = 'none';
-                activateEligibilitySection();
-            } else {
-                resetActiveGameProgress(); // Efase pwogrè ki pa fini an
-                resultSection.style.display = 'block';
-                finalScoreEl.innerHTML = `Nòt final : **${score}/10**`;
-                finalMessageEl.innerHTML = 'Kèstyonè a fini. Mèsi pou patisipasyon w !';
-            }
-        }
+        // 4. TOUJOU afiche seksyon eliyibilite a
+        activateEligibilitySection();
     }
 
-    // --- Lojik Seksyon Eliyibilite ---
+    // --- Lojik Seksyon Eliyibilite (pa gen chanjman la) ---
     function generateUniqueCode() {
         const existingCode = localStorage.getItem(LS_CODE_KEY);
         if (existingCode) {
@@ -500,11 +475,15 @@
     }
 
     function startCountdown() {
-        // ... (Kòd Countdown lan rete menm jan) ...
         const targetDuration = (3 * 24 * 60 * 60) + (12 * 60 * 60) + 59;
         let timer = targetDuration;
 
         const countdownElement = document.getElementById('countdown');
+
+        // Tcheke si yon kontè deja aktif pou evite kontè miltip sou rafrechisman
+        if (countdownElement.dataset.timerInterval) {
+            clearInterval(parseInt(countdownElement.dataset.timerInterval));
+        }
 
         const interval = setInterval(function () {
             if (timer < 0) {
@@ -523,6 +502,8 @@
 
             timer--;
         }, 1000);
+
+        countdownElement.dataset.timerInterval = interval; // Sove id entèval la
     }
 
     function activateEligibilitySection() {
@@ -532,30 +513,24 @@
         playSound(ngaSound);
     }
 
-    // --- Inisyalizasyon ---
+    // --- Lojik inisyalizasyon (modifikasyon pou pèsistans) ---
     document.addEventListener('DOMContentLoaded', () => {
         loadState();
         
         const isFinished = localStorage.getItem(LS_GAME_FINISHED) === 'true';
 
         if (isFinished) {
-            // SI JWÈT LA FINI, AFICHE REZILTA FINAL LA
+            // SI JWÈT LA FINI (KÈLKESWA NÒT LA)
             
-            if (score === 10) {
-                // Ka 1: Siksè (10/10)
-                activateEligibilitySection();
-            } else {
-                // Ka 2: Eliminasyon oswa Nòt ki pa pafè
-                endQuiz(score < 10); // endQuiz ap okipe afichaj 'result-section' la ak nòt final la
-            }
-            
-            // Nou dwe kache tout kesyon pandan afichaj rezilta a
+            // Fòse afichaj seksyon felisitasyon an
             document.querySelectorAll('.question-section').forEach(el => el.style.display = 'none');
+            document.getElementById('result-section').style.display = 'none';
+            document.getElementById('mistake-counter').style.display = 'none';
+            activateEligibilitySection();
             
         } else {
             // SI JWÈT LA PA FINI, KONTINYE NÒMALMAN
             
-            // Asire sèlman yon kesyon kòmanse
             document.querySelectorAll('.question-section').forEach(el => el.classList.remove('active'));
 
             const startQId = 'q' + currentQuestion;
@@ -566,8 +541,11 @@
             } else if (mistakesMade === 1) {
                 isReserveQuestionActive = true;
                 document.getElementById('reserve-q').classList.add('active');
+            } else if (currentQuestion > totalQuestions) {
+                // Ka kote jwèt la fini men ls_game_finished pa t sove (pou sekirite)
+                endQuiz(); 
             } else {
-                // Lè currentQuestion > 5 men pa gen GAME_FINISHED (sa pa ta dwe rive)
+                // Rekòmanse nan kòmansman si yon erè rive nan chajman an
                 document.getElementById('q1').classList.add('active');
                 currentQuestion = 1;
                 saveState();
