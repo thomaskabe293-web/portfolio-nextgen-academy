@@ -1,36 +1,23 @@
 <!DOCTYPE html>
-<html lang="ht">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fòmasyon Atistik Senplifye | NextGen Academy</title>
+    <title>Katalòg Travay Elèv | NextGen Academy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-<style>
-        /* Variables du thème */
+    <style>
+        /* --- Variables de Base (Hypothétiques) --- */
         :root {
-            --primary-color: #333; /* Gris Principal (Soti nan nwa) */
-            --secondary-color: #007bff; /* Bleu Secondaire (pou bouton videyo) */
-            --accent-color: #28a745; /* Vert Vif (Agwoteknik) */
-            --text-dark: #495057;
-            --background-light: #f4f4f9;
+            --primary-color: #004d99; /* Bleu Marine */
+            --secondary-color: #ff6600; /* Orange */
+            --accent-color: #e74c3c; /* Rouge (utilisé pour les cœurs/CTA) */
+            --text-dark: #333;
             --text-light: #fff;
-            
-            /* Nouvo koulè pou kat yo */
-            --color-card-1: #007bff; 
-            --color-card-2: #28a745; 
-            --color-card-3: #ffc107; 
-            --color-card-4: #dc3545; 
-            --color-card-5: #6f42c1; 
-            --color-card-6: #17a2b8; 
-            --color-card-7: #fd7e14; 
-            --color-card-8: #6c757d; 
-            --promo-bg: #ffe082; /* Koulè jòn pal pou òf la */
-            --promo-text: #e65100; /* Koulè wouj fonse pou tèks òf la */
-            --whatsapp-green: #25D366;
+            --background-light: #f4f4f9;
         }
 
-        /* Styles de la Page */
+        /* --- Styles Généraux et Communs --- */
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
@@ -43,558 +30,374 @@
             margin: 0 auto;
         }
         .detail-main {
-            padding-top: 20px;
-            padding-bottom: 60px; 
+            padding-top: 50px;
+            padding-bottom: 80px;
         }
-
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            color: var(--secondary-color);
-            font-weight: 600;
+        
+        .detail-main h1 {
+            color: var(--primary-color);
             margin-bottom: 20px;
-        }
-
-        h1 {
-            font-size: 2.2em;
-            margin-bottom: 20px;
-            line-height: 1.2;
-            text-align: center; 
-        }
-
-        /* --- Koulè Antèt Uniformize --- */
-        h1 span.title-main,
-        h1 span.title-slogan {
-            color: var(--primary-color); /* Tout an Gris Fonse */
-            font-weight: 700;
-        }
-        h1 span.title-slogan {
-            font-style: normal; /* Retounen nan estil nòmal */
-            font-size: 0.8em;
-        }
-
-        /* --- Hero Section (Seksyon Òf la) --- */
-        .art-hero-section {
-            background-color: var(--promo-bg); 
-            border: 2px solid var(--promo-text);
-            border-radius: 10px;
-            margin: 30px 0; /* Espas anlè ak anba */
-            padding: 20px 15px; 
-            box-shadow: 0 0 15px rgba(255, 193, 7, 0.5); 
-        }
-
-        .art-hero-overlay {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center; 
-        }
-
-        .art-hero-content {
-            background-color: transparent; 
-            padding: 0;
             text-align: center;
-            width: 100%;
+            padding-bottom: 10px;
         }
         
-        .art-hero-description {
-            color: var(--text-dark); 
-            font-size: 1.1em; 
-            font-weight: 600;
-            line-height: 1.4;
-            margin-bottom: 15px;
+        /* --- STYLES SPÉCIFIQUES: CATALOGUE TRAVAUX (katalog-layout) --- */
+
+        .katalog-main h1 {
+            border-bottom: 2px solid var(--accent-color); 
         }
-        
-        /* --- Styles Countdown Timer --- */
-        .countdown-timer {
-            font-size: 1.8em;
-            font-weight: 800;
-            color: var(--promo-text);
-            margin: 10px 0;
-            border-radius: 5px;
-            padding: 5px 10px;
-            display: inline-block;
-            background-color: var(--text-light);
-            border: 1px solid var(--promo-text);
+
+        .katalog-intro-text {
+            text-align: center;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 50px;
         }
-        
-        /* --- Bouton Pataj WhatsApp nan Òf la (Ranplase Capture d'écran) --- */
-        .whatsapp-promo-btn {
-            background-color: var(--whatsapp-green); 
-            color: var(--text-light);
-            border: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            margin-top: 15px;
-            text-transform: uppercase;
-            text-decoration: none; /* Pou li sanble ak yon bouton */
-        }
-        .whatsapp-promo-btn:hover {
-            background-color: #1EBE57;
-        }
-        
-        /* --- Animation Ikòn Pataj la --- */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); color: var(--color-card-3); } /* Koulè jòn lè l ap bat */
-            100% { transform: scale(1); }
-        }
-        
-        .share-icon-pulse {
-            animation: pulse 1.5s infinite;
-        }
-        
-        /* --- Courses Grid (Estil Kat rete) --- */
-        .courses-grid {
+
+        /* --- Style de la Galerie (Grid) --- */
+
+        .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px; 
-            padding-bottom: 20px;
+            gap: 30px;
+            margin-bottom: 60px;
         }
 
-        .course-block {
-            background-color: var(--text-light); 
-            padding: 20px;
+        .gallery-card {
+            background-color: var(--background-light); 
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            border-top: 5px solid var(--primary-color); 
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
-            display: flex; 
-            flex-direction: column;
+            border-top: 4px solid var(--secondary-color); 
         }
 
-        .course-block:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .course-block:nth-child(1) { border-top-color: var(--color-card-1); }
-        .course-block:nth-child(2) { border-top-color: var(--color-card-2); } 
-        .course-block:nth-child(3) { border-top-color: var(--color-card-3); }
-        .course-block:nth-child(4) { border-top-color: var(--color-card-4); }
-        .course-block:nth-child(5) { border-top-color: var(--color-card-5); }
-        .course-block:nth-child(6) { border-top-color: var(--color-card-6); }
-        .course-block:nth-child(7) { border-top-color: var(--color-card-7); }
-        .course-block:nth-child(8) { border-top-color: var(--color-card-8); }
-
-
-        .course-icon {
-            font-size: 2em; 
-            margin-bottom: 10px;
-            color: var(--primary-color);
+        .gallery-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
-        .course-block h2 {
-            font-size: 1.4em; 
-            font-weight: 700;
-            margin-top: 0;
-            margin-bottom: 10px;
-            color: var(--text-dark); 
-        }
-        
-        .course-description-short {
-            margin-bottom: 15px;
-            font-size: 0.95em;
-            color: var(--text-dark);
-            flex-grow: 1; 
-        }
-
-        /* --- Bouton Videyo (Rantre nan kòd la) --- */
-        .video-preview-box {
-            margin-top: 10px;
-            border-top: 1px dashed #ced4da;
-            padding-top: 10px;
-            text-align: center;
-        }
-        
-        .video-modal-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.2s;
-            background-color: var(--secondary-color);
-            color: var(--text-light);
-            align-self: center; /* Pou l santre */
-        }
-        .video-modal-btn:hover {
-            background-color: #0056b3;
-        }
-        
-        /* --- Modal Styles (Rantre nan kòd la) --- */
-        .modal {
-            display: none; 
-            position: fixed;
-            z-index: 1000; 
-            left: 0;
-            top: 0;
+        .gallery-card img {
             width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.8); 
-            padding-top: 60px;
+            height: 300px; 
+            object-fit: cover; 
+            display: block;
         }
 
-        .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto; 
-            padding: 20px;
-            border: 1px solid #888;
-            width: 90%; 
-            max-width: 800px; 
+        .card-info {
+            padding: 15px;
+        }
+
+        .card-info h3 {
+            color: var(--primary-color);
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+
+        .card-info p {
+            font-size: 0.95em;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .card-location {
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .card-location i {
+            margin-right: 5px;
+        }
+
+        /* --- Section Vidéo et CTA --- */
+        .katalog-video-cta {
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 40px 20px;
             border-radius: 10px;
-            position: relative;
+            border: 1px dashed var(--primary-color);
+            margin-bottom: 40px;
         }
-        
-        /* Modal espesifik pou Imaj Pataj la */
-        #shareImageModal .modal-content {
-            max-width: 450px;
+
+        .video-cta-title {
+            color: var(--accent-color); 
+            font-size: 1.8em;
+            margin-bottom: 20px;
         }
-        
-        .modal-content video {
+
+        .video-wrapper {
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+
+        .video-wrapper video {
             width: 100%;
             height: auto;
-            border-radius: 8px;
+            display: block;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
-        .close-btn {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-
-        .close-btn:hover,
-        .close-btn:focus {
-            color: var(--secondary-color);
-            text-decoration: none;
-        }
-        
-        .modal-content h3 {
-             color: var(--secondary-color); 
-             margin-top: 0; 
-             margin-bottom: 15px;
-        }
-        
-        /* --- Bouton Pataj WhatsApp nan Modal la --- */
-        .whatsapp-share-btn {
-             display: inline-flex;
-             align-items: center;
-             gap: 10px;
-             padding: 10px 20px;
-             border-radius: 5px;
-             text-decoration: none;
-             font-weight: bold;
-             background-color: var(--whatsapp-green); 
-             color: var(--text-light);
-             margin-top: 15px;
-             transition: background-color 0.2s;
-        }
-        .whatsapp-share-btn:hover {
-            background-color: #1EBE57;
-        }
-
-
-        /* --- Final Banner (Avis d'avertissement) --- */
-        .warning-text {
-            border: 2px solid #FF0000; /* Koulè wouj rete pou avètisman an */
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 30px; 
-            color: #FF0000; 
-            font-weight: bold; 
-            text-align: center; 
-            margin-top: 30px; 
-            font-size: 1.1em; 
-        }
-
-        .final-return-banner {
-            text-align: center;
-            padding: 25px; 
-            background-color: #e9ecef;
-            border-radius: 10px;
-            margin-top: 15px; 
-        }
-
-        .final-return-banner p {
-            font-size: 1em; 
-            margin-bottom: 15px;
-        }
-
-        /* --- Bouton Final yo (Estil rete) --- */
-
-        .final-return-banner a.return-main-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 20px; 
+        .video-cta-btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
             border-radius: 5px;
             text-decoration: none;
             font-weight: bold;
-            margin: 8px; 
-            transition: background-color 0.3s, transform 0.3s;
-            text-transform: uppercase; 
-            font-size: 0.9em;
+            font-size: 1.1em;
+            transition: background-color 0.3s;
         }
 
-        .students-work-btn {
-            background-color: var(--primary-color); 
-            color: var(--text-light); 
-            border: 2px solid var(--primary-color);
-        }
-
-        .students-work-btn:hover {
-            background-color: var(--text-dark); 
-            transform: translateY(-2px);
-        }
-
-        .agwoteknik-btn-green {
-            background-color: var(--accent-color); 
-            color: var(--text-light); 
-            border: 2px solid var(--accent-color);
-        }
-
-        .agwoteknik-btn-green:hover {
-            background-color: #1e7e34; 
-            transform: translateY(-2px);
-        }
-
-        /* --- Footer Styles --- */
-        footer {
-            /* RANPLASE VAR(---PRIMARY-COLOR) PAR BLE MARIN (#003366) */
-            background-color: #003366; 
-            color: var(--text-light); /* Blan (Rete Blan) */
-            padding: 15px 0;
-            text-align: center;
+        .video-cta-btn:hover {
+            background-color: var(--secondary-color);
         }
         
-        /* Lyen sosyal yo ap rete blan paske background lan fonse */
+        /* ----------------------------------------------------------------- */
+        /* Compteur de Likes Fictif */
+        /* ----------------------------------------------------------------- */
+
+        .like-counter-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px; 
+            gap: 20px; 
+            padding: 10px 0;
+            border-bottom: 1px dashed #ddd;
+            transition: all 0.3s ease; 
+        }
+
+        .like-button-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .like-count {
+            font-size: 1.6em; 
+            font-weight: bold;
+            color: #999; 
+            transition: color 0.3s;
+        }
+
+        .like-btn {
+            background: none;
+            border: 2px solid #ccc;
+            color: #666; 
+            padding: 10px 20px; 
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .like-btn i {
+            margin-right: 8px;
+            font-size: 1.2em;
+        }
+
+        /* --- ETAT 'LIKÉ' (après le clic) --- */
+        .like-counter-container.is-liked .like-btn,
+        .like-counter-container.is-liked .like-btn:hover {
+            background-color: var(--accent-color); 
+            border-color: var(--accent-color);
+            color: white;
+        }
+
+        .like-counter-container.is-liked .like-count {
+            color: var(--accent-color); 
+        }
+
+
+        /* --- Animation des Emojis : Positionnement au-dessus du bouton --- */
+
+        .emoji-animation-zone {
+            position: absolute;
+            bottom: 100%; 
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px; 
+            height: 60px; 
+            overflow: hidden; 
+            pointer-events: none; 
+        }
+
+        .emoji {
+            position: absolute;
+            font-size: 1.6em; 
+            opacity: 0; 
+            bottom: 0; 
+            left: 50%;
+            transform: translate(-50%, 0) scale(0.5); 
+            transition: none; 
+        }
+
+        /* Animation au CLIC (classe ajoutée par JavaScript) */
+        .like-counter-container.emoji-animate-click .emoji {
+            transition: opacity 1s ease-out, transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            opacity: 1; 
+        }
+
+        .like-counter-container.emoji-animate-click .emoji:nth-child(1) {
+            transform: translate(10px, -45px) scale(1.2); 
+        }
+
+        .like-counter-container.emoji-animate-click .emoji:nth-child(2) {
+            transition-delay: 0.15s; 
+            transform: translate(-15px, -65px) scale(1.5); 
+        }
+
+        /* --- Footer Styles (Hypothétiques) --- */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 20px 0;
+            text-align: center;
+        }
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
         .social-links a {
-            color: var(--text-light); /* Blan */
+            color: white;
             font-size: 1.5em;
             margin: 0 10px;
             transition: color 0.3s;
         }
         .social-links a:hover {
-            color: var(--accent-color); /* Vèt Vif lè w hover */
+            color: var(--secondary-color);
         }
-
-        /* --- Bouton Agwoteknik lan chanje tou paske li te itilize --primary-color */
-        .students-work-btn {
-            background-color: var(--primary-color); /* Li dwe rete gris fonse pou l diferan de background footer la */
-            color: var(--text-light); 
-            border: 2px solid var(--primary-color);
+        
+        /* --- Media Query pour le Mobile --- */
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr; 
+            }
         }
+        
     </style>
-
-    
 </head>
 <body>
     
-    <header></header>
-    <main class="container detail-main">
+    <header>
+</header>
+    
+    <main class="container detail-main katalog-main">
         
-        <a href="pwogram.html" class="back-link"><i class="fas fa-arrow-left"></i> Retounen nan Pwogram yo</a>
-
+        <p class="katalog-intro-text" style="margin-bottom: 5px;">
+            Fè yon ti gade <strong>kreyasyon elèv nou</strong> yo nan diferan domèn tankou <strong>Pòtrè, Desen, Custom, ak Penti.</strong> Chak travay se rezilta pasyon yo ak teknik yo metrize nan NextGen Academy.
+        </p>
         <h1>
-            <span class="title-slogan">Devlope kreyativite w</span>
+            <span style="color: var(--secondary-color); font-style: italic; font-size: 0.8em;">Art se lavi, Art se pwogrè</span>
         </h1>
         
-        <section class="courses-grid"> 
+        <section class="gallery-grid">
             
-            <div class="course-block">
-                <div class="course-icon"><i class="fas fa-keyboard"></i></div>
-                <h2>🎹 PYANO</h2>
-                <p class="course-description-short">
-                    Aprann solfèj, lekti nòt, ak teknik men de baz. Metrize akò majè/minè, epi kòmanse enpwovizasyon avèk premye melodi senp ou.
-                </p>
-                <div class="video-preview-box">
-                    <button class="video-modal-btn" 
-                            data-video-src="piano.mp4" 
-                            data-video-title="Demo Pwojè Pyano">
-                        <i class="fas fa-info-circle"></i> Wè demonstrasyon
-                    </button>
+            <div class="gallery-card">
+                <img src="sylvestre1.jpg" alt="Pòtrè Kreyon pa Sylvestre Rose Mirline" loading="lazy">
+                <div class="card-info">
+                    <h3>Sylvestre Rose Mirline</h3>
+                    <p><strong>Domèn:</strong> Pòtrè Kreyon</p>
+                    <p><strong>Nivo:</strong> Debitan & Avanse</p>
+                    <p class="card-location"><i class="fas fa-map-marker-alt"></i>Les Cayes, Boujolie</p>
+                </div>
+            </div>
+            
+            <div class="gallery-card">
+                <img src="sylvestre.jpg" alt="Custom sou soulye pa Sylvestre Rose Mirline" loading="lazy">
+                <div class="card-info">
+                    <h3>Sylvestre Rose Mirline</h3>
+                    <p><strong>Domèn:</strong> Custom</p>
+                    <p><strong>Nivo:</strong> Avanse</p>
+                    <p class="card-location"><i class="fas fa-map-marker-alt"></i>Les Cayes, Boujolie</p>
                 </div>
             </div>
 
-            <div class="course-block">
-                <div class="course-icon"><i class="fas fa-guitar"></i></div>
-                <h2> GITA</h2>
-                <p class="course-description-short">
-                    Soti nan akò ouvè rive nan akò baré, metrize ritm esansyèl yo (Pop, Reggae). Aprann chèn akò epi aplike gam pentatonik nan enpwovizasyon.
-                </p>
-                <div class="video-preview-box">
-                     <button class="video-modal-btn" 
-                            data-video-src="gita.mp4" 
-                            data-video-title="Demo Pwojè Gita">
-                        <i class="fas fa-info-circle"></i> Wè demonstrasyon
-                    </button>
+            <div class="gallery-card">
+                <img src="keith.jpg" alt="Custom pa Moise Keith" loading="lazy">
+                <div class="card-info">
+                    <h3>Moise Keith</h3>
+                    <p><strong>Domèn:</strong> Custom</p>
+                    <p class="card-location"><i class="fas fa-map-marker-alt"></i>Les Cayes, Fonfrède</p>
                 </div>
             </div>
 
-            <div class="course-block">
-                <div class="course-icon"><i class="fas fa-pencil-alt"></i></div>
-                <h2> DESEN</h2>
-                <p class="course-description-short">
-                    Baz desen, fòm, ak onb. Metrize pèspektiv ak konpozisyon pou kreye objè ak vizaj moun avèk pwopòsyon kòrèk.
-                </p>
-                <div class="video-preview-box">
-                     <button class="video-modal-btn" 
-                            data-video-src="desen.mp4" 
-                            data-video-title="Demo Pwojè Desen">
-                        <i class="fas fa-info-circle"></i> Wè demonstrasyon
-                    </button>
+            <div class="gallery-card">
+                <img src="laura.jpg" alt="Custom pa Laura" loading="lazy">
+                <div class="card-info">
+                    <h3>Laura</h3>
+                    <p><strong>Domèn:</strong> Custom</p>
+                    <p class="card-location"><i class="fas fa-map-marker-alt"></i>Les Cayes, Bourdet</p>
+                </div>
+            </div>
+            
+            <div class="gallery-card">
+                <img src="steve1.jpg" alt="Custom pa Joseph Steve" loading="lazy">
+                <div class="card-info">
+                    <h3>Joseph Steve</h3>
+                    <p><strong>Domèn:</strong> Custom</p>
+                    <p class="card-location"><i class="fas fa-map-marker-alt"></i>Les Cayes, Bergeaud</p>
+                </div>
+            </div>
+            
+            <div class="gallery-card">
+                <img src="ralph.png" alt="Pòtrè pa Ralph" loading="lazy">
+                <div class="card-info">
+                    <h3>Ralph</h3>
+                    <p><strong>Domèn:</strong> Pòtrè</p>
+                    <p class="card-location"><i class="fas fa-map-marker-alt"></i>Les Cayes, Camp-Perrin</p>
                 </div>
             </div>
 
-            <div class="course-block">
-                <div class="course-icon"><i class="fas fa-user-circle"></i></div>
-                <h2>PÒTRÈ PRO</h2>
-                <p class="course-description-short">
-                    Itilize metòd griyaj pou presizyon. Aprann teknik onb grafit, kreyasyon kontras, ak detay vizaj, reyalize yon pòtrè sipèreyalis.
-                </p>
-                <div class="video-preview-box">
-                     <button class="video-modal-btn" 
-                            data-video-src="portraitcrayon.mp4" 
-                            data-video-title="Demo Pòtrè Nwa & Blan">
-                        <i class="fas fa-info-circle"></i> Wè demonstrasyon
-                    </button>
-                </div>
-            </div>
-            
-            <div class="course-block">
-                <div class="course-icon"><i class="fas fa-paint-brush"></i></div>
-                <h2>PÒTRÈ PENTI</h2>
-                <p class="course-description-short">
-                    Aprann melanj koulè pou ton po. Etidye chiaroscuro, teknik brushwork, epi kreye ekspresyon ak emosyon sou twal avèk akrilik oswa lwil.
-                </p>
-                <div class="video-preview-box">
-                     <button class="video-modal-btn" 
-                            data-video-src="portrait.mp4" 
-                            data-video-title="Demo Pòtrè Penti">
-                        <i class="fas fa-info-circle"></i> Wè demonstrasyon
-                    </button>
-                </div>
-            </div>
-            
-            <div class="course-block">
-                <div class="course-icon"><i class="fas fa-palette"></i></div>
-                <h2>PENTI ABSTRÈT</h2>
-                <p class="course-description-short">
-                    Soti nan nati mòt rive nan penti reyalis, metrize teyori koulè. Eksplore teknik akrilik ak kreyasyon lib sou twal.
-                </p>
-                <div class="video-preview-box">
-                     <button class="video-modal-btn" 
-                            data-video-src="pentiabstrè.mp4" 
-                            data-video-title="Demo Penti Abstrè">
-                        <i class="fas fa-info-circle"></i> Wè demonstrasyon
-                    </button>
-                </div>
-            </div>
-            
-            <div class="course-block">
-                <div class="course-icon"><i class="fas fa-signature"></i></div>
-                <h2>KALIGRAFI</h2>
-                <p class="course-description-short">
-                    Travay avèk kreyon ak plim pou estil klasik. Devlope letraj modèn, kaligrafi ak penti, e teknik spray pou efè rapid sou mi.
-                </p>
-                <div class="video-preview-box">
-                     <button class="video-modal-btn" 
-                            data-video-src="kaligrafi.mp4" 
-                            data-video-title="Demo Kaligrafi">
-                        <i class="fas fa-info-circle"></i> Wè demonstrasyon
-                    </button>
-                </div>
-            </div>
-            
-            <div class="course-block">
-                <div class="course-icon"><i class="fas fa-shoe-prints"></i></div>
-                <h2>CUSTOM</h2>
-                <p class="course-description-short">
-                    Aprann kòstòmize tenis ak rad. Metrize teknik spray ak penti tekstil, epi kreye moodboard pou yon pwofil fashion style.
-                </p>
-                <div class="video-preview-box">
-                     <button class="video-modal-btn" 
-                            data-video-src="custom.mp4" 
-                            data-video-title="Demo Customizasyon">
-                        <i class="fas fa-info-circle"></i> Wè demonstrasyon
-                    </button>
+            <div class="gallery-card">
+                <img src="rico.jpg" alt="Custom pa Rico" loading="lazy">
+                <div class="card-info">
+                    <h3>Rico</h3>
+                    <p><strong>Domèn:</strong> Custom</p>
+                    <p class="card-location"><i class="fas fa-map-marker-alt"></i>Les Cayes, Camp-Perrin</p>
                 </div>
             </div>
 
+            <div class="gallery-card">
+                <img src="inconnu.jpg" alt="Desen pa Elèv" loading="lazy">
+                <div class="card-info">
+                    <h3>Elèv enkonu</h3>
+                    <p><strong>Domèn:</strong> Desen</p>
+                    <p class="card-location"><i class="fas fa-map-marker-alt"></i>Les Cayes, La Savanne</p>
+                </div>
+            </div>
+
+            <div class="gallery-card">
+                <img src="thomas.jpg" alt="Penti pa Thomas" loading="lazy">
+                <div class="card-info">
+                    <h3>Thomas</h3>
+                    <p><strong>Domèn:</strong> Penti</p>
+                    <p class="card-location"><i class="fas fa-map-marker-alt"></i>Les Cayes, Camp-Perrin</p>
+                </div>
+            </div>
+
+             <div class="gallery-card">
+                <img src="charles.jpg" alt="Penti pa Charles" loading="lazy">
+                <div class="card-info">
+                    <h3>Charles</h3>
+                    <p><strong>Domèn:</strong> Penti</p>
+                    <p class="card-location"><i class="fas fa-map-marker-alt"></i>Saint Louis du Sud</p>
+                </div>
+            </div>
+            
         </section> 
-        
-        <section id="unique-offer-banner" class="art-hero-section">
-            <div class="art-hero-overlay">
-                <div class="art-hero-content">
-                    <p class="art-hero-description" style="color: var(--promo-text);">
-                        <i class="fas fa-exclamation-triangle"></i> ÒF ESPESYAL, YON SÈL FWA! <i class="fas fa-exclamation-triangle"></i>
-                    </p>
-                    <p class="art-hero-description" style="margin-bottom: 5px;">
-                        Jwenn yon palèt atistik GRATIS lè w aplike sa kounye a!
-                    </p>
-                    <div class="countdown-timer" id="countdown">5 minit 59 segonn</div>
-                    
-                    <a id="shareArtButton" href="#" target="_blank" class="whatsapp-promo-btn">
-                        <i class="fab fa-whatsapp fa-2x share-icon-pulse"></i> Pataje pou reklame
-                    </a>
-                </div>
-            </div>
-        </section>
-        <p class="warning-text">
-            ⚠️ Pwogram sa yo ouvè soti mwa Fevriye rive mwa Jen. Chak Samdi nan vil aux Cayes pou timoun. Lasemèn pou granmoun, Camp-Perrin
-        </p>
-
-        <section class="final-return-banner">
-            <p>Pa bliye ou ka benefisye yon fòmasyon teknoloji gratis (pou adilt), lè w enskri plizyè timoun nan fòmasyon ki pou timoun yo.</p>
             
-            <a href="katalog_travay.html" class="return-main-btn students-work-btn">
-                <i class="fas fa-palette"></i> Gade travay kèk elèv
-            </a>
-            
-            <a href="agwoteknik_detail.html" class="return-main-btn agwoteknik-btn-green">
-                <i class="fas fa-leaf"></i> Gade pati Agwoteknik lan
-            </a>
+        <section class="katalog-video-cta">
+            <h2 class="video-cta-title">NextGen Academy, se talan n' pwodui! 🥰🤩</h2>
+        </div>
         </section>
-        
     </main>
     
-    <div id="videoModal" class="modal">
-      <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <h3 id="modalVideoTitle"></h3>
-        <video id="modalVideoPlayer" controls autoplay preload="none" style="display: block;"></video>
-      </div>
-    </div>
-    
-    <div id="shareImageModal" class="modal">
-      <div class="modal-content" style="max-width: 450px; text-align: center;">
-        <span class="close-btn" id="closeImageModal">&times;</span>
-        <h3 style="color: var(--accent-color);">Felisitasyon!</h3>
-        <p style="margin-bottom: 20px;">
-            Pou reklame yon palèt konsa, tanpri pataje opòtinite sa a avèk 15 zanmi w' ak 3 gwoup sou WhatsApp !
-        </p>
-        <img src="img01.png" alt="Palèt Atistik Gratis" style="width: 100%; height: auto; border-radius: 8px;">
-        
-        <p style="font-size: 0.85em; margin-top: 15px; color: #dc3545;">Nan ouvèti klas, wap resevwa li.</p>
-      </div>
-    </div>
     <footer>
         <div class="container footer-content">
             <div class="social-links">
@@ -605,123 +408,116 @@
             <p>&copy; 2026 NextGen Academy. Tout dwa rezève.</p>
         </div>
     </footer>
-
     
     <script>
+        // =======================================================
+        // ############ FONCTIONS GESTION NOTIFICATION CERTIFICAT ############
+        // =======================================================
+        
+        // Fonksyon pour cacher la notification
+        function closeCertificateNotification() {
+            const notification = document.getElementById('certificate-notification');
+            notification.classList.remove('show');
+            
+            // Cacher complètement après l'animation de transition (500ms)
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 500); 
+        }
+
+        // Fonksyon pour faire apparaître la notification
+        function showCertificateNotification() {
+            const notification = document.getElementById('certificate-notification');
+            
+            // 1. Afficher le bloc (pour que les transitions CSS fonctionnent)
+            notification.style.display = 'block';
+            
+            // 2. Déclencher l'animation (glissement)
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 50); 
+            
+            // 3. Déclencher la disparition automatique après 10 secondes d'affichage
+            const DURATION_MS = 10000; // 10 secondes d'affichage
+            setTimeout(closeCertificateNotification, DURATION_MS);
+        }
+
+        // =======================================================
+        // ############ LOGIQUE LIKE COMPLÈTE ############
+        // =======================================================
+        
+        // Fonction pour mettre à jour l'état visuel du bouton
+        function updateLikeState(isLiked, currentLikes) {
+            if (isLiked) {
+                container.classList.add('is-liked');
+                likeButton.innerHTML = '<i class="fas fa-heart"></i> LIKÉ'; // Change le texte du bouton
+            } else {
+                container.classList.remove('is-liked');
+                likeButton.innerHTML = '<i class="fas fa-heart"></i> LIKER';
+            }
+            // Met à jour le compteur affiché
+            likeCountDisplay.textContent = currentLikes;
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             
-            // --- KÒD POU MODAL VIDEWO A ---
-            const modal = document.getElementById("videoModal");
-            const btnClose = document.querySelector(".close-btn");
-            const videoPlayer = document.getElementById("modalVideoPlayer");
-            const modalTitle = document.getElementById("modalVideoTitle");
+            const likeButton = document.getElementById('katalogLikeButton');
+            const likeCountDisplay = document.getElementById('katalogLikeCount');
+            const container = document.getElementById('likeContainer'); // Utilisez l'ID pour plus de précision
+            const likeSound = document.getElementById('likeSound'); 
+            const localStorageKey = 'katalog_likes_clicked'; // Clé pour cette page
             
-            document.querySelectorAll('.video-modal-btn').forEach(button => {
-                button.addEventListener('click', () => {
-                    const videoSrc = button.getAttribute('data-video-src');
-                    const videoTitle = button.getAttribute('data-video-title');
-                    
-                    videoPlayer.src = videoSrc;
-                    modalTitle.textContent = videoTitle;
-                    
-                    modal.style.display = "block";
-                    videoPlayer.load(); 
-                    videoPlayer.play(); 
-                });
-            });
+            // État initial basé sur l'attribut data-initial-likes (450)
+            let initialLikes = parseInt(likeCountDisplay.getAttribute('data-initial-likes'));
+            let currentLikes = initialLikes;
+            // Charge l'état enregistré (true ou false)
+            let isLiked = localStorage.getItem(localStorageKey) === 'true';
 
-            btnClose.addEventListener('click', closeModal);
+            // Si l'utilisateur a déjà liké, on met à jour le compteur +1
+            if (isLiked) {
+                currentLikes = initialLikes + 1;
+            }
 
-            function closeModal() {
-                videoPlayer.pause();
-                videoPlayer.src = "";
-                videoPlayer.load(); 
-                modal.style.display = "none";
-            }
-            
-            // --- KÒD POU MODAL PATAY IMAJ LA AK PATAJ WHATSAPP ---
-            
-            const shareButton = document.getElementById("shareArtButton");
-            const imageModal = document.getElementById("shareImageModal");
-            const closeImageButton = document.getElementById("closeImageModal");
-            
-            // Mesaj ak Lyen pou Pataj la (Lyen sa a ale sou WhatsApp)
-            const shareText = "https://nextgen-academ.netlify.app aplike pou demi bous nan fòmasyon atistik e teknoloji 🥰";
-            const whatsappLink = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
-            
-            // Mete lyen pataj WhatsApp sou bouton an
-            shareButton.href = whatsappLink;
-            
-            // Lè yo klike sou bouton pataj la, li louvri WhatsApp EPI li montre modal imaj la
-            shareButton.addEventListener('click', (event) => {
-                // Li pa bezwen preventDefault paske li dwe ouvri lyen an (WhatsApp)
-                
-                // Montre modal la kòm dezyèm aksyon an
-                setTimeout(() => {
-                   imageModal.style.display = "block";
-                }, 100); // Yon ti delè pou l pa bloke tranzisyon WhatsApp la
-            });
-            
-            // Fèmen Modal Imaj la
-            closeImageButton.addEventListener('click', closeImageModal);
-            
-            // Fèmen Modal Imaj la lè w klike deyò
-            window.addEventListener('click', (event) => {
-                if (event.target == imageModal) {
-                    closeImageModal();
-                }
-            });
-            
-            function closeImageModal() {
-                imageModal.style.display = "none";
-            }
-            
-            // JERE KLIK SOU KLAVYE (ECHAP) pou de modal yo
-             document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape') {
-                    if (modal.style.display === 'block') {
-                        closeModal(); // Fèmen modal videyo
-                    }
-                    if (imageModal.style.display === 'block') {
-                        closeImageModal(); // Fèmen modal imaj
-                    }
-                }
-            });
-            
-            // --- KÒD POU KONTE A REBOURS (COUNTDOWN TIMER) ---
-            
-            const countdownEl = document.getElementById('countdown');
-            const offerBanner = document.getElementById('unique-offer-banner');
-            
-            // 4 minit = 4 * 60 = 240 segonn
-            let timeRemaining = 240; 
-            
-            function updateCountdown() {
-                const minutes = Math.floor(timeRemaining / 60);
-                const seconds = timeRemaining % 60;
-                
-                const formattedSeconds = seconds < 10 ? '0' + seconds : seconds;
-                
-                countdownEl.textContent = `${minutes} minit ${formattedSeconds} segonn`;
-                
-                if (timeRemaining <= 0) {
-                    clearInterval(countdownInterval);
-                    countdownEl.textContent = "ÒF LA FINI";
-                    // Dezaktive bannè a apre òf la fini
-                    offerBanner.style.opacity = '0.7';
-                    offerBanner.style.pointerEvents = 'none';
-                    shareButton.style.backgroundColor = '#6c757d'; // Gri
-                    shareButton.textContent = 'Òf la Fini';
+            // Affiche l'état initial
+            updateLikeState(isLiked, currentLikes); 
+
+            // Événement au clic
+            likeButton.addEventListener('click', () => {
+                if (!isLiked) {
+                    // L'utilisateur n'avait pas liké -> on like
+                    currentLikes++;
+                    isLiked = true;
                     
+                    // 1. Lecture du son
+                    if (likeSound) {
+                        likeSound.currentTime = 0; // Remet à zéro pour rejouer
+                        likeSound.play().catch(e => console.error("Erreur lecture son :", e));
+                    }
+                    
+                    // 2. Animation des Emojis
+                    container.classList.add('emoji-animate-click');
+                    // Retirer la classe après l'animation pour pouvoir la rejouer
+                    setTimeout(() => {
+                        container.classList.remove('emoji-animate-click');
+                    }, 1000); // Durée de l'animation CSS
+
                 } else {
-                    timeRemaining--;
+                    // L'utilisateur a déjà liké -> on un-like (retour à l'état initial)
+                    currentLikes--;
+                    isLiked = false;
                 }
-            }
+
+                // 3. Mise à jour de l'affichage
+                updateLikeState(isLiked, currentLikes);
+
+                // 4. Sauvegarde dans le Local Storage
+                localStorage.setItem(localStorageKey, isLiked ? 'true' : 'false');
+            });
             
-            const countdownInterval = setInterval(updateCountdown, 1000);
-            updateCountdown(); 
+            // Fait apparaître la notification après un court délai
+            setTimeout(showCertificateNotification, 3000); // Apparaît après 3 secondes
+
         });
     </script>
-
 </body>
 </html>

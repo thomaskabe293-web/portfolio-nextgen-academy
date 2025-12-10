@@ -7,25 +7,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
 <style>
-        /* Variables du thème (mise à jour pou teknoloji) */
+        /* Variables du thème */
         :root {
-            --primary-color: #004d99; /* bleu marine (koulè prensipal pou teknoloji) */
-            --secondary-color: #7b68ee; /* vyolèt elektwonik (pou bouton detay) */
-            --accent-color: #28a745; /* vert vif (agwoteknik) */
+            --primary-color: #004d99; /* BLEU MARINE (Koulè prensipal pou Teknoloji) */
+            --secondary-color: #7b68ee; /* VYOLÈT ELEKTRONIK (Pou bouton detay) */
+            --accent-color: #28a745; /* Vert Vif */
             --text-dark: #333;
             --background-light: #f4f4f9;
             --text-light: #fff;
-            
-            /* Nouvo koulè pou kat yo (Pou varye koulè border yo) */
-            --color-card-1: #007bff; 
-            --color-card-2: #28a745; 
-            --color-card-3: #ffc107; 
-            --color-card-4: #dc3545; 
-            --color-card-5: #6f42c1; 
-            --color-card-6: #17a2b8; 
-            --color-card-7: #fd7e14; 
-            --color-card-8: #6c757d; 
-            --color-card-9: #e83e8c; /* lòt koulè pou elaji */
+            --color-card-1: #007bff; /* Bleu pour Dev Web */
+            --color-card-2: #28a745; /* Vert pour Dev APK */
         }
 
         /* Styles de la Page */
@@ -50,12 +41,12 @@
             align-items: center;
             gap: 8px;
             text-decoration: none;
-            color: var(--primary-color); 
+            color: var(--primary-color);
             font-weight: 600;
             margin-bottom: 20px;
-            /* Correction: texte en miniscule selon la demande initiale, 
-               sauf si la nouvelle règle implique une majuscule ici (début de phrase) */
-            text-transform: capitalize; 
+        }
+        .back-link:hover {
+            color: var(--secondary-color);
         }
 
         h1 {
@@ -74,20 +65,18 @@
         h1 span.title-slogan {
             font-style: normal; 
             font-size: 0.8em;
-            color: var(--accent-color)
+            color: var(--accent-color);
         }
 
-        /* --- Hero Section San GIF --- */
+        /* --- Hero Section --- */
         .art-hero-section {
             background-color: #004d99; 
-            background-image: none; 
             height: 180px; 
             border-radius: 10px;
             margin-bottom: 30px;
         }
 
         .art-hero-overlay {
-            background-color: transparent; 
             width: 100%;
             height: 100%;
             display: flex;
@@ -118,7 +107,6 @@
             padding-bottom: 20px;
         }
         
-        /* Tit pou divize Granmoun/Timoun */
         .section-separator {
             grid-column: 1 / -1; 
             text-align: center;
@@ -129,7 +117,6 @@
             font-size: 1.6em;
             font-weight: 700;
         }
-
 
         .course-block {
             background-color: var(--text-light); 
@@ -147,28 +134,17 @@
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
         }
         
-        /* Koulè varye pou bèl prezantasyon */
+        /* Koulè sèlman pou 2 kat yo */
         .course-block:nth-child(2) { border-top-color: var(--color-card-1); } 
         .course-block:nth-child(3) { border-top-color: var(--color-card-2); } 
-        .course-block:nth-child(4) { border-top-color: var(--color-card-3); } 
-        .course-block:nth-child(5) { border-top-color: var(--color-card-4); } 
-        .course-block:nth-child(6) { border-top-color: var(--color-card-5); } 
-        .course-block:nth-child(7) { border-top-color: var(--color-card-6); } 
-        .course-block:nth-child(8) { border-top-color: var(--color-card-7); } 
-        
-        .course-block:nth-child(10) { border-top-color: var(--color-card-9); } 
-        .course-block:nth-child(11) { border-top-color: var(--color-card-8); } 
 
         .course-icon {
             font-size: 2em; 
             margin-bottom: 10px;
             color: var(--primary-color);
         }
-        /* Ikon yo varye koulè pou yo pi bèl */
         .course-block:nth-child(2) .course-icon { color: var(--color-card-1); }
         .course-block:nth-child(3) .course-icon { color: var(--color-card-2); }
-        .course-block:nth-child(4) .course-icon { color: var(--color-card-3); }
-        
 
 
         .course-block h2 {
@@ -185,28 +161,8 @@
             color: var(--text-dark);
             flex-grow: 1; 
         }
-        
-        /* NOUVEAU: Style pour le Compte à Rebours */
-        .countdown-container {
-            font-size: 0.9em;
-            font-weight: bold;
-            color: var(--color-card-4); /* Rouge */
-            margin-bottom: 10px;
-            padding: 5px 0;
-            border-top: 1px dotted #ff0000;
-            border-bottom: 1px dotted #ff0000;
-            text-align: center;
-        }
-        .countdown-container i {
-            margin-right: 5px;
-        }
-        .countdown-text {
-            display: block;
-            margin-top: 5px;
-            font-size: 1.1em;
-        }
 
-        /* --- Bouton Detay/Info (Modifikasyon) --- */
+        /* --- Bouton Detay/Info --- */
         .info-preview-box {
             margin-top: 10px;
             border-top: 1px dashed #ced4da;
@@ -223,251 +179,51 @@
             text-decoration: none;
             font-weight: 600;
             transition: background-color 0.2s;
-            background-color: var(--secondary-color); /* Vyolèt */
+            background-color: var(--secondary-color);
             color: var(--text-light);
             align-self: center; 
+            cursor: pointer; /* Ajouté pour indiquer que c'est cliquable */
         }
         .info-modal-btn:hover {
-            background-color: #5d4aa0; /* Vyolèt pi fonse */
+            background-color: #5d4aa0; 
         }
         
-        /* --- Modal Styles (Pou Lis Modil) --- */
-        .modal {
-            display: none; 
-            position: fixed;
-            z-index: 1000; 
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.8); 
-            padding-top: 60px;
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto; 
-            padding: 30px;
-            border: 1px solid #888;
-            width: 90%; 
-            max-width: 600px; 
-            border-radius: 10px;
-            position: relative;
-        }
-        
-        .close-btn {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-
-        .close-btn:hover,
-        .close-btn:focus {
-            color: var(--secondary-color);
-            text-decoration: none;
-        }
-        
-        .modal-content h3 {
-             color: var(--primary-color); 
-             margin-top: 0; 
-             margin-bottom: 15px;
-             border-bottom: 2px solid var(--secondary-color);
-             padding-bottom: 10px;
-        }
-        
-        .modal-course-list {
-            list-style: disc;
-            margin-left: 20px;
-            padding: 10px 0;
-        }
-        .modal-course-list li {
-            padding: 5px 0;
-            border-bottom: 1px dotted #ccc;
-            font-size: 1.05em;
-        }
-        .modal-course-list li:last-child {
-            border-bottom: none;
-        }
-
-
-        /* --- Final Banner (Avis d'avertissement) --- */
-        .warning-text {
-            border: 2px solid #ff0000; 
-            padding: 12px;
+        /* --- NOUVEAU: Style pour le Bouton Compte à Rebours --- */
+        .countdown-btn-box {
+            margin-top: 15px;
+            padding: 10px;
             border-radius: 8px;
-            margin-bottom: 30px; 
-            color: #ff0000; 
-            font-weight: bold; 
-            text-align: center; 
-            margin-top: 30px; 
-            font-size: 1.1em; 
-        }
-
-        .final-return-banner {
+            background-color: #f7e6ff; /* Fond légèrement mauve */
+            border: 2px solid var(--secondary-color);
             text-align: center;
-            padding: 25px; 
-            background-color: #e9ecef;
-            border-radius: 10px;
-            margin-top: 15px; 
-        }
-
-        .final-return-banner p {
-            font-size: 1em; 
-            margin-bottom: 15px;
-        }
-
-        /* --- Bouton Final yo --- */
-
-        .final-return-banner a.return-main-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 20px; 
-            border-radius: 5px;
-            text-decoration: none;
             font-weight: bold;
-            margin: 8px; 
-            transition: background-color 0.3s, transform 0.3s;
-            text-transform: uppercase; 
+        }
+        .countdown-btn-box p {
+            margin: 0;
             font-size: 0.9em;
+            color: var(--text-dark);
         }
-
-        .students-work-btn {
-            background-color: var(--primary-color); 
-            color: var(--text-light); 
-            border: 2px solid var(--primary-color);
+        .countdown-timer {
+            display: block;
+            font-size: 1.1em;
+            color: #dc3545; /* Rouge pour l'urgence */
+            margin-top: 5px;
         }
-
-        .students-work-btn:hover {
-            background-color: #003366; 
-            transform: translateY(-2px);
+        .countdown-timer span {
+            font-size: 1.2em;
+            font-weight: 900;
         }
-
-        .agwoteknik-btn-green {
-            background-color: var(--accent-color); 
-            color: var(--text-light); 
-            border: 2px solid var(--accent-color);
+        .countdown-expired {
+            color: #333;
+            font-size: 1em;
         }
-
-        .agwoteknik-btn-green:hover {
-            background-color: #1e7e34; 
-            transform: translateY(-2px);
-        }
-
+        
         /* --- Footer Styles --- */
         footer {
             background-color: #003366; 
             color: var(--text-light); 
             padding: 15px 0;
             text-align: center;
-        }
-        
-        .social-links a {
-            color: var(--text-light); 
-            font-size: 1.5em;
-            margin: 0 10px;
-            transition: color 0.3s;
-        }
-        .social-links a:hover {
-            color: var(--secondary-color); 
-        }
-        
-        /* --- NOUVEAU STIL: MODAL RABÈ A --- */
-        #discountModal {
-            display: none;
-            position: fixed;
-            z-index: 1100; 
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7); 
-            overflow: auto;
-        }
-
-        .discount-content {
-            background-color: var(--text-light); 
-            margin: 0 auto;
-            padding: 25px;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 450px;
-            position: relative;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            /* Animasyon pou li soti anlè a */
-            animation-name: slideDown;
-            animation-duration: 0.5s;
-        }
-
-        @keyframes slideDown {
-            from {transform: translateY(-100%); opacity: 0;}
-            to {transform: translateY(100px); opacity: 1;} 
-        }
-        
-        .discount-content h2 {
-            color: var(--secondary-color);
-            text-align: center;
-            font-size: 1.4em;
-            margin-top: 0;
-            margin-bottom: 20px;
-        }
-
-        .discount-list {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 20px;
-        }
-        
-        .discount-list li {
-            margin-bottom: 10px;
-            font-size: 1.1em;
-            line-height: 1.4;
-        }
-        
-        /* Polis pi gwo pou rabè an */
-        .discount-list li:first-child,
-        .discount-list li:nth-child(2) {
-            font-size: 1.2em; 
-            font-weight: bold;
-        }
-
-        .discount-quiz-info {
-            font-style: italic;
-            font-size: 0.95em;
-            text-align: center;
-            margin-top: 20px;
-            /* Animasyon pou enfòmasyon an */
-            animation: pulse 1.5s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.6; }
-            100% { opacity: 1; }
-        }
-
-        .discount-ok-btn {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background-color: var(--accent-color);
-            color: var(--text-light);
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .discount-ok-btn:hover {
-            background-color: #1e7e34;
         }
     </style>
 
@@ -478,31 +234,22 @@
     <header></header>
     <main class="container detail-main">
         
-        <a href="pwogram.html" class="back-link"><i class="fas fa-arrow-left"></i> Retounen nan pwogram yo</a>
+<p class="katalog-intro-text" style="margin-bottom: 5px; text-align: center;">
+    Pwogram teknoloji n' yo <strong>prepare w pou mache travay</strong> lan. Nou mete aksan sou pratik, pwojè konkrè, ak entegrasyon zouti dijital.
+                </p>
+    
+    <h1 style="font-style: italic;">
+        <span class="title-slogan">Kreye yon avni dijital nan yon sistèm open source!</span>
+    </h1>
 
-        <h1>
-            <span class="title-slogan">Kreye yon avni dijital nan yon sistèm open source</span>
-        </h1>
-        
-        <div class="art-hero-section">
-            <div class="art-hero-overlay">
-                <div class="art-hero-content">
-                    <p class="art-hero-description">
-                       Pwogram teknoloji n' yo prepare w pou mache travay modèn lan. Nou mete aksan sou pratik, pwojè konkrè, ak entegrasyon zouti dijital.
-                    </p>
-                </div>
-            </div>
-        </div>
-
+ 
         <section class="courses-grid"> 
-            
-            <h2 class="section-separator"><i class="fas fa-user-tie"></i> Fòmasyon granmoun (9 kou)</h2>
             
             <div class="course-block">
                 <div class="course-icon"><i class="fas fa-code"></i></div>
-                <h2>Dev. web</h2>
+                <h2>DEV. WEB</h2>
                 <p class="course-description-short">
-                    Aprann HTML, CSS, JavaScript, epi Python/PHP pou kreye sit entènèt ak aplikasyon web konplè. Pwojè: kreye yon sit e-commerce.
+                    Aprann HTML, CSS, JavaScript, epi Python/PHP pou kreye sit entènèt ak aplikasyon web konplè. Pwojè: Kreye yon sit e-commerce.
                 </p>
                 <div class="info-preview-box">
                     <button class="info-modal-btn" 
@@ -514,10 +261,16 @@
 
             <div class="course-block">
                 <div class="course-icon"><i class="fas fa-mobile-alt"></i></div>
-                <h2>Dev. apk (mobil)</h2>
+                <h2>DEV. APK (MOBIL)</h2>
                 <p class="course-description-short">
-                    Konsepsyon aplikasyon Android/iOS avèk langaj modèn (Kotlin/Java). Aprann koneksyon API ak piblikasyon sou magazen yo.
+                    Konsepsyon aplikasyon Android/iOS avèk langaj modèn (HTML/CSS/Java). Aprann koneksyon API ak piblikasyon sou magazen Paystore.
                 </p>
+                <div class="countdown-btn-box">
+                    <p>Enskripsyon an ap fini nan :</p>
+                    <div id="apk-countdown-timer" class="countdown-timer">
+                        <i class="far fa-clock"></i> Chargement...
+                    </div>
+                </div>
                 <div class="info-preview-box">
                      <button class="info-modal-btn" 
                             data-course-key="devlopmanapk">
@@ -525,478 +278,77 @@
                     </button>
                 </div>
             </div>
-
-            <div class="course-block">
-                <div class="course-icon"><i class="fas fa-wrench"></i></div>
-                <h2>Reparasyon moto</h2>
-                <p class="course-description-short">
-                    Dyagnostik ak reparasyon pyès ki anpàn nan vehikil ou. Mentnans ak ranplasman pyès.
-                </p>
-                <div class="info-preview-box">
-                     <button class="info-modal-btn" 
-                            data-course-key="reparasyonteknik">
-                        <i class="fas fa-info-circle"></i> Wè plan konplè
-                    </button>
-                </div>
-            </div>
-
-            <div class="course-block">
-                <div class="course-icon"><i class="fas fa-video"></i></div>
-                <h2>Enstls kamera</h2>
-                <p class="course-description-short">
-                    Aprann chwazi ak enstale kamera sekirite (IP/CCTV). Konfigirasyon DVR/NVR, réseau (POE), ak vizyon adistans sou mobil.
-                </p>
-                <div class="info-preview-box">
-                     <button class="info-modal-btn" 
-                            data-course-key="installationcam">
-                        <i class="fas fa-info-circle"></i> Wè plan konplè
-                    </button>
-                </div>
-            </div>
             
-            <div class="course-block">
-                <div class="course-icon"><i class="fas fa-lightbulb"></i></div>
-                <h2>Elektrisite domestik</h2>
-                <p class="course-description-short">
-                    Prensip fondamantal elektrisite, dyagram sikui, enstalasyon breaker, priz, ak switch. Sekirite ak nòm elektrik.
-                </p>
-                <div class="info-preview-box">
-                     <button class="info-modal-btn" 
-                            data-course-key="elektrisite">
-                        <i class="fas fa-info-circle"></i> Wè plan konplè
-                    </button>
-                </div>
-            </div>
-            
-            <div class="course-block">
-                <div class="course-icon"><i class="fas fa-bullhorn"></i></div>
-                <h2>Mkt digital</h2>
-                <p class="course-description-short">
-                    Estrateji rezo sosyal (Facebook Ads, Instagram), SEO, Email Marketing, ak zouti analiz. Aprann fè kòmand entènasyonal pou pwomosyon.
-                </p>
-                <div class="info-preview-box">
-                     <button class="info-modal-btn" 
-                            data-course-key="marketingdigital">
-                        <i class="fas fa-info-circle"></i> Wè plan konplè
-                    </button>
-                </div>
-            </div>
-            
-            <div class="course-block">
-                <div class="course-icon"><i class="fas fa-layer-group"></i></div>
-                <h2>Grafik dizay</h2>
-                <p class="course-description-short">
-                    Prensip design, kreyasyon logo, kat vizit, ak konsepsyon pou web. Entwodiksyon nan serigrafi ak preparasyon fichye pou enpresyon.
-                </p>
-                <div class="info-preview-box">
-                     <button class="info-modal-btn" 
-                            data-course-key="grafikdizay">
-                        <i class="fas fa-info-circle"></i> Wè plan konplè
-                    </button>
-                </div>
-            </div>
-            <div class="course-block">
-                <div class="course-icon"><i class="fas fa-tshirt"></i></div>
-                <h2>Customization digital</h2>
-                <p class="course-description-short">
-                    Metòd gwo konpayi ak pati politik yo itilize pou kòmande stòk mayo pou aktivite yo. Pandan w dèyè ekran telefòn ou sèlman, ou fè tout bagay: mayo, bijou, kepi, valiz. Rejwenn ou sou 25 jou.
-                </p>
-                <div class="info-preview-box">
-                     <button class="info-modal-btn" 
-                            data-course-key="customizationdigital">
-                        <i class="fas fa-info-circle"></i> Wè plan konplè
-                    </button>
-                </div>
-            </div>
-
-            <div class="course-block">
-                <div class="course-icon"><i class="fas fa-globe"></i></div>
-                <h2>Acha entènasyonal</h2>
-                <p class="course-description-short">
-                    Aprann achte sou platfòm entènasyonal yo, chwazi bon founisè, òganize anbakman rapid avèk konpayi eksprès, fè tranzaksyon sekirize, fè acha angwo pou biznis.
-                </p>
-                 <div class="countdown-container">
-                    <i class="fas fa-clock"></i> Enskripsyon louvri: 
-                    <span id="internationalCountdown" class="countdown-text"></span>
-                </div>
-                <div class="info-preview-box">
-                     <button class="info-modal-btn" 
-                            data-course-key="achainternasyonal">
-                        <i class="fas fa-info-circle"></i> Wè plan konplè
-                    </button>
-                </div>
-            </div>
-
-            <h2 class="section-separator"><i class="fas fa-child"></i> Fòmasyon timoun (2 kou)</h2>
-
-            <div class="course-block">
-                <div class="course-icon"><i class="fas fa-robot"></i></div>
-                <h2>Elektrwoteknik</h2>
-                <p class="course-description-short">
-                    Aprann sa k' kouran, sikui elektrik de baz, ak konstriksyon aparèy senp. Pwojè: konstriksyon yon ti sistèm robotik ki fonksyone.
-                </p>
-                <div class="info-preview-box">
-                     <button class="info-modal-btn" 
-                            data-course-key="elektwoteknik">
-                        <i class="fas fa-info-circle"></i> Wè plan konplè
-                    </button>
-                </div>
-            </div>
-            
-            <div class="course-block">
-                <div class="course-icon"><i class="fas fa-atom"></i></div>
-                <h2>Fizik aplike</h2>
-                <p class="course-description-short">
-                    Eksperyans sou fòs, mouvman, enèji, ak presyon. Prensip senp nan konstriksyon pou kreye avyon papye pèfòman.
-                </p>
-                <div class="info-preview-box">
-                     <button class="info-modal-btn" 
-                            data-course-key="fizikaplike">
-                        <i class="fas fa-info-circle"></i> Wè plan konplè
-                    </button>
-                </div>
-            </div>
-
-        </section> 
+            </section> 
         
-        <p class="warning-text">
-            ⚠️ Fòmasyon sa yo fèt pou granmoun (lasemèn, Camp-Perrin) ak pou timoun (samdi, Aux Cayes).
-        </p>
-
-        <section class="final-return-banner">
-            <p>Pa bliye ou ka benefisye yon fòmasyon teknoloji gratis (pou adilt), lè w enskri 2 timoun nan fòmasyon ki pou timoun yo, oswa lè w te suiv yon premye fòmasyon teknoloji.</p>
-        </section>
-        
-    </main>
+        </main>
     
-    <div id="courseModal" class="modal">
-      <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <h3 id="modalTitle">Plan konplè fòmasyon</h3>
-        <ul id="modalCourseList" class="modal-course-list">
-          </ul>
-      </div>
-    </div>
-    
-    <div id="discountModal">
-        <div class="discount-content">
-            <h2>Kijan pou w jwenn 50% rabè</h2>
-            
-            <p>Aprè quiz la ki te ka ba ou 50% rabè sou fòmasyon nou yo, men kijan ou ka toujou jwenn 50% rabè:</p>
-
-            <ul class="discount-list">
-                <li>1. Chak lè w patisipe nan yon fòmasyon, ou gen 50% rabè sou enskripsyon yon pwochen.</li>
-                <li>2. Lè w pran 3 fòmasyon, ou gen yon katriyèm gratis.</li>
-            </ul>
-            
-            <p class="discount-quiz-info">Oumenm ki nouvo sou NextGen, pa bliye pase quiz la pou rabè k' pi fasil lan.</p>
-            
-            <button class="discount-ok-btn" id="closeDiscountModal">Ok</button>
-        </div>
-    </div>
     <footer>
-        <div class="container footer-content">
-            <div class="social-links">
-                <a href="https://wa.me/50931013968" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
-            </div>
+        <div class="container">
             <p>&copy; 2026 NextGen Academy. Tout dwa rezève.</p>
         </div>
     </footer>
-
     
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            
-            // --- Kòd pou modal lis kou a ---
-            
-            const modal = document.getElementById("courseModal");
-            const btnClose = document.querySelector(".close-btn");
-            const modalTitle = document.getElementById("modalTitle");
-            const modalCourseList = document.getElementById("modalCourseList");
-            
-            // Definisyon Detay Kou yo 
-            const courseDetails = {
-                // Détails pour la section Adulte
-                devlopmanweb: {
-                    title: "Devlopman web: plan konplè",
-                    content: [
-                        "Modil 1: Baz entènèt (fonksyonman, tèminoloji)",
-                        "Modil 2: HTML5 & CSS3 (estrikti ak design sit)",
-                        "Modil 3: JavaScript de baz (entèaktivite)",
-                        "Modil 4: Frameworks CSS (Bootstrap/Tailwind)",
-                        "Modil 5: Jesyon baz done (MySQL/PostgreSQL)",
-                        "Modil 6: Devlopman back-end (PHP, Python oubyen Node.js)",
-                        "Modil 7: Sekirite sit ak pèfòmans (SSL, SEO)",
-                        "Modil 8: Pwojè final: kreye yon e-commerce oswa blog konplè."
-                    ]
-                },
-                devlopmanapk: {
-                    title: "Devlopman aplikasyon mobil (APK): plan konplè",
-                    content: [
-                        "Modil 1: Entwodiksyon Android Studio ak langaj (Kotlin/Java)",
-                        "Modil 2: Konsepsyon UI/UX pou mobile (Material Design)",
-                        "Modil 3: Jesyon etatik ak done lokal",
-                        "Modil 4: Koneksyon API ak sèvè (JSON, REST)",
-                        "Modil 5: Notifikasyon pouse ak sèvis kote (GPS)",
-                        "Modil 6: Tès (testing), debugging ak sekirite",
-                        "Modil 7: Piblikasyon sou Google Play Store (pwosedi, konsèy)",
-                        "Modil 8: Pwojè final: kreye yon aplikasyon fonksyonèl."
-                    ]
-                },
-                reparasyonteknik: {
-                    title: "Reparasyon teknik (òdinatè/telefòn): plan konplè",
-                    content: [
-                        "Modil 1: Dyagnostik pyès ki pa bon (RAM, disk, carte mère)",
-                        "Modil 2: Reparasyon ak ranplasman eleman laptop/desktop (ekran, klavye, batri)",
-                        "Modil 3: Enstalasyon ak konfigirasyon sistèm operasyon (Windows, Linux)",
-                        "Modil 4: Elimine viris ak malware (sekirite lojisyèl)",
-                        "Modil 5: Solisyon pwoblèm alimantasyon (Power Supply, adapteur)",
-                        "Modil 6: Depanaj telefòn mobil de baz (ranplasman ekran/pò chajman)",
-                        "Modil 7: Teknik soudi de baz (elektronik)",
-                        "Modil 8: Jesyon kliyan ak antretyen prevansyon."
-                    ]
-                },
-                installationcam: {
-                    title: "Enstalasyon kamera sekirite (CAM): plan konplè",
-                    content: [
-                        "Modil 1: Tip de kamera (CCTV, IP) ak chwa ekipman",
-                        "Modil 2: Planifikasyon ak estrateji pozisyon kamera",
-                        "Modil 3: Enstalasyon kab ak prensip réseau (Ethernet, POE)",
-                        "Modil 4: Konfigirasyon DVR/NVR ak disques durs",
-                        "Modil 5: Konfigirasyon adistans (vizyon sou mobil/PC)",
-                        "Modil 6: Sekirite sistèm ak modpas pwoteksyon",
-                        "Modil 7: Solisyon pwoblèm réseau ak kouran",
-                        "Modil 8: Antretyen ak mizajou sistèm."
-                    ]
-                },
-                elektrisite: {
-                    title: "Elektrisite domestik: plan konplè",
-                    content: [
-                        "Modil 1: Prensip fondamantal elektrisite (kouran, tension, rezistans)",
-                        "Modil 2: Dyagram sikui elektrik (seri, paralèl)",
-                        "Modil 3: Enstalasyon disjoncteurs, prises ak switches",
-                        "Modil 4: Kalibrasyon fil ak mezire kouran",
-                        "Modil 5: Sekirite elektrik ak nòm lokal",
-                        "Modil 6: Enstalasyon limyè ak pwen espesyal (chofaj, klima)",
-                        "Modil 7: Reparasyon pwoblèm kouran de baz (fils kase, surcharge)",
-                        "Modil 8: Pwojè pratik sou yon enstalasyon kay."
-                    ]
-                },
-                marketingdigital: {
-                    title: "Marketing digital e piblisite: plan konplè",
-                    content: [
-                        "Modil 1: Baz digital marketing (tèminoloji, objektif)",
-                        "Modil 2: Estrateji kontni ak storytelling",
-                        "Modil 3: Rezo sosyal: jesyon ak piblisite (Facebook Ads, Instagram)",
-                        "Modil 4: Kreye landing pages ak email marketing",
-                        "Modil 5: SEO ak SEA (referansman ak achats mots-clés)",
-                        "Modil 6: Zouti analiz ak pèfòmans (Google Analytics)",
-                        "Modil 7: Kòmann entènasyonal pou pwomosyon",
-                        "Modil 8: Kreye yon plan marketing konplè."
-                    ]
-                },
-                grafikdizay: {
-                    title: "Grafik dizay e serigrafi: plan konplè",
-                    content: [
-                        "Modil 1: Prensip design (koulè, tipografi, konpozisyon)",
-                        "Modil 2: Entwodiksyon nan lojisyèl grafik (Canva, Inkscape, Photoshop de baz)",
-                        "Modil 3: Kreye logo, kat vizit ak afich",
-                        "Modil 4: Konsepsyon pou rezo sosyal ak web",
-                        "Modil 5: Entwodiksyon nan serigrafi (preparasyon ekran, enk)",
-                        "Modil 6: Teknik enpresyon ak tès koulè",
-                        "Modil 7: Prepare fichye pou enpresyon pwofesyonèl",
-                        "Modil 8: Pwojè final: kreye yon idantite vizyèl konplè."
-                    ]
-                },
-                customizationdigital: {
-                    title: "Customization digital: design ak pèsonalizasyon pwodwi",
-                    content: [
-                        "Modil 1: Prensip dezay vizyèl (koulè, fòm, tipografi) ak konpozisyon",
-                        "Modil 2: Konsepsyon sou telefòn: itilize zouti mobil (app design) pou kreye modèl",
-                        "Modil 3: Kreyasyon logo, ilistrasyon, ak vizyèl pou pwodwi kòstòmize",
-                        "Modil 4: Aplikasyon digital: preparasyon fichye pou pèsonalizasyon mayo, bijou, ak valiz",
-                        "Modil 5: Entwodiksyon nan teknik serigrafi, sublimasyon, ak gravure (pou konprann aplikasyon an)",
-                        "Modil 6: Kòmann ak lojistik anliy: chwazi bon founisè ak platfòm pèsonalizasyon",
-                        "Modil 7: Fè mockup 3D ak prezantasyon pwodwi ou yo anliy (digital showroom)",
-                        "Modil 8: Pwojè final: design, kòmann anliy, ak resepsyon yon liy pwodwi kòstòmize."
-                    ]
-                },
-                achainternasyonal: {
-                    title: "Acha entènasyonal pwofesyonèl: plan konplè",
-                    content: [
-                        "Modil 1: Analiz platfòm (Amazon, Alibaba, Ebay) ak chwa pwodwi pri ba",
-                        "Modil 2: Verifikasyon founisè: metòd pou idantifye vandè serye ak fyab",
-                        "Modil 3: Kreyasyon kont, metòd peman (pou biznis), ak jesyon faktire",
-                        "Modil 4: Estrateji acha an gro (negosiyasyon pri, MOQ) ak rabè",
-                        "Modil 5: Lojistik ekspres: òganizasyon anbake rapid avèk kompanyi serye (DHL, FedEx, Freight)",
-                        "Modil 6: Kalkil taks, frè ladwan, ak pri final enpòtasyon yo",
-                        "Modil 7: Swivi kòmann, enspeksyon kalite, ak jesyon retou (si gen pwoblèm)",
-                        "Modil 8: Pwojè final: fè yon acha soti nan chwa founisè rive nan resepsyon an Ayiti."
-                    ]
-                },
-                // Détails pour la section Timoun
-                elektwoteknik: {
-                    title: "Elektrwoteknik pou timoun: plan konplè",
-                    content: [
-                        "Modil 1: Ki sa ki kouran? (eksperyans senp)",
-                        "Modil 2: Sikui elektrik de baz (batri, fil, limyè)",
-                        "Modil 3: Dekouvèt konpozan (rezistans, bouton)",
-                        "Modil 4: Pwojè ti robotik (konstriksyon yon ti fanatik)",
-                        "Modil 5: Sekirite avèk elektrisite (leson enpòtan)",
-                        "Modil 6: Konstriksyon aparèy k ap fonksyone (limen LED ak yon bouton)",
-                        "Modil 7: Prensip magnetis ak elektwomagnetis",
-                        "Modil 8: Pwojè final kreyatif."
-                    ]
-                },
-                fizikaplike: {
-                    title: "Fizik aplike pou timoun: plan konplè",
-                    content: [
-                        "Modil 1: Fòs ak mouvman (pouse ak rale)",
-                        "Modil 2: Gravite ak mas (eksperyans chute)",
-                        "Modil 3: Enèji (potansyèl ak kinetik)",
-                        "Modil 4: Son ak limyè (eksperyans ak refleksyon)",
-                        "Modil 5: Prensip senp nan konstriksyon (pons, levier)",
-                        "Modil 6: Presyon ak likid (eksperyans dlo)",
-                        "Modil 7: Ki jan bagay vole ak naje?",
-                        "Modil 8: Pwojè konstriksyon kreyatif (avyon papye pèfòman)."
-                    ]
-                }
-            };
-            
-            // GERE KLIK SOU TOUT BOUTON WÈ PLAN KONPLÈ YO
-            document.querySelectorAll('.info-modal-btn').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    const courseKey = e.currentTarget.getAttribute('data-course-key');
-                    const details = courseDetails[courseKey];
+        // Clé pour stocker la date de fin du compte à rebours
+        const END_DATE_KEY = 'apk_countdown_end';
+        const COUNTDOWN_ELEMENT_ID = 'apk-countdown-timer';
 
-                    if (details) {
-                        modalTitle.textContent = details.title;
-                        modalCourseList.innerHTML = ''; 
-                        
-                        details.content.forEach(item => {
-                            const li = document.createElement('li');
-                            li.textContent = item;
-                            modalCourseList.appendChild(li);
-                        });
+        function startCountdown(durationDays, durationHours, durationMinutes, durationSeconds) {
+            let endTime = localStorage.getItem(END_DATE_KEY);
 
-                        modal.style.display = 'block';
-                    }
-                });
-            });
-
-
-            // GERE KLIK SOU FÈMEN (X)
-            btnClose.addEventListener('click', closeModal);
-
-            // GERE KLIK DEYÒ MODAL LA
-            window.addEventListener('click', (event) => {
-                if (event.target == modal) {
-                    closeModal();
-                }
-            });
-            
-            // GERE KLIK SOU KLAVYE (ECHAP)
-             document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape' && modal.style.display === 'block') {
-                    closeModal();
-                }
-            });
-
-
-            // FUNKSYON POU FÈMEN MODAL LA 
-            function closeModal() {
-                modal.style.display = "none";
-                modalCourseList.innerHTML = ''; 
-                // Tit corrigé
-                modalTitle.textContent = "Plan konplè fòmasyon";
-            }
-            
-            // --- KÒD POU MODAL RABÈ A ---
-            const discountModal = document.getElementById('discountModal');
-            const closeDiscountModalBtn = document.getElementById('closeDiscountModal');
-            
-            // Fonksyon pou montre modal la apre yon delè
-            function showDiscountModal() {
-                discountModal.style.display = 'block';
+            if (!endTime) {
+                // Si la date de fin n'existe pas, la calculer
+                const now = new Date();
+                const totalMilliseconds = (durationDays * 24 * 60 * 60 * 1000) + 
+                                          (durationHours * 60 * 60 * 1000) + 
+                                          (durationMinutes * 60 * 1000) + 
+                                          (durationSeconds * 1000);
+                
+                const calculatedEndTime = now.getTime() + totalMilliseconds;
+                
+                // Stocker la date de fin dans localStorage
+                localStorage.setItem(END_DATE_KEY, calculatedEndTime);
+                endTime = calculatedEndTime;
+            } else {
+                endTime = parseInt(endTime, 10);
             }
 
-            // Montre Modal la apre 30 segonn (30000 milisgond)
-            setTimeout(showDiscountModal, 30000); 
+            const countdownEl = document.getElementById(COUNTDOWN_ELEMENT_ID);
 
-            // Fèmen Modal la lè yo klike sou OK
-            closeDiscountModalBtn.addEventListener('click', () => {
-                discountModal.style.display = 'none';
-            });
+            const interval = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = endTime - now;
 
-            // Fèmen Modal la lè yo klike deyò
-            window.addEventListener('click', (event) => {
-                if (event.target == discountModal) {
-                    discountModal.style.display = 'none';
+                if (distance < 0) {
+                    clearInterval(interval);
+                    countdownEl.innerHTML = '<span class="countdown-expired">Dat limit la pase!</span>';
+                    return;
                 }
-            });
-            // --- FEN KÒD POU MODAL RABÈ A ---
-            
-// --- KÒD POU COMPTE À REBOURS ACHAT INTERNATIONAL AVEC LOCALSTORAGE ---
-function startCountdown() {
-    const countdownElement = document.getElementById('internationalCountdown'); 
-    const storageKey = 'internationalCountdownExpiry'; 
 
-    // Temps de référence fixe pour l'expiration (7j 12h 24m) en millisecondes
-    const initialOffsetMs = (7 * 24 * 60 * 60 * 1000) + (12 * 60 * 60 * 1000) + (24 * 60 * 1000);
-    
-    let expiryDateMs;
+                // Calculs du temps restant
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    // 1. Tenter de récupérer la date d'expiration sauvegardée
-    const storedExpiry = localStorage.getItem(storageKey);
-
-    if (storedExpiry) {
-        // Utiliser la date stockée
-        expiryDateMs = parseInt(storedExpiry);
-    } else {
-        // 2. Si non stockée, calculer la date d'expiration et la sauvegarder
-        const now = new Date().getTime();
-        expiryDateMs = now + initialOffsetMs;
-        localStorage.setItem(storageKey, expiryDateMs.toString());
-    }
-    
-    const interval = setInterval(() => {
-        const now = new Date().getTime();
-        const distance = expiryDateMs - now;
-
-        // Calculer les jours, heures, minutes et secondes
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        
-        // Formatage pour l'affichage
-        const formattedDays = String(days).padStart(2, '0');
-        const formattedHours = String(hours).padStart(2, '0');
-        const formattedMinutes = String(minutes).padStart(2, '0');
-        const formattedSeconds = String(seconds).padStart(2, '0');
-
-        if (distance > 0) {
-            countdownElement.innerHTML = 
-                `${formattedDays}j ${formattedHours}h ${formattedMinutes}m ${formattedSeconds}s`;
-        } else {
-            // Si le compte à rebours est terminé
-            clearInterval(interval);
-            // Texte corrigé
-            countdownElement.innerHTML = "Enskripsyon fèmen";
-            // Nettoyer la clé de LocalStorage une fois le temps écoulé
-            localStorage.removeItem(storageKey);
+                // Affichage du compte à rebours
+                countdownEl.innerHTML = `
+                    <i class="fas fa-hourglass-half"></i> 
+                    <span>${days}</span> jou 
+                    <span>${hours.toString().padStart(2, '0')}</span> è 
+                    <span>${minutes.toString().padStart(2, '0')}</span> min 
+                    <span>${seconds.toString().padStart(2, '0')}</span> seg
+                `;
+            }, 1000);
         }
-    }, 1000);
-}
-// --- FIN KÒD POU COMPTE À REBOURS ACHAT INTERNATIONAL AVEC LOCALSTORAGE ---
 
-            // Démarrer le compte à rebours
-            startCountdown();
-            
+        // --- Lancement du Compte à Rebours au chargement de la page ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Durée spécifiée: 6 jours, 23h, 48 minutes, 0 secondes
+            startCountdown(6, 23, 48, 0);
         });
     </script>
-
-</body>
+    
+    </body>
 </html>
