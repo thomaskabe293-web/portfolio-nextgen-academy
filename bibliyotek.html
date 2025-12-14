@@ -1,13 +1,376 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="ht">
 <head>
-  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
-  <title>Hello, World!</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pwogram Boutik Liv Dijital | NextGen Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* --- Variables de Base --- */
+        :root {
+            --primary-color: #2C3E50; /* Gri Nwa (Tèks prensipal/Footer) */
+            --secondary-color: #E74C3C; /* Wouj Vivan (Pri ak bouton achte) */
+            --text-dark: #333;
+            --text-light: #fff;
+            --background-light: #F9F9F9; /* Background Jeneral */
+            --bibli-color: #34495E; /* Gri Fonse (CTA block) */
+            --bibli-accent: #C0392B; /* Wouj Brik (Liy separasyon/Hover) */
+        }
+
+        /* --- Styles Généraux ak Komin --- */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .detail-main {
+            padding-top: 50px;
+            padding-bottom: 80px;
+        }
+        
+        .detail-main h1 {
+            margin-bottom: 40px;
+            text-align: center;
+            padding-bottom: 10px;
+            /* CHanjman: Koulè Tit la */
+            color: var(--secondary-color); 
+            border-bottom: 2px solid var(--bibli-accent);
+        }
+        
+        /* Lien de retour supprimé */
+        /* .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .back-link:hover {
+            color: var(--secondary-color);
+        } */
+        .service-intro-text {
+            text-align: center;
+            font-size: 1.2em;
+            color: var(--text-dark);
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* --- STYLES SPÉCIFIQUES: BOUTIK LIV --- */
+
+        .bibli-resource-block {
+            background-color: #ecf0f1;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .bibli-resource-block h2 {
+            color: var(--bibli-color);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.8em;
+        }
+        
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .resource-card {
+            background-color: var(--text-light);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-top: 5px solid var(--bibli-accent);
+            transition: transform 0.3s;
+            display: flex; 
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* Imaj Liv Placeholder */
+        .book-image {
+            width: 150px; 
+            height: 200px; 
+            margin-bottom: 15px;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+            border: 1px solid #ccc;
+        }
+        
+        /* Koulè placeholder pou Liv 1: 7 Gran Prensip Lamafia (mantal.jpg) */
+        .book-mafia {
+            /* Kouvèti: mantal.jpg */
+            background-image: url('mantal.jpg');
+            background-color: #c0392b; /* Koulè fallback */
+            color: transparent; /* Kache tèks placeholder la si imaj la chaje */
+        }
+        /* Koulè placeholder pou Liv 2: Lesklavaj Entelektiyèl (img36.jpg) */
+        .book-esclavage {
+             /* Kouvèti: img36.jpg */
+            background-image: url('img36.jpg');
+            background-color: #2c3e50; /* Koulè fallback */
+            color: transparent; /* Kache tèks placeholder la si imaj la chaje */
+        }
+        /* Carte de contact supprimée */
+        /* .book-generic {
+            background-color: #EAEAEA;
+            color: var(--primary-color);
+        } */
+
+
+        .resource-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        
+        /* --- STYLE POU WÈ PLIS (READ MORE) --- */
+        .book-description {
+            font-size: 0.95em;
+            color: #555;
+            text-align: left;
+            margin-bottom: 15px;
+            flex-grow: 1; 
+            position: relative; /* Pou bouton an ka plase byen */
+        }
+        
+        .description-content {
+            overflow: hidden;
+            /* 4 Liy anviwon 5em pou li kache rès tèks la okòmansman */
+            max-height: 5em; 
+            transition: max-height 0.5s ease-in-out; 
+            /* Ajoute yon efè fade/degrade lè l ap kache */
+            padding-bottom: 15px; 
+        }
+        
+        .description-content.expanded {
+            max-height: 1000px; /* Gwo wotè pou afiche tout tèks la */
+            padding-bottom: 0;
+        }
+        
+        .read-more-btn {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            background: linear-gradient(to top, rgba(255, 255, 255, 1) 20%, rgba(255, 255, 255, 0));
+            padding-top: 10px;
+            padding-bottom: 5px;
+            cursor: pointer;
+            color: var(--secondary-color);
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: color 0.3s;
+        }
+        
+        .description-content.expanded + .read-more-btn {
+            background: transparent;
+            position: static; 
+            margin-top: 10px;
+        }
+        /* --- FEN STYLE WÈ PLIS --- */
+
+        .book-price {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: var(--secondary-color); 
+            margin-bottom: 15px;
+        }
+
+        .buy-btn {
+            display: block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        
+        /* Bouton Acha pou Liv */
+        .buy-btn-special {
+             background-color: var(--secondary-color) !important;
+        }
+        .buy-btn:hover {
+            background-color: var(--bibli-accent);
+        }
+        .buy-btn-special:hover {
+             background-color: var(--bibli-accent) !important;
+        }
+
+        /* Call To Action Block */
+        .bibli-cta-block {
+            text-align: center;
+            background-color: var(--bibli-color);
+            color: var(--text-light);
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 50px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .bibli-cta-block h2 {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .bibli-cta-btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        .bibli-cta-btn:hover {
+            background-color: var(--bibli-accent); 
+            transform: translateY(-2px);
+        }
+        
+        /* --- Media Query pou Mobile --- */
+        @media (max-width: 768px) {
+            .bibli-resource-block {
+                padding: 20px;
+            }
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* --- Footer Styles --- */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+    </style>
 </head>
 <body>
-  <h1>
-    Hello, World!
-  </h1>
+    
+    <header>
+    </header>
+    
+<main class="container detail-main bibli-layout">
+    
+    <p class="katalog-intro-text" style="margin-bottom: 5px; text-align: center;">
+        Nou kreye yon espas pou aprann, pou fè rechèch. Liv elektwonik ki fèt pou eveye lespri w, pou devlope tèt ou: ki baze sou psikoloji, sosyoloji, ak spirityalite.
+    </p> 
+
+    <h1 style="font-style: italic;">Devlope e bouste mantal ou.</h1> 
+    
+        <section class="bibli-resource-block">
+            <h2>Devlopman pèsonèl</h2>
+            <div class="resource-grid">
+                
+                <div class="resource-card">
+                    <div class="book-image book-mafia">
+                        </div>
+                    <h3>7 Gran Prensip de-la Mafia</h3>
+                    <div class="book-description">
+                        <div class="description-content" id="mafia-content">
+                            Mafya yo pa sèlman dè gwoup moun k ap fè bagay ilegal, men tou yo se gwo estratèj ki gen anpil disiplin, ki bati òganizasyon ki solid, ki konprann sistèm lan, e ki gen kapasite pou adapte yo ak gwo sitiyasyon.
+                            Menmsi metòd pa yo souvan kont sistèm lalwa, men yo montre nou kijan pou w mete tèt ou an plas, kijan pou w met gran may, pou sòti tèt ou, konstui rezo w, fè rezistans kont opozisyon w, antreprann alontèm. 
+                            Si moun konsa ki kont sistèm lan kapab reyalize tousa, sa vle di nou menm ki legal yo, ki vle grandi san n pa nan kache, nou ta dwe kapab fè plis. Se la tout anje liv sa ye: montre nou kijan pou n itilize 7 gran prensip mafya yo pou n bati pwòp anpi n'.
+                        </div>
+                        <div class="read-more-btn" data-target="mafia-content">Wè Plis <i class="fas fa-chevron-down"></i></div>
+                    </div>
+                    <div class="book-price">2,990 HTG</div>
+                    <a href="pèman.html?liv=lamafia" class="buy-btn buy-btn-special"><i class="fas fa-shopping-cart"></i> ACHTE KOUNYA</a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="book-image book-esclavage">
+                         </div>
+                    <h3>Esklavaj entèlektyèl</h3>
+                    <div class="book-description">
+                        <div class="description-content" id="esclavage-content">
+                            Nou grandi ak lide ke lekòl c'est la clé de la réussite. Èske se vre? Eske reyisit ou dwe rezime ak sa yo ba w kòm opsyon?
+                            Sistèm lan mete nou tout kòm pyon, nap jwe wòl nou à la manière de l'esclave même. Se pa ak chenn nan pye nou ankò, men nan lespri nou yo limite n.
+                            Depi w piti, yo anseye w suiv règ. Ou fè sa yo di w fè, repete sa yo diw repete; w' etidye sa yo diw etidye; ou mete konfyans ou nan yon sistèm ki pa janm mete w an premye.
+                            Etidyan an panse li ap bati avni l. Pwofesè a panse li gen pouvwa, men li se yon zouti yo itilize pou fòme yon bann ti egare.
+                            Si w ap li liv sa, ou ka santi w fache, dekouraje, oswa menm fristre. Paske verite a pa toujou bèl, e li ka fè w reyalize ou te pran nan pyèj depi lontan. 
+                            Men, wap oblije kenbe moral ou fò. Li chak mo, chak fraz ak atansyon, epi mande tèt ou: kisa mwen pral fè ak sa ki di la a? Paske verite a pa pou tout moun, men pou sila yo ki bezwen l.
+                        </div>
+                        <div class="read-more-btn" data-target="esclavage-content">Wè Plis <i class="fas fa-chevron-down"></i></div>
+                    </div>
+                    <div class="book-price">2,119 HTG</div>
+                    <a href="pèman.html?liv=esklavaj" class="buy-btn buy-btn-special"><i class="fas fa-shopping-cart"></i> ACHTE KOUNYA</a>
+                </div>
+                
+                </div>
+        </section>
+
+        <section class="bibli-cta-block">
+            <h2>Kòmanse transfòme mantal ou jodi a!</h2>
+            <p>Klike pou w gen aksè a liv ou vle an.</p>
+            <a href="pèman.html" class="bibli-cta-btn">KÒMANDE YON LIV <i class="fas fa-book-reader"></i></a>
+        </section>
+        
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 NextGen Academy. Tout dwa rezève.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.read-more-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    const content = document.getElementById(targetId);
+                    
+                    if (content.classList.contains('expanded')) {
+                        // Kache Tèks la
+                        content.classList.remove('expanded');
+                        this.innerHTML = 'Wè Plis <i class="fas fa-chevron-down"></i>';
+                        // Rale nan tèt kat la pou gen bon efè vizyèl
+                        content.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        
+                    } else {
+                        // Montre tout Tèks la
+                        content.classList.add('expanded');
+                        this.innerHTML = 'Wè Mwens <i class="fas fa-chevron-up"></i>';
+                    }
+                });
+            });
+        });
+    </script>
+    
 </body>
 </html>
