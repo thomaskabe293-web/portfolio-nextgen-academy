@@ -3,521 +3,307 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katalòg Travay Elèv | NextGen Academy</title>
+    <title>Katalòg travay elèv | NextGen Academy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* --- Variables de Base (Hypothétiques) --- */
+        /* --- Palèt Koulè NextGen --- */
         :root {
-            --primary-color: #004d99; /* Bleu Marine */
-            --secondary-color: #ff6600; /* Orange */
-            --accent-color: #e74c3c; /* Rouge (utilisé pour les cœurs/CTA) */
-            --text-dark: #333;
-            --text-light: #fff;
-            --background-light: #f4f4f9;
+            --primary-color: #003366; /* Bleu Marin NextGen */
+            --secondary-color: #ff8c00; /* Orange NextGen */
+            --accent-color: #27ae60; /* Vèt */
+            --text-dark: #333333;
+            --text-light: #ffffff;
+            --background-light: #f5f5f5;
+            --border-color: #dddddd;
         }
 
-        /* --- Styles Généraux et Communs --- */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             background-color: var(--background-light);
             color: var(--text-dark);
+            margin: 0;
         }
+
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
         }
-        .detail-main {
-            padding-top: 50px;
-            padding-bottom: 80px;
-        }
-        
-        .detail-main h1 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            text-align: center;
-            padding-bottom: 10px;
-        }
-        
-        /* --- STYLES SPÉCIFIQUES: CATALOGUE TRAVAUX (katalog-layout) --- */
 
-        .katalog-main h1 {
-            border-bottom: 2px solid var(--accent-color); 
+        /* --- Header / Titre --- */
+        .katalog-header {
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+
+        .katalog-header h1 {
+            color: var(--primary-color);
+            font-size: 2.2em;
+            margin-bottom: 10px;
         }
 
         .katalog-intro-text {
-            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
             font-size: 1.1em;
             color: #555;
-            margin-bottom: 50px;
         }
 
-        /* --- Style de la Galerie (Grid) --- */
+        .highlight-text {
+            color: var(--secondary-color);
+            font-style: italic;
+            font-weight: bold;
+        }
 
+        /* --- Gallery Grid --- */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            gap: 25px;
             margin-bottom: 60px;
         }
 
         .gallery-card {
-            background-color: var(--background-light); 
-            border-radius: 10px;
+            background-color: #ffffff;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 4px solid var(--secondary-color); 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border-top: 5px solid var(--secondary-color);
         }
 
         .gallery-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
         }
 
         .gallery-card img {
             width: 100%;
-            height: 300px; 
-            object-fit: cover; 
+            height: 300px;
+            object-fit: cover;
             display: block;
         }
 
         .card-info {
-            padding: 15px;
+            padding: 20px;
         }
 
         .card-info h3 {
             color: var(--primary-color);
-            font-size: 1.3em;
-            margin-bottom: 5px;
+            margin: 0 0 10px 0;
+            font-size: 1.25em;
         }
 
         .card-info p {
+            margin: 5px 0;
             font-size: 0.95em;
-            color: #333;
-            line-height: 1.5;
         }
 
         .card-location {
-            color: var(--secondary-color);
+            color: #4B5320;
             font-weight: bold;
-            margin-top: 10px;
-        }
-        .card-location i {
-            margin-right: 5px;
-        }
-
-        /* --- Section Vidéo et CTA --- */
-        .katalog-video-cta {
-            text-align: center;
-            background-color: #f0f0f0;
-            padding: 40px 20px;
-            border-radius: 10px;
-            border: 1px dashed var(--primary-color);
-            margin-bottom: 40px;
-        }
-
-        .video-cta-title {
-            color: var(--accent-color); 
-            font-size: 1.8em;
-            margin-bottom: 20px;
-        }
-
-        .video-wrapper {
-            max-width: 600px;
-            margin: 0 auto 30px auto;
-        }
-
-        .video-wrapper video {
-            width: 100%;
-            height: auto;
+            margin-top: 12px;
             display: block;
-            border-radius: 5px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
-        .video-cta-btn {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1em;
-            transition: background-color 0.3s;
-        }
+    /* 1. Seksyon foot */
+    #footer-description-nextgen {
+        background-color: #4B5320; /* caca jaco */
+        padding: 40px 20px;
+        text-align: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #ffffff; /* Tèks an blan pou l ka parèt byen */
+    }
 
-        .video-cta-btn:hover {
-            background-color: var(--secondary-color);
-        }
-        
-        /* ----------------------------------------------------------------- */
-        /* Compteur de Likes Fictif */
-        /* ----------------------------------------------------------------- */
+    .container-footer-nextgen {
+        max-width: 850px;
+        margin: 0 auto;
+    }
 
-        .like-counter-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 25px; 
-            gap: 20px; 
-            padding: 10px 0;
-            border-bottom: 1px dashed #ddd;
-            transition: all 0.3s ease; 
-        }
+    .container-footer-nextgen p {
+        line-height: 1.6;
+        font-size: 1.05em;
+        margin-bottom: 25px;
+    }
 
-        .like-button-wrapper {
-            position: relative;
-            display: inline-block;
-        }
+    .container-footer-nextgen strong {
+        color: #ff8c00; /* Orange NextGen pou mete aksan */
+    }
 
-        .like-count {
-            font-size: 1.6em; 
-            font-weight: bold;
-            color: #999; 
-            transition: color 0.3s;
-        }
+    /* 2. Ikòn Rezo Sosyal yo */
+    .social-icons-display-nextgen {
+        display: flex;
+        justify-content: center;
+        gap: 35px;
+        margin: 25px 0;
+    }
 
-        .like-btn {
-            background: none;
-            border: 2px solid #ccc;
-            color: #666; 
-            padding: 10px 20px; 
-            border-radius: 25px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-        }
+    .social-icons-display-nextgen a {
+        color: #ffffff;
+        font-size: 30px;
+        transition: transform 0.3s, color 0.3s;
+        text-decoration: none;
+    }
 
-        .like-btn i {
-            margin-right: 8px;
-            font-size: 1.2em;
-        }
+    .social-icons-display-nextgen a:hover {
+        transform: scale(1.2);
+        color: #ff8c00;
+    }
 
-        /* --- ETAT 'LIKÉ' (après le clic) --- */
-        .like-counter-container.is-liked .like-btn,
-        .like-counter-container.is-liked .like-btn:hover {
-            background-color: var(--accent-color); 
-            border-color: var(--accent-color);
-            color: white;
-        }
+    /* 3. Enfòmasyon Kontak Santre */
+    .contact-info-footer-nextgen {
+        margin-top: 20px;
+        font-size: 0.9em;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        padding-top: 20px;
+    }
 
-        .like-counter-container.is-liked .like-count {
-            color: var(--accent-color); 
-        }
+    .contact-info-footer-nextgen p {
+        margin: 5px 0;
+        opacity: 0.9;
+    }
 
-
-        /* --- Animation des Emojis : Positionnement au-dessus du bouton --- */
-
-        .emoji-animation-zone {
-            position: absolute;
-            bottom: 100%; 
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px; 
-            height: 60px; 
-            overflow: hidden; 
-            pointer-events: none; 
-        }
-
-        .emoji {
-            position: absolute;
-            font-size: 1.6em; 
-            opacity: 0; 
-            bottom: 0; 
-            left: 50%;
-            transform: translate(-50%, 0) scale(0.5); 
-            transition: none; 
-        }
-
-        /* Animation au CLIC (classe ajoutée par JavaScript) */
-        .like-counter-container.emoji-animate-click .emoji {
-            transition: opacity 1s ease-out, transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            opacity: 1; 
-        }
-
-        .like-counter-container.emoji-animate-click .emoji:nth-child(1) {
-            transform: translate(10px, -45px) scale(1.2); 
-        }
-
-        .like-counter-container.emoji-animate-click .emoji:nth-child(2) {
-            transition-delay: 0.15s; 
-            transform: translate(-15px, -65px) scale(1.5); 
-        }
-
-        /* --- Footer Styles (Hypothétiques) --- */
-        footer {
-            background-color: var(--primary-color);
-            color: var(--text-light);
-            padding: 20px 0;
-            text-align: center;
-        }
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-        .social-links a {
-            color: white;
-            font-size: 1.5em;
-            margin: 0 10px;
-            transition: color 0.3s;
-        }
-        .social-links a:hover {
-            color: var(--secondary-color);
-        }
-        
-        /* --- Media Query pour le Mobile --- */
-        @media (max-width: 768px) {
-            .gallery-grid {
-                grid-template-columns: 1fr; 
-            }
-        }
-        
+    /* 4. Bottom Banner (Dènye ti liy nwa/fonse a) */
+    .bottom-banner-nextgen {
+        background-color: #003366;
+        color: #ffffff;
+        padding: 15px 10px;
+        text-align: center;
+        font-size: 0.8em;
+        letter-spacing: 1px;
+    }
     </style>
 </head>
 <body>
-    
-    <header>
-</header>
-    
-    <main class="container detail-main katalog-main">
-        
-        <p class="katalog-intro-text" style="margin-bottom: 5px;">
-            Fè yon ti gade <strong>kreyasyon elèv nou</strong> yo nan diferan domèn tankou <strong>Pòtrè, Desen, Custom, ak Penti.</strong> Chak travay se rezilta pasyon yo ak teknik yo metrize nan NextGen Academy.
-        </p>
-        <h1>
-            <span style="color: var(--secondary-color); font-style: italic; font-size: 0.8em;">Art se lavi, Art se pwogrè</span>
-        </h1>
-        
+
+    <main class="container">
+        <header class="katalog-header">
+            <h1>Katalòg travay elèv yo</h1>
+            <p class="katalog-intro-text">
+                Fè yon ti gade <span class="highlight-text">kreyasyon elèv nou</span> yo nan diferan domèn tankou Pòtrè, Desen, Custom, ak Penti. Chak travay se rezilta pasyon yo ak teknik yo metrize nan NextGen Academy.
+            </p>
+            <span class="highlight-text">"Art se lavi, Art se pwogrè"</span>
+        </header>
+
         <section class="gallery-grid">
             
             <div class="gallery-card">
-                <img src="sylvestre1.jpg" alt="Pòtrè Kreyon pa Sylvestre Rose Mirline" loading="lazy">
+                <img src="sylvestre1.jpg" alt="Pòtrè Kreyon pa Sylvestre Rose Mirline">
                 <div class="card-info">
                     <h3>Sylvestre Rose Mirline</h3>
                     <p><strong>Domèn:</strong> Pòtrè Kreyon</p>
                     <p><strong>Nivo:</strong> Debitan & Avanse</p>
-                    <p class="card-location"><i class="fas fa-map-marker-alt"></i>Les Cayes, Boujolie</p>
+                    <span class="card-location"><i class="fas fa-map-marker-alt"></i> Les Cayes, Boujolie</span>
                 </div>
             </div>
             
             <div class="gallery-card">
-                <img src="sylvestre.jpg" alt="Custom sou soulye pa Sylvestre Rose Mirline" loading="lazy">
+                <img src="sylvestre.jpg" alt="Custom sou soulye pa Sylvestre Rose Mirline">
                 <div class="card-info">
                     <h3>Sylvestre Rose Mirline</h3>
                     <p><strong>Domèn:</strong> Custom</p>
                     <p><strong>Nivo:</strong> Avanse</p>
-                    <p class="card-location"><i class="fas fa-map-marker-alt"></i>Les Cayes, Boujolie</p>
+                    <span class="card-location"><i class="fas fa-map-marker-alt"></i> Les Cayes, Boujolie</span>
                 </div>
             </div>
 
             <div class="gallery-card">
-                <img src="keith.jpg" alt="Custom pa Moise Keith" loading="lazy">
+                <img src="keith.jpg" alt="Custom pa Moise Keith">
                 <div class="card-info">
                     <h3>Moise Keith</h3>
                     <p><strong>Domèn:</strong> Custom</p>
-                    <p class="card-location"><i class="fas fa-map-marker-alt"></i>Les Cayes, Fonfrède</p>
+                    <span class="card-location"><i class="fas fa-map-marker-alt"></i> Les Cayes, Fonfrède</span>
                 </div>
             </div>
 
             <div class="gallery-card">
-                <img src="laura.jpg" alt="Custom pa Laura" loading="lazy">
+                <img src="laura.jpg" alt="Custom pa Laura">
                 <div class="card-info">
                     <h3>Laura</h3>
                     <p><strong>Domèn:</strong> Custom</p>
-                    <p class="card-location"><i class="fas fa-map-marker-alt"></i>Les Cayes, Bourdet</p>
+                    <span class="card-location"><i class="fas fa-map-marker-alt"></i> Les Cayes, Bourdet</span>
                 </div>
             </div>
             
             <div class="gallery-card">
-                <img src="steve1.jpg" alt="Custom pa Joseph Steve" loading="lazy">
+                <img src="steve1.jpg" alt="Custom pa Joseph Steve">
                 <div class="card-info">
                     <h3>Joseph Steve</h3>
                     <p><strong>Domèn:</strong> Custom</p>
-                    <p class="card-location"><i class="fas fa-map-marker-alt"></i>Les Cayes, Bergeaud</p>
+                    <span class="card-location"><i class="fas fa-map-marker-alt"></i> Les Cayes, Bergeaud</span>
                 </div>
             </div>
             
             <div class="gallery-card">
-                <img src="ralph.png" alt="Pòtrè pa Ralph" loading="lazy">
+                <img src="ralph.png" alt="Pòtrè pa Ralph">
                 <div class="card-info">
                     <h3>Ralph</h3>
                     <p><strong>Domèn:</strong> Pòtrè</p>
-                    <p class="card-location"><i class="fas fa-map-marker-alt"></i>Les Cayes, Camp-Perrin</p>
+                    <span class="card-location"><i class="fas fa-map-marker-alt"></i> Les Cayes, Camp-Perrin</span>
                 </div>
             </div>
 
             <div class="gallery-card">
-                <img src="rico.jpg" alt="Custom pa Rico" loading="lazy">
+                <img src="rico.jpg" alt="Custom pa Rico">
                 <div class="card-info">
                     <h3>Rico</h3>
                     <p><strong>Domèn:</strong> Custom</p>
-                    <p class="card-location"><i class="fas fa-map-marker-alt"></i>Les Cayes, Camp-Perrin</p>
+                    <span class="card-location"><i class="fas fa-map-marker-alt"></i> Les Cayes, Camp-Perrin</span>
                 </div>
             </div>
 
             <div class="gallery-card">
-                <img src="inconnu.jpg" alt="Desen pa Elèv" loading="lazy">
+                <img src="inconnu.jpg" alt="Desen pa Elèv">
                 <div class="card-info">
                     <h3>Elèv enkonu</h3>
                     <p><strong>Domèn:</strong> Desen</p>
-                    <p class="card-location"><i class="fas fa-map-marker-alt"></i>Les Cayes, La Savanne</p>
+                    <span class="card-location"><i class="fas fa-map-marker-alt"></i> Les Cayes, La Savanne</span>
                 </div>
             </div>
 
             <div class="gallery-card">
-                <img src="thomas.jpg" alt="Penti pa Thomas" loading="lazy">
+                <img src="thomas.jpg" alt="Penti pa Thomas">
                 <div class="card-info">
                     <h3>Thomas</h3>
                     <p><strong>Domèn:</strong> Penti</p>
-                    <p class="card-location"><i class="fas fa-map-marker-alt"></i>Les Cayes, Camp-Perrin</p>
+                    <span class="card-location"><i class="fas fa-map-marker-alt"></i> Les Cayes, Camp-Perrin</span>
                 </div>
             </div>
 
              <div class="gallery-card">
-                <img src="charles.jpg" alt="Penti pa Charles" loading="lazy">
+                <img src="charles.jpg" alt="Penti pa Charles">
                 <div class="card-info">
                     <h3>Charles</h3>
                     <p><strong>Domèn:</strong> Penti</p>
-                    <p class="card-location"><i class="fas fa-map-marker-alt"></i>Saint Louis du Sud</p>
+                    <span class="card-location"><i class="fas fa-map-marker-alt"></i> Saint Louis du Sud</span>
                 </div>
             </div>
             
         </section> 
-            
-        <section class="katalog-video-cta">
-            <h2 class="video-cta-title">NextGen Academy, se talan n' pwodui! 🥰🤩</h2>
-        </div>
-        </section>
     </main>
-    
-    <footer>
-        <div class="container footer-content">
-            <div class="social-links">
-                <a href="https://wa.me/50931013968" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+
+    <footer id="footer-description-nextgen">
+        <div class="container-footer-nextgen">
+            <p>NextGen Academy se yon sant fòmasyon modèn ki vize prepare jèn yo pou demen. 
+            <strong>"Nou se yon jenerasyon kap bati demen"</strong> atravè edikasyon, teknoloji, ak kreyativite nan Sid peyi a.</p>
+
+            <div class="social-icons-display-nextgen">
+                <a href="https://facebook.com/profile.php?id=61575679656061" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://wa.me/50935608869" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://tiktok.com/@nextgenacademy" target="_blank"><i class="fab fa-tiktok"></i></a>
             </div>
-            <p>&copy; 2026 NextGen Academy. Tout dwa rezève.</p>
+
+            <div class="contact-info-footer-nextgen">
+                <p><strong>LOKALIZASYON :</strong> Camp-Perrin (Suisse Haïti Market) & Les Cayes, Sud, Ayiti</p>
+                <p><strong>KONTAK :</strong> nextgenacademy@gmail.com | +509 3560-8868</p>
+            </div>
         </div>
     </footer>
+
+    <div class="bottom-banner-nextgen">
+        &copy; 2026 NEXTGEN ACADEMY | TOUT DWA REZÈVE.
+    </div>
     
-    <script>
-        // =======================================================
-        // ############ FONCTIONS GESTION NOTIFICATION CERTIFICAT ############
-        // =======================================================
-        
-        // Fonksyon pour cacher la notification
-        function closeCertificateNotification() {
-            const notification = document.getElementById('certificate-notification');
-            notification.classList.remove('show');
-            
-            // Cacher complètement après l'animation de transition (500ms)
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 500); 
-        }
-
-        // Fonksyon pour faire apparaître la notification
-        function showCertificateNotification() {
-            const notification = document.getElementById('certificate-notification');
-            
-            // 1. Afficher le bloc (pour que les transitions CSS fonctionnent)
-            notification.style.display = 'block';
-            
-            // 2. Déclencher l'animation (glissement)
-            setTimeout(() => {
-                notification.classList.add('show');
-            }, 50); 
-            
-            // 3. Déclencher la disparition automatique après 10 secondes d'affichage
-            const DURATION_MS = 10000; // 10 secondes d'affichage
-            setTimeout(closeCertificateNotification, DURATION_MS);
-        }
-
-        // =======================================================
-        // ############ LOGIQUE LIKE COMPLÈTE ############
-        // =======================================================
-        
-        // Fonction pour mettre à jour l'état visuel du bouton
-        function updateLikeState(isLiked, currentLikes) {
-            if (isLiked) {
-                container.classList.add('is-liked');
-                likeButton.innerHTML = '<i class="fas fa-heart"></i> LIKÉ'; // Change le texte du bouton
-            } else {
-                container.classList.remove('is-liked');
-                likeButton.innerHTML = '<i class="fas fa-heart"></i> LIKER';
-            }
-            // Met à jour le compteur affiché
-            likeCountDisplay.textContent = currentLikes;
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            
-            const likeButton = document.getElementById('katalogLikeButton');
-            const likeCountDisplay = document.getElementById('katalogLikeCount');
-            const container = document.getElementById('likeContainer'); // Utilisez l'ID pour plus de précision
-            const likeSound = document.getElementById('likeSound'); 
-            const localStorageKey = 'katalog_likes_clicked'; // Clé pour cette page
-            
-            // État initial basé sur l'attribut data-initial-likes (450)
-            let initialLikes = parseInt(likeCountDisplay.getAttribute('data-initial-likes'));
-            let currentLikes = initialLikes;
-            // Charge l'état enregistré (true ou false)
-            let isLiked = localStorage.getItem(localStorageKey) === 'true';
-
-            // Si l'utilisateur a déjà liké, on met à jour le compteur +1
-            if (isLiked) {
-                currentLikes = initialLikes + 1;
-            }
-
-            // Affiche l'état initial
-            updateLikeState(isLiked, currentLikes); 
-
-            // Événement au clic
-            likeButton.addEventListener('click', () => {
-                if (!isLiked) {
-                    // L'utilisateur n'avait pas liké -> on like
-                    currentLikes++;
-                    isLiked = true;
-                    
-                    // 1. Lecture du son
-                    if (likeSound) {
-                        likeSound.currentTime = 0; // Remet à zéro pour rejouer
-                        likeSound.play().catch(e => console.error("Erreur lecture son :", e));
-                    }
-                    
-                    // 2. Animation des Emojis
-                    container.classList.add('emoji-animate-click');
-                    // Retirer la classe après l'animation pour pouvoir la rejouer
-                    setTimeout(() => {
-                        container.classList.remove('emoji-animate-click');
-                    }, 1000); // Durée de l'animation CSS
-
-                } else {
-                    // L'utilisateur a déjà liké -> on un-like (retour à l'état initial)
-                    currentLikes--;
-                    isLiked = false;
-                }
-
-                // 3. Mise à jour de l'affichage
-                updateLikeState(isLiked, currentLikes);
-
-                // 4. Sauvegarde dans le Local Storage
-                localStorage.setItem(localStorageKey, isLiked ? 'true' : 'false');
-            });
-            
-            // Fait apparaître la notification après un court délai
-            setTimeout(showCertificateNotification, 3000); // Apparaît après 3 secondes
-
-        });
-    </script>
 </body>
 </html>

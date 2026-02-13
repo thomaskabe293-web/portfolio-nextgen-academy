@@ -1,11 +1,75 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <meta name="google" content="notranslate">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="logo1.png">
+    
+    <style>
+        /* Bloke seleksyon tèks pou moun pa ka kopye */
+        body {
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+        }
+        /* Bwat mesaj (Modal) ki fòse notifikasyon an */
+        #notification-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); z-index: 10000;
+            display: none; align-items: center; justify-content: center;
+        }
+    </style>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akèy | NextGen Academy</title>
     <link rel="stylesheet" href="base.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="manifest" href="manifest.json">
+
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js"></script>
+
+<script>
+  // Konfigirasyon Firebase
+  const firebaseConfig = {
+      apiKey: "AIzaSyB8eTcR86WDOcBDKjEdEee7SscMq0J8yYg",
+      messagingSenderId: "229839766878",
+      appId: "1:229839766878:android:85b8cd7018396cc3e5bbcf"
+  };
+  
+  firebase.initializeApp(firebaseConfig);
+  const messaging = firebase.messaging();
+
+  // 1. Enskri Service Worker la (sw.js)
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+      .then(() => console.log("Service Worker OK"))
+      .catch(err => console.log("Erreur SW:", err));
+  }
+
+  // 2. Tcheke pèmisyon lè paj la louvri
+  window.onload = function() {
+    if (Notification.permission !== "granted") {
+        document.getElementById("notification-overlay").style.display = "flex";
+    }
+  };
+
+  // 3. Fonksyon bouton "DAKÒ" a
+  async function acceptNotification() {
+    const permission = await Notification.requestPermission();
+    if (permission === "granted") {
+        document.getElementById("notification-overlay").style.display = "none";
+        // Isit la ou ka mete VAPID KEY ou a si w genyen l deja
+        messaging.getToken({ vapidKey: AIzaSyB8eTcR86WDOcBDKjEdEee7SscMq0J8yYg })
+          .then((token) => { console.log("Token aparèy:", token); });
+    } else {
+        alert("Ou dwe aksepte notifikasyon yo pou w ka itilize aplikasyon an.");
+    }
+  }
+</script>
+
+<link rel="manifest" href="manifest.json">
 
     <style>
         /* =================================================================================== */
@@ -29,9 +93,7 @@
             --pilier-color-2: var(--secondary-color); /* Orange */
             --pilier-color-3: var(--primary-color); /* Bleu Foncé */
         }
-
-        /* ------------------------------------------------ */
-        /* Animation du Titre (MODIFICATION) */
+     /* Animation du Titre (MODIFICATION) */
         /* ------------------------------------------------ */
 
         /* Animation d'entrée et de sortie du titre */
@@ -66,7 +128,111 @@
             display: inline-block; 
             /* L'animation constantFloat est maintenant gérée par messageAnimation */
         }
-        
+/* Style de base du menu pour mobile */
+.nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%; 
+    width: 280px;
+    height: 100vh;
+    /* Fond Bleu Marin plus foncé et intense */
+    background: rgba(0, 31, 63, 0.85); /* Bleu marin plus profond et plus opaque */
+    backdrop-filter: blur(20px); /* Flou légèrement augmenté pour la profondeur */
+    -webkit-backdrop-filter: blur(20px); 
+    
+    display: flex;
+    flex-direction: column;
+    padding-top: 100px;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2100;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Lorsque le menu est ouvert */
+.nav-menu.active {
+    right: 0;
+}
+
+/* Style des liens : BLANC ET GRAS */
+.nav-menu ul li a {
+    display: block;
+    padding: 22px 30px;
+    
+    color: #ffffff !important; 
+    font-weight: bold !important; 
+    font-size: 1.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+
+    /* Priorité pour le clic */
+    position: relative;
+    z-index: 2500; 
+    
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* Icônes à l'intérieur du menu */
+.nav-menu ul li a i {
+    color: #ffffff !important;
+    margin-right: 12px;
+    width: 25px;
+    text-align: center;
+    text-shadow: none !important; 
+}
+
+/* Effet au survol des options */
+.nav-menu ul li a:hover {
+    background: rgba(255, 255, 255, 0.1); /* Brillance légère au survol */
+    padding-left: 40px; 
+}
+
+
+/* Style du bouton hamburger */
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2200; /* Toujours au-dessus */
+}
+
+.menu-toggle span {
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    transition: all 0.3s linear;
+}
+
+/* Animation X pour le bouton */
+.menu-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.menu-toggle.open span:nth-child(2) { opacity: 0; }
+.menu-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* Animasyon an X */
+.menu-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+.menu-toggle.open span:nth-child(2) { opacity: 0; }
+.menu-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+
+.menu-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    z-index: 2050;
+}
+
+.menu-backdrop.active { display: block; }
+    
         /* ------------------------------------------------ */
         /* FOND ANIMÉ (MODIFIÉ: Opacité 60%) */
         /* ------------------------------------------------ */
@@ -153,6 +319,24 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(255, 140, 0, 0.6);
         }
+    /* 1. Header avec logo plus grand et ombre */
+    .nga-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 25px; /* Augmenté pour donner de l'air */
+        background-color: #ffffff;
+        position: sticky;
+        top: 0;
+        z-index: 2000;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Ombre plus visible sous le header */
+    }
+
+    .nga-logo img {
+        height: 100px; /* Logo plus grand et visible */
+        width: auto;
+        display: block;
+    }
 
         /* ------------------------------------------------ */
         /* 3.1 Hero Section et Bannière */
@@ -232,23 +416,41 @@
             flex-wrap: wrap; 
         }
 
-        .pilier-link {
-            text-decoration: none;
-            color: inherit;
-            flex-basis: 30%; 
-            max-width: 320px;
-            display: flex;
-        }
+/* Animasyon Wave/Pulse pou Piliers yo */
+@keyframes wavePulse {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
 
-        .pilier-item {
-            background-color: var(--background-card);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            width: 100%;
-            border-top: 3px solid var(--accent-color);
-        }
+.pilier-link {
+    text-decoration: none;
+    color: inherit;
+    flex: 1; /* Sa ap fè yo pran plis plas olye yo kwense */
+    min-width: 280px; /* Pou yo pa janm twò etwat */
+    max-width: 350px;
+    display: flex;
+}
+
+.pilier-item {
+    background-color: var(--background-card);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    border-top: 5px solid var(--accent-color);
+    /* Animasyon an ap toujou ap jwe */
+    animation: wavePulse 3s ease-in-out infinite;
+}
+
+/* Nou dekale animasyon yo pou yo pa monte an menm tan (efè ond) */
+.pilier-link:nth-child(2) .pilier-item { animation-delay: 0.5s; }
+.pilier-link:nth-child(3) .pilier-item { animation-delay: 1s; }
+
+.pilier-item.p1 { border-top-color: var(--pilier-color-1); }
+.pilier-item.p2 { border-top-color: var(--pilier-color-2); }
+.pilier-item.p3 { border-top-color: var(--pilier-color-3); }
+
 
         /* Classes de couleur spécifiques (utilisées dans le HTML) */
         .pilier-item.p1 { border-top: 3px solid var(--pilier-color-1); }
@@ -282,333 +484,215 @@
             color: var(--text-dark);
         }
 
-
-/* ------------------------------------------------ */
-/* --- NOUVEAU: Section "Kesyon w ka poze" (FAQ/Accordéon) --- */
-/* ------------------------------------------------ */
+/* --- FAQ STYLE (NEXTGEN) --- */
 .faq-section {
     padding: 40px 0;
-    background-color: var(--pale-bg); /* Couleur de fond pour la section FAQ */
+    /* Chanje #f5f5f5 pou kòd jòn/pale sa a */
+    background-color: #f3e5c9; 
 }
+
+
 .faq-title {
-    color: var(--primary-color);
+    color: #003366; /* Bleu Marin */
     font-size: 1.8em;
-    font-weight: bold;
+    font-weight: bold; /* Titre inchangé, reste en gras */
     text-align: center;
     margin-bottom: 30px;
 }
+
 .accordion-wrapper {
     max-width: 800px;
     margin: 0 auto;
-    padding: 0 5%;
+    padding: 0 15px;
 }
+
 .accordion-item {
-    margin-bottom: 10px;
-    background-color: var(--background-card);
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    border-bottom: 1px solid #eeeeee; /* Liy separasyon ant kesyon yo */
     overflow: hidden;
 }
+
 .accordion-item summary {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
-    font-weight: bold;
-    color: var(--primary-color); /* Bleu Marin Foncé */
+    padding: 20px 10px;
+    font-weight: 300; /* Police fine pour la question */
+    color: #333333;
     cursor: pointer;
     list-style: none;
     outline: none;
     transition: background-color 0.3s;
 }
-.accordion-item summary:hover {
-    background-color: #f7f7f7;
+
+/* Retire ti flèch default navigatè a */
+.accordion-item summary::-webkit-details-marker { display: none; }
+
+
+/* Tèks kesyon an nan mitan */
+.faq-question-text {
+    flex-grow: 1;
+    font-size: 1.05em;
+    padding-right: 10px;
+    font-weight: 300; /* Police fine */
 }
-.accordion-item[open] summary {
-    color: var(--secondary-color); /* Orange vif à l'ouverture */
-}
-.accordion-item summary::-webkit-details-marker {
-    display: none;
-}
-.accordion-item summary:before {
-    content: "\f054"; /* Flèche droite (Font Awesome) */
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
-    /* Optimisation pour l'alignement à droite */
-    flex-shrink: 0; /* Empêche l'icône de rétrécir */
-    margin-left: auto; 
-    margin-right: 10px;
+
+/* Flèch bò dwat la (Koulè Orange NextGen) */
+.faq-arrow-right {
+    font-size: 14px;
+    color: #ff8c00; /* Modification: Flèche en orange */
     transition: transform 0.3s;
-    color: var(--accent-color);
 }
-.accordion-item[open] summary:before {
-    transform: rotate(90deg);
-    color: var(--secondary-color);
+
+/* Lè li louvri: chanje koulè ak vire flèch */
+.accordion-item[open] summary {
+    background-color: #fafafa;
 }
+
+.accordion-item[open] .faq-arrow-right {
+    transform: rotate(180deg);
+}
+
 .accordion-item-content {
-    padding: 10px 20px 20px 20px;
-    color: var(--text-dark);
-    border-top: 1px solid var(--border-color);
-    background-color: #f9f9f9;
+    padding: 0px 20px 20px 50px; /* Aliyen ak tèks la */
+    color: #666666;
+    font-size: 0.95em;
+    line-height: 1.5;
+    font-weight: 300; /* Police fine pour la réponse */
 }
 
-/* --- NOUVEAU: Style Bouton WhatsApp (Post-FAQ) --- */
-.whatsapp-cta-container {
-    text-align: center;
-    padding: 30px 0;
-    background-color: var(--background-light); /* Gris clair comme le fond de l'accueil */
-    border-top: 1px solid var(--border-color);
-}
-.whatsapp-cta-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 15px;
-    background-color: #25d366; /* Vert WhatsApp */
-    color: var(--text-light);
-    text-decoration: none;
-    font-size: 1.3em;
-    font-weight: bold;
-    padding: 15px 30px;
-    border-radius: 50px; /* Bouton arrondi */
-    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.5);
-    transition: background-color 0.3s, transform 0.3s;
-}
-.whatsapp-cta-btn:hover {
-    background-color: #1faa54;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.7);
-}
-.whatsapp-cta-icon {
-    font-size: 1.5em;
+/* Mete ikon nan menu an ak yon lonbraj blan */
+.nav-menu ul li a i {
+    color: #4B5320;
+    width: 25px;
+    font-size: 1.2em; 
+    text-shadow: 1px 2px 3px rgba(255, 255, 255, 0.8);
+    display: inline-block;
 }
 
-        /* ------------------------------------------------ */
-        /* --- Section d'Inscription (Transaction) --- */
-        /* ------------------------------------------------ */
-        .transaction-section {
-            background-color: var(--primary-color); /* Bleu Marin Foncé */
-            padding: 60px 0;
-            text-align: center;
-        }
 
-        .transaction-section h2 {
-            color: var(--secondary-color);
-            margin-bottom: 30px;
-            text-transform: uppercase;
-        }
-
-        .form-container {
-            background-color: var(--background-card);
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-            max-width: 500px;
-            margin: 0 auto; 
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group input, .form-group textarea, .file-upload-group label { 
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1em;
-            box-sizing: border-box; 
-        }
-
-        .file-upload-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        .file-upload-group label {
-            display: block;
-            padding: 8px 0;
-            color: var(--text-dark);
-            font-weight: bold;
-            border: none;
-        }
-        
-        .paiement-intro-text {
-            font-size: 1.1em;
-            font-weight: bold;
-            color: var(--primary-color); 
-            margin-top: 20px;
-            margin-bottom: 20px;
-            padding-top: 15px;
-            border-top: 1px dashed #ccc;
-        }
-
-
-        .paiement-options-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr; 
-            gap: 15px; 
-            margin-bottom: 25px;
-        }
-
-        .option-item button {
-            background: none;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            cursor: pointer;
-            padding: 10px;
-            width: 100%;
-            transition: border-color 0.3s;
-        }
-        .option-item button:hover {
-            border-color: var(--secondary-color);
-        }
-
-        .paiement-logo {
-            width: 120px; 
-            height: auto;
-            max-width: 100%;
-            display: block;
-            margin: 0 auto;
-        }
-
-        .submit-btn {
-            background-color: var(--accent-color);
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.1em;
-            cursor: pointer;
-            width: 100%; 
-            transition: background-color 0.3s;
-        }
-        .submit-btn:hover {
-            background-color: #1e8449; /* Vert plus foncé au survol */
-        }
-        /* --- Styles pour la Modale de Paiement --- */
-.modal {
-    display: none; /* Masqué par défaut */
-    position: fixed; 
-    z-index: 1000; 
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgba(0,0,0,0.7); /* Fond noir transparent */
-}
-.modal-content {
-    background-color: #fff;
-    margin: 15% auto; /* 15% du haut et centré */
-    padding: 25px;
-    border-radius: 8px;
-    border: 3px solid var(--primary-color);
-    width: 80%;
-    max-width: 400px; 
-    text-align: center;
-    position: relative;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-.close-btn {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    position: absolute;
-    top: 10px;
-    right: 15px;
-}
-.close-btn:hover,
-.close-btn:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-.modal-number {
-    font-size: 1.5em;
-    font-weight: bold;
+/* Chanje koulè tèks la lè w pase sourit la sou li (optionnel) */
+.nav-menu ul li a:hover {
     color: var(--secondary-color);
-    margin: 10px 0;
-}
-.modal-name {
-    font-size: 1.2em;
-    color: var(--text-dark);
-}
-.modal-note {
-    margin-top: 15px;
-    font-size: 0.9em;
-    color: #dc3545; /* Rouge d'alerte */
-    border-top: 1px dashed #ccc;
-    padding-top: 10px;
 }
 
-        
-        /* ------------------------------------------------ */
-        /* --- Blòk Bouton Like (Déplacé après Transaction) --- */
-        /* ------------------------------------------------ */
-        .like-container {
-            text-align: center;
-            margin: 0 auto; 
-            padding: 30px 0;
-            background-color: var(--background-light); 
-            border-top: 1px solid #ccc; 
-            border-bottom: 1px solid #ccc;
-        }
-        .like-counter {
-            font-size: 1.5em;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-        .like-btn {
-            background-color: var(--background-card);
-            color: #aaa;
-            border: 2px solid #aaa;
-            padding: 15px 20px;
-            border-radius: 50%;
-            font-size: 1.8em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .like-btn.liked {
-            background-color: #dc3545;
-            color: white; 
-            border-color: #dc3545;
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(220, 53, 69, 0.4);
-        }
-        
-        /* Suppression du logo nga */
-        .nga-logo-footer { display: none !important; }
-        
-        /* Suppression de la notification */
-        .certificate-notify-tab { display: none !important; }
+    /* 1. Seksyon foot */
+    #footer-description-nextgen {
+        background-color: #4B5320; /* caca jaco */
+        padding: 40px 20px;
+        text-align: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #ffffff; /* Tèks an blan pou l ka parèt byen */
+    }
 
-        /* Responsive */
-        @media (max-width: 900px) {
-            .pilier-link { flex-basis: 45%; max-width: 100%; }
-        }
-        @media (max-width: 600px) {
-            .piliers-grid { flex-direction: column; }
-            .pilier-link { flex-basis: 100%; }
-            .paiement-options-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+    .container-footer-nextgen {
+        max-width: 850px;
+        margin: 0 auto;
+    }
+
+    .container-footer-nextgen p {
+        line-height: 1.6;
+        font-size: 1.05em;
+        margin-bottom: 25px;
+    }
+
+    .container-footer-nextgen strong {
+        color: #ff8c00; /* Orange NextGen pou mete aksan */
+    }
+
+    /* 2. Ikòn Rezo Sosyal yo */
+    .social-icons-display-nextgen {
+        display: flex;
+        justify-content: center;
+        gap: 35px;
+        margin: 25px 0;
+    }
+
+    .social-icons-display-nextgen a {
+        color: #ffffff;
+        font-size: 30px;
+        transition: transform 0.3s, color 0.3s;
+        text-decoration: none;
+    }
+
+    .social-icons-display-nextgen a:hover {
+        transform: scale(1.2);
+        color: #ff8c00;
+    }
+
+    /* 3. Enfòmasyon Kontak Santre */
+    .contact-info-footer-nextgen {
+        margin-top: 20px;
+        font-size: 0.9em;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        padding-top: 20px;
+    }
+
+    .contact-info-footer-nextgen p {
+        margin: 5px 0;
+        opacity: 0.9;
+    }
+
+    /* 4. Bottom Banner (Dènye ti liy nwa/fonse a) */
+    .bottom-banner-nextgen {
+        background-color: #003366;
+        color: #ffffff;
+        padding: 15px 10px;
+        text-align: center;
+        font-size: 0.8em;
+        letter-spacing: 1px;
+    }
+
+body {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none;     /* IE 10 ak IE 11 */
+    user-select: none;         /* Estanda */
+    -webkit-touch-callout: none; /* Bloke meni sou iPhone lè w peze lontan */
+}
+
+/* Pèmèt seleksyon sèlman nan bwat input si w genyen yo */
+input, textarea {
+    -webkit-user-select: text;
+    user-select: text;
+}
+    
+</style>
+
+
 </head>
 <body>
-
-    <div class="top-bar">
-        <div class="container top-info">
-            <span class="contact-item"><i class="fas fa-bullhorn"></i> La fòmasyon disponib kounye a</span>
-        </div>
+<div id="notification-overlay">
+    <div style="background:white; padding:30px; border-radius:15px; text-align:center; max-width:320px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+        <img src="logo1.png" style="width: 80px; margin-bottom: 15px;">
+        <h2 style="color:#003366; margin-bottom:10px; font-size: 1.4em;">Aktive Notifikasyon</h2>
+        <p style="color:#333; font-size: 0.9em; margin-bottom: 20px;">Pou w ka resevwa alèt sou nouvo kou ak bous detid, ou dwe aktive notifikasyon yo.</p>
+        <button onclick="acceptNotification()" style="background:#ff8c00; color:white; border:none; padding:15px; border-radius:8px; font-weight:bold; cursor:pointer; width:100%; font-size: 1.1em;">DAKÒ, MWEN KONPRANN</button>
     </div>
+</div>
 
-    <header>
-        <nav class="container">
-            <div class="logo">
-                <img src="logo1.png" alt="Logo nextgen academy" class="logo-img">
-                
-    </header>
+<div class="menu-backdrop" id="menuBackdrop" onclick="toggleMenu()"></div>
+
+<header class="nga-header">
+    <div class="nga-logo">
+        <img src="logo1.png" alt="NextGen Academy">
+    </div> <button class="menu-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <nav class="nav-menu" id="navMenu">
+        <ul>
+            <li><a href="art_detail.html"><i class="fas fa-palette"></i> Art</a></li>
+            <li><a href="tech_detail.html"><i class="fas fa-laptop-code"></i> Teknoloji</a></li>
+            <li><a href="bibliyotek.html"><i class="fas fa-book"></i> Edikasyon</a></li>
+            <li><a href="pèman.html"><i class="fas fa-wallet"></i> Tranzaksyon</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+<div class="menu-backdrop" id="menuBackdrop" onclick="toggleMenu()"></div>
+
 
     <section class="hero-section">
         <div class="background-animation-layer">
@@ -626,7 +710,7 @@
     </div>
     
 
-<a href="fòmasyon.html" class="cta-bourse-btn" style="text-decoration:none; margin-bottom:10px; display:inline-block;">
+<a href="tech_detail.html" class="cta-bourse-btn" style="text-decoration:none; margin-bottom:10px; display:inline-block;">
     Fòmasyon disponib
 </a>
 
@@ -636,249 +720,201 @@
 </div>
     </section>
 
-    <section class="piliers-section">
-        <div class="container">
-            <h2 class="section-title-shape">3 poto mitan nou yo:</h2>
-            <p class="piliers-subtitle">Chwazi domèn ki entèrese w lan</p> 
-            <div class="piliers-grid">
-                
-                <a href="art_detail.html" class="pilier-link">
-                    <div class="pilier-item p1">
-                        <span class="pilier-icon">🪴</span>
-                        <h3>Art</h3>
-                        <p>Pou aprann kreye e eksprime sa w' santi atravè men w'.</p>
-                    </div>
-                </a>
+<section class="piliers-section" id="piliers">
+    <div class="container">
+        <h2 class="section-title-shape">3 poto mitan nou yo:</h2>
+        <p class="piliers-subtitle">Chwazi domèn ki entèrese w lan</p> 
+        <div class="piliers-grid">
+            
+            <a href="art_detail.html" class="pilier-link">
+                <div class="pilier-item p1">
+                    <span class="pilier-icon">🪴</span>
+                    <h3>Art</h3>
+                    <p>Pou aprann kreye e eksprime sa w' santi atravè men w'.</p>
+                </div>
+            </a>
 
-                <a href="bibliyotek.html" class="pilier-link">
-                    <div class="pilier-item p2">
-                        <span class="pilier-icon">🧠</span>
-                        <h3>Edikasyon</h3>
-                        <p>Pou fòme tèt ou, dekouvri potansyèl ou, aprann pou vin meyè vèsyon de oumenm.</p>
-                    </div>
-                </a>
+            <a href="bibliyotek.html" class="pilier-link">
+                <div class="pilier-item p2">
+                    <span class="pilier-icon">🧠</span>
+                    <h3>Edikasyon</h3>
+                    <p>Pou fòme tèt ou, dekouvri potansyèl ou, aprann pou vin meyè vèsyon de oumenm.</p>
+                </div>
+            </a>
 
-                <a href="tech_detail.html" class="pilier-link">
-                    <div class="pilier-item p3">
-                        <span class="pilier-icon">📡</span>
-                        <h3>Teknoloji</h3>
-                        <p>Pou metrize zouti modèn yo pou viv pi byen nan mond dijital la.</p>
-                    </div>
-                </a>
+            <a href="tech_detail.html" class="pilier-link">
+                <div class="pilier-item p3">
+                    <span class="pilier-icon">📡</span>
+                    <h3>Teknoloji</h3>
+                    <p>Pou metrize zouti modèn yo pou viv pi byen nan mond dijital la.</p>
+                </div>
+            </a>
 
-            </div>
         </div>
-    </section>
+    </div>
+</section>
+
     
-    <section class="faq-section">
-        <div class="container">
-            <div class="faq-title">Kesyon w ka poze:</div>
-            <div class="accordion-wrapper" id="accordion-container">
-                
-                <details class="accordion-item">
-                    <summary>NextGen Academy: ki vizyon nou?</summary>
-                    <div class="accordion-item-content">
-                        <p>Nou se yon jenerasyon k ap bati demen. Vizyon nou se ankouraje yon nouvo jenerasyon Ayisyen ki genyen zouti konesans ak motivasyon pou transfòme peyi yo.</p>
-                    </div>
-                </details>
+<section class="faq-section">
+    <div class="container">
+        <div class="faq-title">Kesyon w ka poze:</div>
+        <div class="accordion-wrapper">
+            
+<details class="accordion-item">
+    <summary>
+        <span class="faq-question-text">1. NextGen Academy: ki vizyon nou?</span>
+        <i class="fas fa-chevron-down faq-arrow-right"></i>
+    </summary>
+    <div class="accordion-item-content">
+        <p>Nou se yon jenerasyon k ap bati demen. Vizyon nou se ankouraje yon nouvo jenerasyon Ayisyen ki genyen zouti konesans ak motivasyon pou transfòme peyi yo.</p>
+    </div>
+</details>
 
-                <details class="accordion-item">
-                    <summary>Ki ansanb moum ki fè pati ekip NGA a?</summary>
-                    <div class="accordion-item-content">
-                        <p><strong>Thomas kabé</strong>, fòmatè prensipal & responsab operasyon. <p><strong>Francesse gabriel</strong>, responsab administratif & asistant.</p>
-                    </div>
-                </details>
+<details class="accordion-item">
+    <summary>
+        <span class="faq-question-text">2. Ki ansanb moun ki fè pati ekip NGA a?</span>
+        <i class="fas fa-chevron-down faq-arrow-right"></i>
+    </summary>
+    <div class="accordion-item-content">
+        <p><strong>Thomas Kabé</strong>, fòmatè prensipal & responsab operasyon. <br> <strong>Francesse Gabriel</strong>, responsab administratif & asistant.</p>
+    </div>
+</details>
 
-                <details class="accordion-item">
-                    <summary>Kijan mwen ka jwenn demi bous (rabè 50%)?</summary>
-                    <div class="accordion-item-content">
-                        <p>Se yon opòtinite pou nouvo moun k ap enskri yo.
-Byen gade enfòmasyon sou sit la epi aplike nan yon quiz 5 kesyon. Ou ka jwenn 50% rabè sou frè premye fòmasyon w ap pran an.</p>
-                    </div>
-                </details>
+<details class="accordion-item">
+    <summary>
+        <span class="faq-question-text">3. Kijan mwen ka jwenn demi bous (rabè 50%)?</span>
+        <i class="fas fa-chevron-down faq-arrow-right"></i>
+    </summary>
+    <div class="accordion-item-content">
+        <p>Se yon opòtinite pou nouvo moun k ap enskri yo. Byen gade enfòmasyon sou sit la epi aplike nan yon quiz 5 kesyon. Ou ka jwenn 50% rabè sou frè premye fòmasyon w ap pran an.</p>
+    </div>
+</details>
 
-                <details class="accordion-item">
-                    <summary>Èske nou gen yon garanti sètifika?</summary>
-                    <div class="accordion-item-content">
-                        <p>Wi, nou bay yon sètifika ofisyèl ki par patnè nou Suisse Haïti Market. Sètifika nou yo trè rekonèt an ewòp e yo gen anpil valè.</p>
-                    </div>
-                </details>
+<details class="accordion-item">
+    <summary>
+        <span class="faq-question-text">4. Nan ki peyi sètifika nou yo plis valide?</span>
+        <i class="fas fa-chevron-down faq-arrow-right"></i>
+    </summary>
+    <div class="accordion-item-content">
+        <p>Nou bay yon sètifika ofisyèl ansanm ak patnè nou Suisse Haïti Market. Sètifika nou yo rekonèt sitou an Ewòp.</p>
+    </div>
+</details>
 
-                <details class="accordion-item">
-                    <summary>Kijan mwen ka jwenn lòt rediksyon sou frè fòmasyon yo?</summary>
-                    <div class="accordion-item-content">
-                        <p>Si ou referanse (rekòmande) lòt moun, nou fè rediksyon pou ou sou frè patisipasyon an.</p>
-                    </div>
-                </details>
-
-                <details class="accordion-item">
-                    <summary>NGA: ki kote nou bay kou nou yo?</summary>
-                    <div class="accordion-item-content">
-                        <p>Nou bay kou nou yo nan sud, nan kanperen (camp-perrin) e pafwa nan okay (les cayes).</p>
-                    </div>
-                </details>
+<details class="accordion-item">
+    <summary>
+        <span class="faq-question-text">5. NGA: ki kote nou bay kou nou yo?</span>
+        <i class="fas fa-chevron-down faq-arrow-right"></i>
+    </summary>
+    <div class="accordion-item-content">
+        <p>Nou bay kou prezansyèl nou yo nan Sid; Camp-Perrin & Cayes.</p>
+    </div>
+</details>
 
 
-    </section>
-    <section class="whatsapp-cta-container">
-        <a href="kontak.html" class="whatsapp-cta-btn">
-            <i class="fab fa-whatsapp whatsapp-cta-icon"></i>
-            Kontakte nou
-        </a>
+        </div>
+    </div>
+</section>
+
     </section>
           
-<section class="transaction-section">
-        <div class="container form-container">
-            <h2>Kote pou fè tranzaksyon</h2>
-            <form id="transactionForm" action="https://getform.io/f/akkpolva" method="POST" enctype="multipart/form-data">
-                <div class="form-group"><input type="text" name="Nom" placeholder="Non" required></div>
-                <div class="form-group"><input type="text" name="Siyati" placeholder="Siyati" required></div>
-                <div class="file-upload-group">
-                    <label>Kaptu dekran tranzaksyon an:</label>
-                    <input type="file" name="Capture" accept="image/*" required>
-                </div>
-                <div class="form-group"><input type="text" name="Montant" placeholder="Montan (eg. 500 HTG)" required></div>
-                <div class="form-group"><textarea name="Description" placeholder="Deskripsyon" rows="3"></textarea></div>
-                <div class="form-group"><input type="text" name="Telephone" placeholder="WhatsApp" required></div>
-                
-                <p class="paiement-intro-text">Chwazi mwayen wap fè transfè an:</p>
-                <div class="paiement-options-grid">
-                    <div class="option-item">
-                    <input type="hidden" name="_gotof" value="/merci.html">
-                        
-                        <button type="button" class="natcash-btn" onclick="showPaymentDetails('35 60 88 65', 'Kes* Ben*')"><img src="natcash1.png" class="paiement-logo"></button>
-                    </div>
-                    <div class="option-item">
-                        <button type="button" class="moncash-btn" onclick="showPaymentDetails('31 01 39 68', 'Kes* Ben*')"><img src="img0.png" class="paiement-logo"></button>
-                    </div>
-                </div>
-                <button type="submit" class="submit-btn">Soumèt enfòmasyon yo</button>
-            </form>
+
+<section id="footer-description-nextgen">
+    <div class="container-footer-nextgen">
+        <p>NextGen Academy se yon sant fòmasyon modèn ki vize prepare jèn yo pou demen. 
+        <strong>"Nou se yon jenerasyon kap bati demen"</strong> atravè edikasyon, teknoloji, ak kreyativite nan Sid peyi a.</p>
+
+        <div class="social-icons-display-nextgen">
+            <a href="https://facebook.com/profile.php?id=61575679656061" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://wa.me/50935608869" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://tiktok.com/@nextgenacademy" target="_blank"><i class="fab fa-tiktok"></i></a>
         </div>
-    </section>
- 
-    <footer>
-        <div class="container footer-content">
-            <div class="social-links">
-                </div>
-            <p>&copy; 2024 NextGen Academy. Tout dwa rezève.</p>
-        </div>
-    </footer>
-    <div id="paymentModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h3>Nimewo pou tranzaksyon</h3>
-            <p>Peye sou kont sa a:</p>
-            <p id="modalNumber" class="modal-number"></p>
-            <p id="modalName" class="modal-name"></p>
-            <p class="modal-note">Pa bliye fè kapti dekran an, pou ou ka soumèt fòmilè an.</p>
+
+        <div class="contact-info-footer-nextgen">
+            <p><strong>LOKALIZASYON :</strong> Camp-Perrin (Suisse Haïti Market) & Les Cayes, Sud, Ayiti</p>
+            <p><strong>KONTAK :</strong> nextgenacademy@gmail.com | +509 3560-8868</p>
         </div>
     </div>
-    <script>
-        // --- Fonctions pour la Modale de Paiement ---
-        const modal = document.getElementById('paymentModal');
-        const closeBtn = document.querySelector('.close-btn');
-        
-        // Fonction globale appelée par les boutons NatCash/MonCash
-        window.showPaymentDetails = function(number, name) {
-            document.getElementById('modalNumber').textContent = number;
-            document.getElementById('modalName').textContent = name;
-            modal.style.display = "block"; // Afficher la modale
-        }
+</section>
 
-        // Pour fermer la modale en cliquant sur le 'x'
-        closeBtn.onclick = function() {
-            modal.style.display = "none";
-        }
-
-        // Fermer la modale si l'utilisateur clique en dehors de son contenu
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
-<div id="fomasyonModal" class="modal">
-    <div class="modal-content" style="max-width: 600px; text-align: left;">
-        <span class="close-btn" onclick="closeFomasyonModal()">&times;</span>
-        
-        <div style="background: var(--pale-bg); padding: 15px; border-radius: 8px; text-align: center; margin-bottom: 20px; border: 2px solid var(--secondary-color);">
-            <h3 style="color: var(--primary-color); margin-bottom: 10px;">Enskripsyon ap fèmen nan:</h3>
-            <div id="countdown-timer" style="font-size: 1.5em; font-weight: bold; color: #dc3545;">00j 00h 00m 00s</div>
-        </div>
-
-        <h2 style="color: var(--primary-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 10px;">Detay Fòmasyon Serigrafi</h2>
-        
-        <div class="accordion-wrapper" style="padding: 0; margin-top: 15px;">
-            <details class="accordion-item">
-                <summary>Poukisa mwen ta dwe aprann serigrafi dijital jodi a ?</summary>
-                <div class="accordion-item-content">Serigrafi dijital se avni metye an. Avèk teknik sa a, ou pa bezwen gwo materyèl lou ankò. Yon senp laptòp oswa yon telefòn kont pou w kreye bèl travay pwofesyonèl sou nenpòt sipò.</div>
-            </details>
-
-            <details class="accordion-item">
-                <summary>Ki materyèl mwen dwe genyen ?</summary>
-                <div class="accordion-item-content">Ou sèlman bezwen yon koneksyon entènèt ak yon laptòp oswa yon smartphone. Klike sou lyen sit NextGen lan pou wè tout detay sou materyèl yo.</div>
-            </details>
-
-            <details class="accordion-item">
-                <summary>Ki kalite travay mwen ap ka fè ?</summary>
-                <div class="accordion-item-content">W ap aprann fè: plak donè, braslè, bidon, kepi, mayo, kòk telefòn, tablo, ak dekorasyon veyikil. Wap wè tou kijan pou achte stock transfè (vinyl, siblimasyon) pou mwens pase 2$ epi enpòte yo nan vil ou.</div>
-            </details>
-
-            <details class="accordion-item">
-                <summary>Kijan pwosesis travay lan ap egzekite menm ?</summary>
-                <div class="accordion-item-content">Travay yo se faktori etranje kap fè yo. N ap montre w kijan pou kreye yon kat Visa pou jere kòmand nan faktori sa yo (China). Nap ba w yon adrès "safe" pou livrezon nan Sid oswa Pòtoprens.</div>
-            </details>
-
-            <details class="accordion-item">
-                <summary>Ki kote sa ap fèt epi konbyen sa koute ?</summary>
-                <div class="accordion-item-content">Samdi 21 fevriye nan Kanperen (Suisse Haiti Market). Enskripsyon: 1000 goud. Fòmasyon: 8000 goud (oswa 4000 goud si ou gen demi bous). W ap jwenn sètifika ofisyèl.</div>
-            </details>
-        </div>
-    </div>
+<div class="bottom-banner-nextgen">
+    &copy; 2026 NEXTGEN ACADEMY | TOUT DWA REZÈVE.
 </div>
-<style>
-    /* Stil pou bwat la fiks ak gwo */
-    .fomasyon-content {
-        background-color: #fff;
-        margin: 5% auto; 
-        padding: 25px;
-        border-radius: 8px;
-        border: 3px solid var(--primary-color);
-        width: 90%;
-        max-width: 700px; /* Pi gwo jan ou mande l la */
-        height: 70vh; /* Wotè fiks (70% nan ekran an) */
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+
+<script>
+    // 1. Gestion du Menu Hamburger
+    function toggleMenu() {
+        const nav = document.getElementById('navMenu');
+        const backdrop = document.getElementById('menuBackdrop');
+        const btn = document.querySelector('.menu-toggle');
+        
+        if(nav && backdrop && btn) {
+            nav.classList.toggle('active');
+            backdrop.classList.toggle('active');
+            btn.classList.toggle('open');
+        }
+    }
+    // Une seule fonction pour tout gérer
+    function toggleMenu() {
+        const nav = document.getElementById('navMenu');
+        const backdrop = document.getElementById('menuBackdrop');
+        const btn = document.querySelector('.menu-toggle');
+        
+        if(nav && backdrop && btn) {
+            nav.classList.toggle('active');
+            backdrop.classList.toggle('active');
+            btn.classList.toggle('open');
+        }
     }
 
-    /* Zòn ki pral defile a (anndan bwat la) */
-    .scrollable-body {
-        overflow-y: auto; /* Pèmèt scroll vètikal */
-        flex-grow: 1;
-        padding-right: 15px; /* Espas pou ba a pa kouvri tèks la */
-        margin-top: 15px;
-    }
+    // Gestion propre des clics sur les liens
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            // On laisse le comportement par défaut (la navigation) se faire
+            // Mais on ferme le menu juste avant pour la propreté visuelle
+            const nav = document.getElementById('navMenu');
+            const backdrop = document.getElementById('menuBackdrop');
+            const btn = document.querySelector('.menu-toggle');
+            
+            nav.classList.remove('active');
+            backdrop.classList.remove('active');
+            btn.classList.remove('open');
+        });
+    });
+  // Konfigirasyon Firebase
+  const firebaseConfig = {
+      apiKey: "AIzaSyB8eTcR86WDOcBDKjEdEee7SscMq0J8yYg",
+      messagingSenderId: "229839766878",
+      appId: "1:229839766878:android:85b8cd7018396cc3e5bbcf"
+  };
+  
+  firebase.initializeApp(firebaseConfig);
+  const messaging = firebase.messaging();
 
-    /* Personnalisation ba defilman an (Stil PDF) */
-    .scrollable-body::-webkit-scrollbar {
-        width: 10px;
+  // 1. Enskri Service Worker la (sw.js)
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+      .then(() => console.log("Service Worker OK"))
+      .catch(err => console.log("Erreur SW:", err));
+  }
+
+  // 2. Tcheke pèmisyon lè paj la louvri
+  window.onload = function() {
+    if (Notification.permission !== "granted") {
+        document.getElementById("notification-overlay").style.display = "flex";
     }
-    .scrollable-body::-webkit-scrollbar-track {
-        background: #f1f1f1; 
-        border-radius: 10px;
+  };
+
+  // 3. Fonksyon bouton "DAKÒ" a
+  async function acceptNotification() {
+    const permission = await Notification.requestPermission();
+    if (permission === "granted") {
+        document.getElementById("notification-overlay").style.display = "none";
+        messaging.getToken({ vapidKey: AIzaSyB8eTcR86WDOcBDKjEdEee7SscMq0J8yYg })
+          .then((token) => { console.log("Token aparèy:", token); });
+    } else {
+        alert("Ou dwe aksepte notifikasyon yo pou w ka itilize aplikasyon an.");
     }
-    .scrollable-body::-webkit-scrollbar-thumb {
-        background: var(--primary-color); 
-        border-radius: 10px;
-        border: 2px solid #f1f1f1;
-    }
-    .scrollable-body::-webkit-scrollbar-thumb:hover {
-        background: var(--secondary-color);
-    }
-</style>
-                
-    </body>
+  }
+</script>
+</body>
 </html>

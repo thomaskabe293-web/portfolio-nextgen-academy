@@ -193,7 +193,7 @@
             margin-top: 15px;
             padding: 10px;
             border-radius: 8px;
-            background-color: #f7e6ff; /* Fond légèrement mauve */
+            background: linear-gradient(135deg, #A3AD7C 0%, #F3E5AB 100%);
             border: 2px solid var(--secondary-color);
             text-align: center;
             font-weight: bold;
@@ -217,14 +217,144 @@
             color: #333;
             font-size: 1em;
         }
+/* Style du bouton avec animation de lumière tournante */
+.btn-aura {
+    position: relative;
+    background-color: #4B5320 !important; /* Couleur Caca Jaco */
+    color: white !important;
+    padding: 12px 25px;
+    border-radius: 8px;
+    overflow: hidden; /* Important pour masquer le surplus de la ligne */
+    border: none;
+    z-index: 1;
+}
+
+.btn-aura::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(transparent, transparent, transparent, #ffffff); /* La lumière blanche */
+    animation: rotate-light 4s linear infinite;
+    z-index: -2;
+}
+
+.btn-aura::after {
+    content: '';
+    position: absolute;
+    inset: 3px; /* Épaisseur de la ligne de lumière */
+    background: #4B5320; /* Même couleur que le bouton pour créer l'effet de bordure */
+    border-radius: 5px;
+    z-index: -1;
+}
+
+@keyframes rotate-light {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
         
-        /* --- Footer Styles --- */
-        footer {
-            background-color: #003366; 
-            color: var(--text-light); 
-            padding: 15px 0;
-            text-align: center;
-        }
+    /* 1. Seksyon foot */
+    #footer-description-nextgen {
+        background-color: #4B5320; /* caca jaco */
+        padding: 40px 20px;
+        text-align: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #ffffff; /* Tèks an blan pou l ka parèt byen */
+    }
+
+    .container-footer-nextgen {
+        max-width: 850px;
+        margin: 0 auto;
+    }
+body {
+    margin: 0; /* Supprime les marges par défaut du navigateur */
+    padding: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: var(--background-light);
+    color: var(--text-dark);
+}
+
+    .container-footer-nextgen p {
+        line-height: 1.6;
+        font-size: 1.05em;
+        margin-bottom: 25px;
+    }
+
+    .container-footer-nextgen strong {
+        color: #ff8c00; /* Orange NextGen pou mete aksan */
+    }
+
+    /* 2. Ikòn Rezo Sosyal yo */
+    .social-icons-display-nextgen {
+        display: flex;
+        justify-content: center;
+        gap: 35px;
+        margin: 25px 0;
+    }
+
+    .social-icons-display-nextgen a {
+        color: #ffffff;
+        font-size: 30px;
+        transition: transform 0.3s, color 0.3s;
+        text-decoration: none;
+    }
+
+    .social-icons-display-nextgen a:hover {
+        transform: scale(1.2);
+        color: #ff8c00;
+    }
+
+    /* 3. Enfòmasyon Kontak Santre */
+    .contact-info-footer-nextgen {
+        margin-top: 20px;
+        font-size: 0.9em;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        padding-top: 20px;
+    }
+
+    .contact-info-footer-nextgen p {
+        margin: 5px 0;
+        opacity: 0.9;
+    }
+
+    /* 4. Bottom Banner (Dènye ti liy nwa/fonse a) */
+    .bottom-banner-nextgen {
+        background-color: #003366;
+        color: #ffffff;
+        padding: 15px 10px;
+        text-align: center;
+        font-size: 0.8em;
+        letter-spacing: 1px;
+    }
+
+
+
+
+
+    <footer id="footer-description-nextgen">
+        <div class="container-footer-nextgen">
+            <p>NextGen Academy se yon sant fòmasyon modèn ki vize prepare jèn yo pou demen. 
+            <strong>"Nou se yon jenerasyon kap bati demen"</strong> atravè edikasyon, teknoloji, ak kreyativite nan Sid peyi a.</p>
+
+            <div class="social-icons-display-nextgen">
+                <a href="https://facebook.com/profile.php?id=61575679656061" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://wa.me/50935608869" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://tiktok.com/@nextgenacademy" target="_blank"><i class="fab fa-tiktok"></i></a>
+            </div>
+
+            <div class="contact-info-footer-nextgen">
+                <p><strong>LOKALIZASYON :</strong> Camp-Perrin (Suisse Haïti Market) & Les Cayes, Sud, Ayiti</p>
+                <p><strong>KONTAK :</strong> nextgenacademy@gmail.com | +509 3560-8868</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="bottom-banner-nextgen">
+        &copy; 2026 NEXTGEN ACADEMY | TOUT DWA REZÈVE.
+    </div>
     </style>
 
     
@@ -238,117 +368,140 @@
     Pwogram teknoloji n' yo <strong>prepare w pou mache travay</strong> lan. Nou mete aksan sou pratik, pwojè konkrè, ak entegrasyon zouti dijital.
                 </p>
     
-    <h1 style="font-style: italic;">
-        <span class="title-slogan">Kreye yon avni dijital nan yon sistèm open source!</span>
-    </h1>
+<h1 style="text-align: center;">
+    <span class="title-slogan" style="font-style: italic;">
+        <i>Kreye yon avni dijital nan yon sistèm open source!</i>
+    </span>
+</h1>
+
 
  
-        <section class="courses-grid"> 
-            
-            <div class="course-block">
-                <div class="course-icon"><i class="fas fa-code"></i></div>
-                <h2>DEV. WEB</h2>
-                <p class="course-description-short">
-                    Aprann HTML, CSS, JavaScript, epi Python/PHP pou kreye sit entènèt ak aplikasyon web konplè. Pwojè: Kreye yon sit e-commerce.
-                </p>
-                <div class="info-preview-box">
-                    <button class="info-modal-btn" 
-                            data-course-key="devlopmanweb">
-                        <i class="fas fa-info-circle"></i> Wè plan konplè
-                    </button>
-                </div>
-            </div>
-
-            <div class="course-block">
-                <div class="course-icon"><i class="fas fa-mobile-alt"></i></div>
-                <h2>DEV. APK (MOBIL)</h2>
-                <p class="course-description-short">
-                    Konsepsyon aplikasyon Android/iOS avèk langaj modèn (HTML/CSS/Java). Aprann koneksyon API ak piblikasyon sou magazen Paystore.
-                </p>
-                <div class="countdown-btn-box">
-                    <p>Enskripsyon an ap fini nan :</p>
-                    <div id="apk-countdown-timer" class="countdown-timer">
-                        <i class="far fa-clock"></i> Chargement...
-                    </div>
-                </div>
-                <div class="info-preview-box">
-                     <button class="info-modal-btn" 
-                            data-course-key="devlopmanapk">
-                        <i class="fas fa-info-circle"></i> Wè plan konplè
-                    </button>
-                </div>
-            </div>
-            
-            </section> 
-        
-        </main>
+<section class="courses-grid"> 
     
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 NextGen Academy. Tout dwa rezève.</p>
+<div class="course-block">
+    <div class="course-icon"><i class="fas fa-laptop-code"></i></div>
+    <h2>PWOGRAMASYON NIVO 1</h2>
+    <p class="course-description-short">
+        Wap vin aprann baz koding nan langaj <strong>HTML, CSS, JavaScript ak C++</strong>. Yon fòmasyon pratik ki ouvè pòt pou antre nan Club pirat NGA a.
+    </p>
+
+    <div style="text-align: left; background: rgba(0, 77, 153, 0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px; font-size: 0.9em;">
+        <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="margin-bottom: 8px;"><i class="fas fa-check-circle" style="color: var(--accent-color);"></i> <strong>3 moun gratis :</strong> Siw vini ak de zanmi, nou tou le 3 ap patisipe gratis.</li>
+            <li style="margin-bottom: 8px;"><i class="fas fa-info-circle" style="color: var(--primary-color);"></i> Nou dwe enskri <strong>avan dat enskripsyon an fini</strong>.</li>
+            <li style="margin-bottom: 8px;"><i class="fas fa-file-pdf" style="color: #dc3545;"></i> Dokiman fòmasyon yo enkli ak goute pandan jounen an.</li>
+            <li style="margin-bottom: 8px;"><i class="fas fa-exclamation-triangle" style="color: var(--secondary-color);"></i> Pa gen sètifika pou Nivo 1 an.</li>
+            <li><i class="fas fa-users" style="color: var(--primary-color);"></i> Entegrasyon dirèk nan <strong>Club akademi an</strong>.</li>
+        </ul>
+    </div>
+    
+    <div class="countdown-btn-box">
+        <p>Limit enskripsyon :</p>
+        <div id="prog-countdown-timer" class="countdown-timer">
+            <i class="far fa-clock"></i> 08 jou 00:00:00
         </div>
-    </footer>
+    </div>
+
+    <div class="info-preview-box" style="display: flex; flex-direction: column; gap: 10px;">
+        <p style="font-weight: bold; color: var(--accent-color); margin: 5px 0;">Pri: 5 000 HTG</p>
+<a href="pèman.html" class="info-modal-btn" style="background-color: var(--primary-color);">
+    <i class="fas fa-user-plus"></i> Enskri kounye a
+</a>
+
+<a href="clubnga.html" class="info-modal-btn btn-aura" style="font-size: 0.85em;">
+Wè opòtinite Club NGA
+</a>
+        
+    </div>
+</div>
+
+
+    <div class="course-block" style="border-top-color: var(--secondary-color);">
+        <div class="course-icon" style="color: var(--secondary-color);"><i class="fas fa-print"></i></div>
+        <h2>SÈRIGRAFI DIJITAL</h2>
+        <p class="course-description-short">
+            Avèk teknik sa a, ou pa bezwen gwo materyèl lou ankò. Yon senp laptòp oswa yon telefòn kont pou w kreye bèl travay pwofesyonèl sou nenpòt sipò. Aprann pèsonalize plak donè, braslè, bidon, kepi, mayo, kòk telefòn, ak vehikil. Dekouvri kijan pou achte "stock" (vinyl, siblimasyon) an China pou mwens pase 2$, kreye kat Visa pou kòmand, epi resevwa yo nan yon adrès "safe" nan Sid oswa Pòtoprens.
+        </p>
+        <div class="info-preview-box">
+            <p style="color: #dc3545; font-weight: bold; margin-bottom: 5px;">
+                <i class="fas fa-times-circle"></i> Enskripsyon fini
+            </p>
+            <p style="text-decoration: line-through; color: #666; font-size: 0.9em;">Prix : 8000 HTG</p>
+        </div>
+    </div>
     
-    <script>
-        // Clé pour stocker la date de fin du compte à rebours
-        const END_DATE_KEY = 'apk_countdown_end';
-        const COUNTDOWN_ELEMENT_ID = 'apk-countdown-timer';
+</section>
 
-        function startCountdown(durationDays, durationHours, durationMinutes, durationSeconds) {
-            let endTime = localStorage.getItem(END_DATE_KEY);
+        </main>
 
-            if (!endTime) {
-                // Si la date de fin n'existe pas, la calculer
-                const now = new Date();
-                const totalMilliseconds = (durationDays * 24 * 60 * 60 * 1000) + 
-                                          (durationHours * 60 * 60 * 1000) + 
-                                          (durationMinutes * 60 * 1000) + 
-                                          (durationSeconds * 1000);
-                
-                const calculatedEndTime = now.getTime() + totalMilliseconds;
-                
-                // Stocker la date de fin dans localStorage
-                localStorage.setItem(END_DATE_KEY, calculatedEndTime);
-                endTime = calculatedEndTime;
-            } else {
-                endTime = parseInt(endTime, 10);
-            }
+<script>
+    const END_DATE_PROG = 'prog_countdown_end';
 
-            const countdownEl = document.getElementById(COUNTDOWN_ELEMENT_ID);
+    function startCountdown(durationDays, elementId) {
+        let endTime = localStorage.getItem(END_DATE_PROG);
 
-            const interval = setInterval(function() {
-                const now = new Date().getTime();
-                const distance = endTime - now;
-
-                if (distance < 0) {
-                    clearInterval(interval);
-                    countdownEl.innerHTML = '<span class="countdown-expired">Dat limit la pase!</span>';
-                    return;
-                }
-
-                // Calculs du temps restant
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                // Affichage du compte à rebours
-                countdownEl.innerHTML = `
-                    <i class="fas fa-hourglass-half"></i> 
-                    <span>${days}</span> jou 
-                    <span>${hours.toString().padStart(2, '0')}</span> è 
-                    <span>${minutes.toString().padStart(2, '0')}</span> min 
-                    <span>${seconds.toString().padStart(2, '0')}</span> seg
-                `;
-            }, 1000);
+        if (!endTime) {
+            const now = new Date();
+            const totalMilliseconds = (durationDays * 24 * 60 * 60 * 1000);
+            endTime = now.getTime() + totalMilliseconds;
+            localStorage.setItem(END_DATE_PROG, endTime);
+        } else {
+            endTime = parseInt(endTime, 10);
         }
 
-        // --- Lancement du Compte à Rebours au chargement de la page ---
-        document.addEventListener('DOMContentLoaded', () => {
-            // Durée spécifiée: 6 jours, 23h, 48 minutes, 0 secondes
-            startCountdown(6, 23, 48, 0);
-        });
-    </script>
-    
+        const countdownEl = document.getElementById(elementId);
+
+        const interval = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = endTime - now;
+
+            if (distance < 0) {
+                clearInterval(interval);
+                countdownEl.innerHTML = '<span class="countdown-expired">Dat limit la pase!</span>';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            countdownEl.innerHTML = `
+                <span>${days}</span>j 
+                <span>${hours.toString().padStart(2, '0')}</span>è 
+                <span>${minutes.toString().padStart(2, '0')}</span>m 
+                <span>${seconds.toString().padStart(2, '0')}</span>s
+            `;
+        }, 1000);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Nou mete 8 jou pou Pwogramasyon
+        startCountdown(8, 'prog-countdown-timer');
+    });
+</script>
+
+    </main> <footer id="footer-description-nextgen">
+        <div class="container-footer-nextgen">
+            <p>NextGen Academy se yon sant fòmasyon modèn ki vize prepare jèn yo pou demen. 
+            <strong>"Nou se yon jenerasyon kap bati demen"</strong> atravè edikasyon, teknoloji, ak kreyativite nan Sid peyi a.</p>
+
+            <div class="social-icons-display-nextgen">
+                <a href="https://facebook.com/profile.php?id=61575679656061" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://wa.me/50935608869" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://tiktok.com/@nextgenacademy" target="_blank"><i class="fab fa-tiktok"></i></a>
+            </div>
+
+            <div class="contact-info-footer-nextgen">
+                <p><strong>LOKALIZASYON :</strong> Camp-Perrin (Suisse Haïti Market) & Les Cayes, Sud, Ayiti</p>
+                <p><strong>KONTAK :</strong> nextgenacademy@gmail.com | +509 3560-8868</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="bottom-banner-nextgen">
+        &copy; 2026 NEXTGEN ACADEMY | TOUT DWA REZÈVE.
+    </div>
+
     </body>
 </html>

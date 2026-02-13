@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akèy | NextGen Academy</title> 
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* --- Reset de base pou retire espas sou kote yo --- */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* ------------------------------------------------ */
+        /* --- Section d'Inscription (Transaction) --- */
+        /* ------------------------------------------------ */
+        .transaction-section {
+            background-color: var(--primary-color); /* Bleu Marin Foncé */
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .transaction-section h2 {
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .form-container {
+            background-color: var(--background-card);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            margin: 0 auto; 
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input, .form-group textarea, .file-upload-group label { 
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box; 
+        }
+
+        .file-upload-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .file-upload-group label {
+            display: block;
+            padding: 8px 0;
+            color: var(--text-dark);
+            font-weight: bold;
+            border: none;
+        }
+        
+        .paiement-intro-text {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: var(--primary-color); 
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed #ccc;
+        }
+
+        .paiement-options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; 
+            gap: 15px; 
+            margin-bottom: 25px;
+        }
+
+        .option-item button {
+            background: none;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            padding: 10px;
+            width: 100%;
+            transition: border-color 0.3s;
+        }
+        .option-item button:hover {
+            border-color: var(--secondary-color);
+        }
+
+        .paiement-logo {
+            width: 120px; 
+            height: auto;
+            max-width: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .submit-btn {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            width: 100%; 
+            transition: background-color 0.3s;
+        }
+        .submit-btn:hover {
+            background-color: #1e8449;
+        }
+
+   /* 1. Seksyon foot */
+    #footer-description-nextgen {
+        background-color: #4B5320; /* caca jaco */
+        padding: 40px 20px;
+        text-align: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #ffffff; /* Tèks an blan pou l ka parèt byen */
+    }
+
+    .container-footer-nextgen {
+        max-width: 850px;
+        margin: 0 auto;
+    }
+
+    .container-footer-nextgen p {
+        line-height: 1.6;
+        font-size: 1.05em;
+        margin-bottom: 25px;
+    }
+
+    .container-footer-nextgen strong {
+        color: #ff8c00; /* Orange NextGen pou mete aksan */
+    }
+
+    /* 2. Ikòn Rezo Sosyal yo */
+    .social-icons-display-nextgen {
+        display: flex;
+        justify-content: center;
+        gap: 35px;
+        margin: 25px 0;
+    }
+
+    .social-icons-display-nextgen a {
+        color: #ffffff;
+        font-size: 30px;
+        transition: transform 0.3s, color 0.3s;
+        text-decoration: none;
+    }
+
+    .social-icons-display-nextgen a:hover {
+        transform: scale(1.2);
+        color: #ff8c00;
+    }
+
+    /* 3. Enfòmasyon Kontak Santre */
+    .contact-info-footer-nextgen {
+        margin-top: 20px;
+        font-size: 0.9em;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        padding-top: 20px;
+    }
+
+    .contact-info-footer-nextgen p {
+        margin: 5px 0;
+        opacity: 0.9;
+    }
+
+    /* 4. Bottom Banner (Dènye ti liy nwa/fonse a) */
+    .bottom-banner-nextgen {
+        background-color: #003366;
+        color: #ffffff;
+        padding: 15px 10px;
+        text-align: center;
+        font-size: 0.8em;
+        letter-spacing: 1px;
+    }
+
+        @media (max-width: 650px) {
+            .paiement-options-grid {
+                grid-template-columns: 1fr; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="container top-info">
+            <span class="contact-item"><i class="fas fa-bullhorn"></i> Fè tranzaksyon ou an sekirite isit la</span>
+        </div>
+    </div>
+
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="NGA.png" alt="Logo NextGen Academy" class="logo-img">
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="transaction-section">
+            <div class="container form-container">
+                <h2>Enskri ak 1000 HTG</h2>
+                <form id="transactionForm" action="https://getform.io/f/akkpolva" method="POST" enctype="multipart/form-data">
+                    <div class="form-group"><input type="text" name="Nom" placeholder="Non" required></div>
+                    <div class="form-group"><input type="text" name="Siyati" placeholder="Siyati" required></div>
+                    <div class="file-upload-group">
+                        <label>Kaptu dekran tranzaksyon an:</label>
+                        <input type="file" name="Capture" accept="image/*" required>
+                    </div>
+                    <div class="form-group"><input type="text" name="Montant" placeholder="Montan (eg. 500 HTG)" required></div>
+                    <div class="form-group"><textarea name="Description" placeholder="Deskripsyon" rows="3"></textarea></div>
+                    <div class="form-group"><input type="text" name="Telephone" placeholder="WhatsApp" required></div>
+                    
+                    <p class="paiement-intro-text">Chwazi mwayen wap fè transfè an:</p>
+                    <div class="paiement-options-grid">
+                        <div class="option-item">
+                            <input type="hidden" name="_gotof" value="/merci.html">
+                            <button type="button" class="natcash-btn" onclick="faireDonNatcash()"><img src="natcash1.png" class="paiement-logo"></button>
+                        </div>
+                        <div class="option-item">
+                            <button type="button" class="moncash-btn" onclick="faireDonMoncash()"><img src="img0.png" class="paiement-logo"></button>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">Soumèt enfòmasyon yo</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    
+ <footer id="footer-description-nextgen">
+        <div class="container-footer-nextgen">
+            <p>NextGen Academy se yon sant fòmasyon modèn ki vize prepare jèn yo pou demen. 
+            <strong>"Nou se yon jenerasyon kap bati demen"</strong> atravè edikasyon, teknoloji, ak kreyativite nan Sid peyi a.</p>
+
+            <div class="social-icons-display-nextgen">
+                <a href="https://facebook.com/profile.php?id=61575679656061" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://wa.me/50935608869" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://tiktok.com/@nextgenacademy" target="_blank"><i class="fab fa-tiktok"></i></a>
+            </div>
+
+            <div class="contact-info-footer-nextgen">
+                <p><strong>LOKALIZASYON :</strong> Camp-Perrin (Suisse Haïti Market) & Les Cayes, Sud, Ayiti</p>
+                <p><strong>KONTAK :</strong> nextgenacademy@gmail.com | +509 3560-8868</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="bottom-banner-nextgen">
+        &copy; 2026 NEXTGEN ACADEMY | TOUT DWA REZÈVE.
+    </div>
+    
+    <script>
+        function faireDonNatcash() {
+            alert("Pou fè tranzaksyon Natcash: 1. Fè transfè a sou +509 3560-8869 / Kes* Ben*.");
+        }
+        
+        function faireDonMoncash() {
+            alert("Pou fè tranzaksyon Moncash: 1. Fè transfè a sou +509 3101-3968 / Kes* Ben*.");
+        }
+    </script>
+</body>
+</html>

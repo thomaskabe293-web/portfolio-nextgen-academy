@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club NGA | NextGen Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #003366; /* Bleu Marin */
+            --orange-nga: #ff8c00; /* Orange NextGen */
+            --jaco-dark: #4B5320;
+            --text-dark: #333;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fdfbf7;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        /* --- Header --- */
+        .club-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .club-header h1 {
+            color: var(--primary-color);
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+
+        /* --- New Shape Grid --- */
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .advantage-card {
+            background: var(--white);
+            padding: 40px 30px;
+            position: relative;
+            /* Fòm asimetrik */
+            border-radius: 30px 5px 30px 5px;
+            box-shadow: 10px 10px 0px var(--primary-color);
+            border: 2px solid var(--primary-color);
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+
+        .advantage-card:hover {
+            transform: scale(1.03);
+            box-shadow: 10px 10px 0px #4B5320;
+            border-color: var(--orange-nga);
+        }
+
+        .advantage-card i {
+            font-size: 3em;
+            color: #4B5320;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .advantage-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            text-transform: uppercase;
+        }
+
+        .advantage-card p {
+            font-size: 1em;
+            font-weight: 300; /* Police fine */
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* Ti dekorasyon nan kwen an */
+        .advantage-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            clip-path: polygon(100% 0, 0 0, 100% 100%);
+        }
+
+        .advantage-card:hover::after {
+            background: var(--orange-nga);
+        }
+
+/* 1. Seksyon foot */
+    #footer-description-nextgen {
+        background-color: #4B5320; /* caca jaco */
+        padding: 40px 20px;
+        text-align: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #ffffff; /* Tèks an blan pou l ka parèt byen */
+    }
+
+    .container-footer-nextgen {
+        max-width: 850px;
+        margin: 0 auto;
+    }
+
+    .container-footer-nextgen p {
+        line-height: 1.6;
+        font-size: 1.05em;
+        margin-bottom: 25px;
+    }
+
+    .container-footer-nextgen strong {
+        color: #ff8c00; /* Orange NextGen pou mete aksan */
+    }
+
+    /* 2. Ikòn Rezo Sosyal yo */
+    .social-icons-display-nextgen {
+        display: flex;
+        justify-content: center;
+        gap: 35px;
+        margin: 25px 0;
+    }
+
+    .social-icons-display-nextgen a {
+        color: #ffffff;
+        font-size: 30px;
+        transition: transform 0.3s, color 0.3s;
+        text-decoration: none;
+    }
+
+    .social-icons-display-nextgen a:hover {
+        transform: scale(1.2);
+        color: #ff8c00;
+    }
+
+    /* 3. Enfòmasyon Kontak Santre */
+    .contact-info-footer-nextgen {
+        margin-top: 20px;
+        font-size: 0.9em;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        padding-top: 20px;
+    }
+
+    .contact-info-footer-nextgen p {
+        margin: 5px 0;
+        opacity: 0.9;
+    }
+
+    /* 4. Bottom Banner (Dènye ti liy nwa/fonse a) */
+    .bottom-banner-nextgen {
+        background-color: #003366;
+        color: #ffffff;
+        padding: 15px 10px;
+        text-align: center;
+        font-size: 0.8em;
+        letter-spacing: 1px;
+    }
+        @media (max-width: 600px) {
+            .club-header h1 { font-size: 1.8em; }
+            .advantage-card { margin: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="club-header">
+            <h1>Club Antreprenè NGA</h1>
+            <p>"Nou se yon jenerasyon kap bati demen ANSANM"</p>
+        </header>
+
+        <section class="advantages-grid">
+            <div class="advantage-card">
+                <i class="fas fa-users-gear"></i>
+                <h3>Rezo lejand yo</h3>
+                <p>Ou pa sèlman yon etidyan, ou se yon patnè. Nou reyini jèn ki gen menm vizyon avè w pou travay sou pwojè konkrè kote lide w rankontre ak konpetans lòt moun.</p>
+            </div>
+
+            <div class="advantage-card">
+<i class="fas fa-file-signature"></i>
+                <h3>Sipò teknik</h3>
+                <p>Nou pa janm lage w. Kit se yon blokaj nan kòd oswa yon estrateji dijital ki pa mache, ekip NGA la pou ba w konsèy ak altènatif jiskaske ou jwenn siksè.</p>
+            </div>
+
+            <div class="advantage-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Ide vè siksè</h3>
+                <p>Nou transfòme entelijans ou an endepandans finansye. Nou ede w estriktire pwojè an liy ou yo (e-commerce, sèvis dijital) pou yo rapòte w kòb rapidman.</p>
+            </div>
+
+            <div class="advantage-card">
+                <i class="fas fa-bullhorn"></i>
+                <h3>Pwojè eksklizif</h3>
+                <p>Aksè VIP ak nouvo zouti teknolojik, mache ki gen potansyèl, ak kontra travay NextGen Academy resevwa. Enfòmasyon an se premye zouti siksè ou.</p>
+            </div>
+
+            <div class="advantage-card">
+                <i class="fas fa-trophy"></i>
+                <h3>Akonpayman 0-100</h3>
+                <p>Nou trase chemen an avè w: aprann, aplike, korije, epi reyisi. Nou bay asistans pèsonalize pou chak etap nan kwasans ou kòm antreprenè.</p>
+            </div>
+        </section>
+    </div>
+
+    <footer id="footer-description-nextgen">
+        <div class="container-footer-nextgen">
+            <p>NextGen Academy se yon sant fòmasyon modèn ki vize prepare jèn yo pou demen. 
+            <strong>"Nou se yon jenerasyon kap bati demen"</strong> atravè edikasyon, teknoloji, ak kreyativite nan Sid peyi a.</p>
+
+            <div class="social-icons-display-nextgen">
+                <a href="https://facebook.com/profile.php?id=61575679656061" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://wa.me/50935608869" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://tiktok.com/@nextgenacademy" target="_blank"><i class="fab fa-tiktok"></i></a>
+            </div>
+
+            <div class="contact-info-footer-nextgen">
+                <p><strong>LOKALIZASYON :</strong> Camp-Perrin (Suisse Haïti Market) & Les Cayes, Sud, Ayiti</p>
+                <p><strong>KONTAK :</strong> nextgenacademy@gmail.com | +509 3560-8868</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="bottom-banner-nextgen">
+        &copy; 2026 NEXTGEN ACADEMY | TOUT DWA REZÈVE.
+    </div>    
+</body>
+</html>
