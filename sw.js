@@ -1,47 +1,25 @@
-const cacheName = 'nga-v1';
+importScripts('https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js');
 
-// Lis tout fichye ki enpòtan pou aplikasyon an ka mache san entènèt
-const assets = [
-  '/',
-  '/index.html',
-  '/pèman.html',
-  '/bibliyotek.html',
-  '/art_detail.html',
-  '/tech_detail.html',
-  '/clubnga.html',
-  '/manifest.json',
-  '/logo1.png',           // Logo ou te mande a
-  '/icon-192.png',        // Icône 192px pou Android
-  '/icon-512.png',        // Icône 512px pou Splash screen
-  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css'
-];
+const firebaseConfig = {
+    apiKey: "AIzaSyAAaYOj5NPxfN_uxcNpeDRqgPDCS6OL2x4",
+    authDomain: "nextgen-academy-79232.firebaseapp.com",
+    projectId: "nextgen-academy-79232",
+    storageBucket: "nextgen-academy-79232.firebasestorage.app",
+    messagingSenderId: "229839766878",
+    appId: "1:229839766878:web:bab2a51b4d90d0eae5bbcf"
+};
 
-// Etap enstalasyon: sere fichye yo nan kach (cache) telefòn nan
-self.addEventListener('install', e => {
-  e.waitUntil(
-    caches.open(cacheName).then(cache => {
-      console.log('Service Worker: Kach ap prepare...');
-      return cache.addAll(assets);
-    })
-  );
+firebase.initializeApp(firebaseConfig);
+const messaging = firebase.messaging();
+
+messaging.onBackgroundMessage((payload) => {
+  const notificationTitle = payload.notification.title;
+  const notificationOptions = {
+    body: payload.notification.body,
+    icon: '/logo1.png'
+  };
+  self.registration.showNotification(notificationTitle, notificationOptions);
 });
 
-// Etap aktivasyon: netwaye vye kach si gen yon nouvo vèsyon
-self.addEventListener('activate', e => {
-  e.waitUntil(
-    caches.keys().then(keys => {
-      return Promise.all(
-        keys.filter(key => key !== cacheName).map(key => caches.delete(key))
-      );
-    })
-  );
-});
 
-// Rekipere fichye yo: si pa gen entènèt, pran yo nan kach la
-self.addEventListener('fetch', e => {
-  e.respondWith(
-    caches.match(e.request).then(res => {
-      return res || fetch(e.request);
-    })
-  );
-});
