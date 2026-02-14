@@ -5,30 +5,53 @@
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="logo1.png">
     
-    <style>
-        /* Bloke seleksyon tèks pou moun pa ka kopye */
-        body {
-            -webkit-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
-        }
-        /* Bwat mesaj (Modal) ki fòse notifikasyon an */
-        #notification-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95); z-index: 10000;
-            display: none; align-items: center; justify-content: center;
-        }
-    </style>
+<style>
+    /* Bloke seleksyon tèks */
+    body {
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-touch-callout: none;
+    }
+
+    /* Fenèt Notifikasyon (Overlay) */
+    #notification-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85); /* Nwa transparan */
+        z-index: 10000;
+        display: none; /* Kache pa defo, JS ap afiche l */
+        align-items: center; /* Santre vètikal */
+        justify-content: center; /* Santre orizontal */
+        backdrop-filter: blur(5px); /* Efè flou dèyè a */
+    }
+
+    .notification-box {
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        text-align: center;
+        max-width: 350px;
+        width: 90%; /* Pou li pa kole nan bò yo sou telefòn */
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        animation: popIn 0.4s ease-out;
+    }
+
+    @keyframes popIn {
+        0% { transform: scale(0.8); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+</style>
+
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akèy | NextGen Academy</title>
     <link rel="stylesheet" href="base.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<link rel="manifest" href="manifest.json">
-
-
-
+    <style>
         /* =================================================================================== */
         /* ########################## STYLES DE LA PAGE D'ACCUEIL (INDEX.HTML) ############# */
         /* =================================================================================== */
@@ -618,13 +641,18 @@ input, textarea {
 </head>
 <body>
 <div id="notification-overlay">
-    <div style="background:white; padding:30px; border-radius:15px; text-align:center; max-width:320px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
-        <img src="logo1.png" style="width: 80px; margin-bottom: 15px;">
+    <div class="notification-box">
+        <img src="logo1.png" alt="Logo" style="width: 80px; margin-bottom: 15px;">
         <h2 style="color:#003366; margin-bottom:10px; font-size: 1.4em;">Aktive Notifikasyon</h2>
-        <p style="color:#333; font-size: 0.9em; margin-bottom: 20px;">Pou w ka resevwa alèt sou nouvo kou ak bous detid, ou dwe aktive notifikasyon yo.</p>
-        <button onclick="acceptNotification()" style="background:#ff8c00; color:white; border:none; padding:15px; border-radius:8px; font-weight:bold; cursor:pointer; width:100%; font-size: 1.1em;">DAKÒ, MWEN KONPRANN</button>
+        <p style="color:#333; font-size: 0.9em; margin-bottom: 25px; line-height: 1.5;">
+            Pou w ka resevwa alèt sou nouvo kou ak bous detid nan <strong>NextGen Academy</strong>, ou dwe aktive notifikasyon yo.
+        </p>
+        <button onclick="acceptNotification()" style="background:#ff8c00; color:white; border:none; padding:16px; border-radius:10px; font-weight:bold; cursor:pointer; width:100%; font-size: 1.1em; transition: 0.3s;">
+            DAKÒ, MWEN KONPRANN
+        </button>
     </div>
 </div>
+
 
 <div class="menu-backdrop" id="menuBackdrop" onclick="toggleMenu()"></div>
 
@@ -801,96 +829,55 @@ input, textarea {
 <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js"></script>
 
 <script>
-    // 1. GESTION DU MENU (DESIGN)
-    function toggleMenu() {
-        const nav = document.getElementById('navMenu');
-        const backdrop = document.getElementById('menuBackdrop');
-        const btn = document.querySelector('.menu-toggle');
-        
-        nav.classList.toggle('active');
-        backdrop.classList.toggle('active');
-        btn.classList.toggle('open');
+  // 1. Konfigirasyon Firebase (Mwen mete dènye kle ou te voye yo)
+  const firebaseConfig = {
+      apiKey: "AIzaSyAAaYOj5NPxfN_uxcNpeDRqgPDCS6OL2x4",
+      authDomain: "nextgen-academy-79232.firebaseapp.com",
+      projectId: "nextgen-academy-79232",
+      storageBucket: "nextgen-academy-79232.firebasestorage.app",
+      messagingSenderId: "229839766878",
+      appId: "1:229839766878:web:bab2a51b4d90d0eae5bbcf"
+  };
+  
+  firebase.initializeApp(firebaseConfig);
+  const messaging = firebase.messaging();
+
+  // 2. Enskri Service Worker la (sw.js)
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+      .then(() => console.log("Service Worker OK"))
+      .catch(err => console.log("Erreur SW:", err));
+  }
+
+  // 3. Tcheke pèmisyon lè paj la louvri pou montre Modal la
+  window.addEventListener('load', () => {
+    if (Notification.permission === "default") {
+        document.getElementById("notification-overlay").style.display = "flex";
     }
+  });
 
-    // Fermer le menu proprement
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-        link.addEventListener('click', () => {
-            document.getElementById('navMenu').classList.remove('active');
-            document.getElementById('menuBackdrop').classList.remove('active');
-            document.querySelector('.menu-toggle').classList.remove('open');
-        });
-    });
-
-    // 2. NOUVELLE CONFIGURATION WEB FIREBASE (NETWAYE)
-    const firebaseConfig = {
-        apiKey: "AIzaSyAAaYOj5NPxfN_uxcNpeDRqgPDCS6OL2x4",
-        authDomain: "nextgen-academy-79232.firebaseapp.com",
-        projectId: "nextgen-academy-79232",
-        storageBucket: "nextgen-academy-79232.firebasestorage.app",
-        messagingSenderId: "229839766878",
-        appId: "1:229839766878:web:bab2a51b4d90d0eae5bbcf",
-        measurementId: "G-4MMWX6E6X7"
-    };
-    
-    // Inisyalizasyon Firebase
-    firebase.initializeApp(firebaseConfig);
-    const messaging = firebase.messaging();
-
-    // 3. ENREGISTREMENT DU SERVICE WORKER
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js')
-            .then(() => console.log("Service Worker anrejistre avèk siksè"))
-            .catch(err => console.error("Erreur Service Worker:", err));
-    }
-
-    // 4. VÉRIFICATION AU CHARGEMENT (OVERLAY)
-    window.addEventListener('load', () => {
-        // Nou montre mesaj la sèlman si pèmisyon an poko mande (default)
-        if (Notification.permission === "default") {
-            document.getElementById("notification-overlay").style.display = "flex";
-        }
-    });
-
-    // 5. FONCTION DU BOUTON "DAKÒ" (NOTIFIKASYON)
-    async function acceptNotification() {
-        try {
-            const permission = await Notification.requestPermission();
+  // 4. Fonksyon bouton "DAKÒ" a
+  async function acceptNotification() {
+    try {
+        const permission = await Notification.requestPermission();
+        if (permission === "granted") {
+            document.getElementById("notification-overlay").style.display = "none";
             
-            if (permission === "granted") {
-                document.getElementById("notification-overlay").style.display = "none";
-                
-                // Atansyon: Ou dwe ranplase tèks anba a ak Kle VAPID ou jwenn nan Firebase
-                const token = await messaging.getToken({ 
-                    vapidKey: "VOTRE_CLE_VAPID_DANS_CONSOLE_FIREBASE" 
-                });
-
-                if (token) {
-                    console.log("Token aparèy la pwodui :", token);
-                }
-            } else {
-                alert("Ou dwe aksepte notifikasyon yo pou w ka resevwa nouvèl sou fòmasyon yo.");
-            }
-        } catch (error) {
-            console.error("Erreur nan demann pèmisyon an:", error);
+            // Atansyon: Ranplase liy anba a ak vrè VAPID KEY ou a
+            messaging.getToken({ vapidKey: "VOTRE_CLE_VAPID_LONGUE_ICI" })
+              .then((token) => { 
+                  console.log("Token aparèy pwojè a:", token); 
+              })
+              .catch((err) => {
+                  console.log("Erreur nan jwenn Token:", err);
+              });
+        } else {
+            alert("Ou dwe aksepte notifikasyon yo pou w ka itilize aplikasyon an nòmalman.");
         }
+    } catch (error) {
+        console.error("Erreur teknik:", error);
     }
-
-    // 6. GESTION DE L'INSTALLATION (PWA)
-    let deferredPrompt;
-    window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-        console.log("Sit la prè pou l enstale kòm aplikasyon");
-    });
-
-    async function installApp() {
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            console.log(`Itilizatè a te chwazi: ${outcome}`);
-            deferredPrompt = null;
-        }
-    }
+  }
 </script>
 
 </body>
