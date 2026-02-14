@@ -27,58 +27,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link rel="manifest" href="manifest.json">
 
-<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js"></script>
 
-<script>
-  // Konfigirasyon Firebase
-  const firebaseConfig = {
-      apiKey: "AIzaSyB8eTcR86WDOcBDKjEdEee7SscMq0J8yYg",
-      messagingSenderId: "229839766878",
-      appId: "1:229839766878:android:85b8cd7018396cc3e5bbcf"
-  };
-  
-  firebase.initializeApp(firebaseConfig);
-  const messaging = firebase.messaging();
 
-  // 1. Enskri Service Worker la (sw.js)
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js')
-      .then(() => console.log("Service Worker OK"))
-      .catch(err => console.log("Erreur SW:", err));
-  }
-
-  // 2. Tcheke pèmisyon lè paj la louvri
-  window.onload = function() {
-    if (Notification.permission !== "granted") {
-        document.getElementById("notification-overlay").style.display = "flex";
-    }
-  };
-// 3. Fonksyon bouton "DAKÒ" a
-async function acceptNotification() {
-    const permission = await Notification.requestPermission();
-    if (permission === "granted") {
-        document.getElementById("notification-overlay").style.display = "none";
-        
-        // Atansyon: Ou dwe itilize Web Push Certificate (VAPID Key) la isit la, pa API Key la.
-        messaging.getToken({ vapidKey: "Mete_Kle_VAPID_la_Isit_La" })
-          .then((token) => { 
-              console.log("Token aparèy:", token); 
-              // Voye token sa a nan database ou si sa nesesè
-          })
-          .catch((err) => {
-              console.log("Erreur token:", err);
-          });
-    } else {
-        alert("Ou dwe aksepte notifikasyon yo pou w ka itilize aplikasyon an.");
-    }
-}
-
-</script>
-
-<link rel="manifest" href="manifest.json">
-
-    <style>
         /* =================================================================================== */
         /* ########################## STYLES DE LA PAGE D'ACCUEIL (INDEX.HTML) ############# */
         /* =================================================================================== */
@@ -846,8 +796,12 @@ input, textarea {
 <div class="bottom-banner-nextgen">
     &copy; 2026 NEXTGEN ACADEMY | TOUT DWA REZÈVE.
 </div>
+
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js"></script>
+
 <script>
-    // 1. GESTION DU MENU (FONCTION UNIQUE)
+    // 1. GESTION DU MENU (DESIGN)
     function toggleMenu() {
         const nav = document.getElementById('navMenu');
         const backdrop = document.getElementById('menuBackdrop');
@@ -858,7 +812,7 @@ input, textarea {
         btn.classList.toggle('open');
     }
 
-    // Fermer le menu proprement sans bloquer le lien
+    // Fermer le menu proprement
     document.querySelectorAll('.nav-menu a').forEach(link => {
         link.addEventListener('click', () => {
             document.getElementById('navMenu').classList.remove('active');
@@ -867,67 +821,76 @@ input, textarea {
         });
     });
 
-    // 2. CONFIGURATION FIREBASE & NOTIFICATIONS
+    // 2. NOUVELLE CONFIGURATION WEB FIREBASE (NETWAYE)
     const firebaseConfig = {
-        apiKey: "AIzaSyB8eTcR86WDOcBDKjEdEee7SscMq0J8yYg",
+        apiKey: "AIzaSyAAaYOj5NPxfN_uxcNpeDRqgPDCS6OL2x4",
+        authDomain: "nextgen-academy-79232.firebaseapp.com",
+        projectId: "nextgen-academy-79232",
+        storageBucket: "nextgen-academy-79232.firebasestorage.app",
         messagingSenderId: "229839766878",
-        appId: "1:229839766878:android:85b8cd7018396cc3e5bbcf"
+        appId: "1:229839766878:web:bab2a51b4d90d0eae5bbcf",
+        measurementId: "G-4MMWX6E6X7"
     };
     
+    // Inisyalizasyon Firebase
     firebase.initializeApp(firebaseConfig);
     const messaging = firebase.messaging();
 
+    // 3. ENREGISTREMENT DU SERVICE WORKER
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/sw.js')
-            .then(() => console.log("Service Worker OK"))
-            .catch(err => console.error("Erreur SW:", err));
+            .then(() => console.log("Service Worker anrejistre avèk siksè"))
+            .catch(err => console.error("Erreur Service Worker:", err));
     }
 
-    // Vérification automatique au chargement
+    // 4. VÉRIFICATION AU CHARGEMENT (OVERLAY)
     window.addEventListener('load', () => {
-        if (Notification.permission !== "granted" && Notification.permission !== "denied") {
+        // Nou montre mesaj la sèlman si pèmisyon an poko mande (default)
+        if (Notification.permission === "default") {
             document.getElementById("notification-overlay").style.display = "flex";
         }
     });
 
+    // 5. FONCTION DU BOUTON "DAKÒ" (NOTIFIKASYON)
     async function acceptNotification() {
-        const permission = await Notification.requestPermission();
-        if (permission === "granted") {
-            document.getElementById("notification-overlay").style.display = "none";
+        try {
+            const permission = await Notification.requestPermission();
             
-            // Correction ici : utilisez votre clé VAPID (générée dans Firebase Console)
-            // Ne pas utiliser l'API KEY ici.
-            messaging.getToken({ vapidKey: "VOTRE_CLE_VAPID_REELLE" })
-                .then((token) => { console.log("Token généré:", token); })
-                .catch((err) => { console.log("Erreur Token:", err); });
-        } else {
-            alert("Ou dwe aksepte notifikasyon yo pou w ka itilize aplikasyon an.");
+            if (permission === "granted") {
+                document.getElementById("notification-overlay").style.display = "none";
+                
+                // Atansyon: Ou dwe ranplase tèks anba a ak Kle VAPID ou jwenn nan Firebase
+                const token = await messaging.getToken({ 
+                    vapidKey: "VOTRE_CLE_VAPID_DANS_CONSOLE_FIREBASE" 
+                });
+
+                if (token) {
+                    console.log("Token aparèy la pwodui :", token);
+                }
+            } else {
+                alert("Ou dwe aksepte notifikasyon yo pou w ka resevwa nouvèl sou fòmasyon yo.");
+            }
+        } catch (error) {
+            console.error("Erreur nan demann pèmisyon an:", error);
         }
     }
-let deferredPrompt;
 
-window.addEventListener('beforeinstallprompt', (e) => {
-    // Empêche Chrome d'afficher la bannière automatique trop vite
-    e.preventDefault();
-    deferredPrompt = e;
-    
-    // Vous pouvez ici afficher un petit bandeau en haut de votre site
-    // Exemple : document.getElementById('install-banner').style.display = 'block';
-    console.log("L'application est prête à être installée");
-});
+    // 6. GESTION DE L'INSTALLATION (PWA)
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        console.log("Sit la prè pou l enstale kòm aplikasyon");
+    });
 
-// Fonction à appeler quand l'utilisateur clique sur votre bouton "Installer"
-async function installApp() {
-    if (deferredPrompt) {
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        if (outcome === 'accepted') {
-            console.log('Utilisateur a accepté l'installation');
+    async function installApp() {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log(`Itilizatè a te chwazi: ${outcome}`);
+            deferredPrompt = null;
         }
-        deferredPrompt = null;
     }
-}
-
 </script>
 
 </body>
